@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">welshpharmacy</string>
+    <!-- define all pharmacy services names here -->
+    <string name="FLU_SHOT">Flu shot</string>
+    <string name="BLOOD_PRESSURE_MONITORING">Blood pressure monitoring</string>
 </resources>
