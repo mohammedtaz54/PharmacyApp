@@ -40,7 +40,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         this.saveButton.setOnLongClickListener(this);
     }
 
-
+    //Sets the values for the widgets based on values in sharedPreferences
     private void initValues() {
         if (this.sharedPreferences !=null) {
             this.bloodPressure.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, KeyValueHelper.DEFAULT_BLOODPRESSURE_CHECKBOX));
@@ -48,6 +48,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    //Register a listener object on sharedPreferences that listens to the changes if object exists
     @Override
     protected void onResume() {
         super.onResume();
@@ -55,6 +56,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             this.sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
+    //Unregister a listener when activity is paused as activity is used for listener
     @Override
     protected void onPause() {
         super.onPause();
@@ -62,6 +64,8 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             this.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    /* Check whether view clicked is save button and sharedpreferences has been initialised.
+    If it has the current state is added to sharedpreferences */
     @Override
     public void onClick(View view) {
         int id = view.getId();
@@ -75,18 +79,23 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    /* If the view clicked is submit button and sharedpreferences has been initialised,
+     it clears all entries and shows a Toast indicating values have been reset
+     Values go back to their default after this*/
     @Override
     public boolean onLongClick(View view) {
         int id = view.getId();
 
         if (id == R.id.savebutton && this.sharedPreferences != null) {
             this.sharedPreferences.edit().clear().commit();
+            //triggered when either of these methods are called
             Toast.makeText(this, getString(R.string.reset_text), Toast.LENGTH_SHORT).show();
             initValues();
         }
         return true;
     }
 
+    // Adds a toast message that tells user changes have been saved
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
         Toast.makeText(this, R.string.saved_message, Toast.LENGTH_SHORT).show();
