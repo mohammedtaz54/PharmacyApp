@@ -11,4 +11,7 @@
     <string name="action_settings">Settings</string>
     <string name="map_view">Map view</string>
     <string name="list_view">List view</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

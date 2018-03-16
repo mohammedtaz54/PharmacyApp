@@ -17,7 +17,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PharmacyList"
+            android:name=".MultiPharmacyActivity"
             android:label="@string/title_activity_pharmacy_list"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
