@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nsa.clientproject.welshpharmacy.PharmacyView">
+
+    <TextView
+        android:id="@+id/single_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textSize="32sp"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"/>
+
+
+    <TextView
+        android:id="@+id/single_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="309dp"
+        android:layout_marginLeft="40dp"/>
+</android.support.v7.widget.LinearLayoutCompat>
