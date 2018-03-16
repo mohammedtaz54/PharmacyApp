@@ -3,4 +3,12 @@
     <!-- define all pharmacy services names here -->
     <string name="FLU_SHOT">Flu shot</string>
     <string name="BLOOD_PRESSURE_MONITORING">Blood pressure monitoring</string>
+    <string name="title_activity_pharmacy_list">PharmacyList</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="map_view">Map view</string>
+    <string name="list_view">List view</string>
 </resources>
