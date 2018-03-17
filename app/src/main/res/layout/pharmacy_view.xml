@@ -19,7 +19,6 @@
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="20dp"/>
 
-
     <TextView
         android:id="@+id/single_location"
         android:layout_width="wrap_content"
@@ -28,4 +27,13 @@
         tools:layout_editor_absoluteX="189dp"
         tools:layout_editor_absoluteY="309dp"
         android:layout_marginLeft="40dp"/>
-</android.support.v7.widget.LinearLayoutCompat>
+
+
+    <ListView
+        android:id="@+id/single_services"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="500dp"
+            ></ListView>
+    </android.support.v7.widget.LinearLayoutCompat>
