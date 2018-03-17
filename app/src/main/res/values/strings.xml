@@ -21,4 +21,5 @@
     <string name="closed">closed</string>
     <string name="current_postcode">Enter current postcode</string>
     <string name="maximum_distance_to_travel">Set maximum travel distance (miles)</string>
+    <string name="settings">Settings</string>
 </resources>
