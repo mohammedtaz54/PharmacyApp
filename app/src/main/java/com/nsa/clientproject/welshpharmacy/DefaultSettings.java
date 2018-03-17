@@ -5,8 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
+import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 import android.widget.Toast;
+
+import java.security.Key;
 
 public class DefaultSettings extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -14,6 +17,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     private AppCompatCheckBox bloodPressure;
     private AppCompatCheckBox fluShot;
     private AppCompatButton saveButton;
+    private AppCompatEditText postcode;
 
     private SharedPreferences sharedPreferences;
 
@@ -29,6 +33,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         this.bloodPressure = this.findViewById(R.id.cbBP);
         this.fluShot = this.findViewById(R.id.cbFS);
         this.saveButton = this.findViewById(R.id.savebutton);
+        this.postcode = this.findViewById(R.id.user_postcode);
 
         //initialises sharededPreferences object
         this.sharedPreferences = this.getPreferences(MODE_PRIVATE);
@@ -45,6 +50,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         if (this.sharedPreferences !=null) {
             this.bloodPressure.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, KeyValueHelper.DEFAULT_BLOODPRESSURE_CHECKBOX));
             this.fluShot.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, KeyValueHelper.DEFAULT_FLUSHOT_CHECKBOX));
+            this.postcode.setText(this.sharedPreferences.getString(KeyValueHelper.KEY_POSTCODE_TEXT, KeyValueHelper.DEFAULT_POSTCODE_TEXT));
         }
     }
 
@@ -74,6 +80,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             SharedPreferences.Editor editor = this.sharedPreferences.edit();
             editor.putBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, this.bloodPressure.isChecked());
             editor.putBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, this.fluShot.isChecked());
+            editor.putString(KeyValueHelper.KEY_POSTCODE_TEXT, this.postcode.getText().toString());
 
             editor.apply();
         }
