@@ -18,6 +18,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     private AppCompatCheckBox fluShot;
     private AppCompatButton saveButton;
     private AppCompatEditText postcode;
+    private AppCompatEditText maxdistance;
 
     private SharedPreferences sharedPreferences;
 
@@ -34,6 +35,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         this.fluShot = this.findViewById(R.id.cbFS);
         this.saveButton = this.findViewById(R.id.savebutton);
         this.postcode = this.findViewById(R.id.user_postcode);
+        this.maxdistance = this.findViewById(R.id.pharmacy_max_distance);
 
         //initialises sharededPreferences object
         this.sharedPreferences = this.getPreferences(MODE_PRIVATE);
@@ -51,6 +53,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             this.bloodPressure.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, KeyValueHelper.DEFAULT_BLOODPRESSURE_CHECKBOX));
             this.fluShot.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, KeyValueHelper.DEFAULT_FLUSHOT_CHECKBOX));
             this.postcode.setText(this.sharedPreferences.getString(KeyValueHelper.KEY_POSTCODE_TEXT, KeyValueHelper.DEFAULT_POSTCODE_TEXT));
+            this.maxdistance.setText(this.sharedPreferences.getString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
         }
     }
 
@@ -81,6 +84,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             editor.putBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, this.bloodPressure.isChecked());
             editor.putBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, this.fluShot.isChecked());
             editor.putString(KeyValueHelper.KEY_POSTCODE_TEXT, this.postcode.getText().toString());
+            editor.putString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, this.maxdistance.getText().toString());
 
             editor.apply();
         }
@@ -94,7 +98,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         int id = view.getId();
 
         if (id == R.id.savebutton && this.sharedPreferences != null) {
-            this.sharedPreferences.edit().clear().commit();
+            this.sharedPreferences.edit().clear().apply();
             //triggered when either of these methods are called
             Toast.makeText(this, getString(R.string.reset_text), Toast.LENGTH_SHORT).show();
             initValues();

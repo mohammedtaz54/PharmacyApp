@@ -18,4 +18,7 @@ public class KeyValueHelper {
     public static final String KEY_POSTCODE_TEXT = "edittext_postcode";
     public static final String DEFAULT_POSTCODE_TEXT = "";
 
+    public static final String KEY_MAXDISTANCE_TEXT = "edittext_maxdistance";
+    public static final String DEFAULT_MAXDISTANCE_TEXT = "";
+
 }
