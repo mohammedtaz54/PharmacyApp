@@ -7,6 +7,7 @@ import android.support.v7.widget.ListViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.nsa.clientproject.welshpharmacy.adapters.PharmacyListCardViewAdapter;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
@@ -19,7 +20,7 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
  * {@link ListOfPharmaciesCards.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class ListOfPharmaciesCards extends Fragment {
+public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
 
@@ -39,6 +40,7 @@ public class ListOfPharmaciesCards extends Fragment {
         pharmacyList.updatePharmacies();
         PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
         cardList.setAdapter(adapter);
+        cardList.setOnItemClickListener(this);
         return v;
     }
 
@@ -57,6 +59,18 @@ public class ListOfPharmaciesCards extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    /**
+     * Calls the onFragmentInteraction method in the parent activity when a list item is clicked
+     * @param parent the parent view
+     * @param view the current view
+     * @param position the position of the item
+     * @param id the id of the item
+     */
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        mListener.onFragmentInteraction((Pharmacy)parent.getItemAtPosition(position));
     }
 
     /**

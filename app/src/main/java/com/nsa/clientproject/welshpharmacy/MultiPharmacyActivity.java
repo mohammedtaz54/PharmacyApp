@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 
@@ -71,6 +72,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
      */
     @Override
     public void onFragmentInteraction(Pharmacy pharmacy) {
+        Toast.makeText(this,pharmacy.getName(),Toast.LENGTH_SHORT).show();
 
     }
 }
