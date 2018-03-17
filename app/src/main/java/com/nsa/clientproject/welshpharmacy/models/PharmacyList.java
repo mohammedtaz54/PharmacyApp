@@ -42,8 +42,8 @@ public class PharmacyList {
             add(new Pharmacy(
                     "Pharmacy 2",
                     "CF103EF",
-                    LocalTime.of(9,30),
                     LocalTime.of(17,0),
+                    LocalTime.of(9,30),
                     services,
                     services
             ));
