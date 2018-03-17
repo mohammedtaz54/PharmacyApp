@@ -35,25 +35,26 @@ public class PharmacyList {
             add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
             add(PharmacyServices.FLU_SHOT);
         }};
+        final Map<DayOfWeek, LocalTime> openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+            put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
+            put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
+            put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
+            put(DayOfWeek.THURSDAY, LocalTime.of(9, 30));
+            put(DayOfWeek.FRIDAY, LocalTime.of(9, 30));
+            put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
+            put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
+        }};
+        final Map<DayOfWeek, LocalTime> closingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+            put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
+            put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
+            put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
+            put(DayOfWeek.THURSDAY, LocalTime.of(17, 0));
+            put(DayOfWeek.FRIDAY, LocalTime.of(17, 0));
+            put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
+            put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
+        }};
         this.pharmacies = new ArrayList<Pharmacy>() {{
-            Map<DayOfWeek, LocalTime> openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
-                put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
-                put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
-                put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
-                put(DayOfWeek.THURSDAY, LocalTime.of(9, 30));
-                put(DayOfWeek.FRIDAY, LocalTime.of(9, 30));
-                put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
-                put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
-            }};
-            Map<DayOfWeek, LocalTime> closingTimes = new HashMap<DayOfWeek, LocalTime>() {{
-                put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
-                put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
-                put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
-                put(DayOfWeek.THURSDAY, LocalTime.of(17, 0));
-                put(DayOfWeek.FRIDAY, LocalTime.of(17, 0));
-                put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
-                put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
-            }};
+
             add(new Pharmacy(
                     "Pharmacy 1",
                     "CF103EP",
