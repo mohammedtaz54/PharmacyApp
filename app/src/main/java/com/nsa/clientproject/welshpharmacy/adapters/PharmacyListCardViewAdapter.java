@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.nsa.clientproject.welshpharmacy.R;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -57,8 +58,20 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         }
         TextView pharmacyName = convertView.findViewById(R.id.pharmacy_name);
         TextView pharmacyLocation = convertView.findViewById(R.id.location_text);
+        TextView openOrClosed = convertView.findViewById(R.id.open_closed);
+        LocalTime currentTime = LocalTime.now();
         pharmacyLocation.setText(getItem(position).getLocation());
         pharmacyName.setText(getItem(position).getName());
+        if(currentTime.compareTo(getItem(position).getOpenTime())>0
+                && currentTime.compareTo(getItem(position).getCloseTime())<0){
+            openOrClosed.setText(R.string.open);
+            openOrClosed.setTextColor(context.getColor(R.color.colorOpen));
+        }
+        else{
+            openOrClosed.setText(R.string.closed);
+            openOrClosed.setTextColor(context.getColor(R.color.colorClosed));
+
+        }
         return convertView;
     }
 }

@@ -1,7 +1,10 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Stores the data of a single pharmacy.
@@ -19,11 +22,11 @@ public class Pharmacy {
     /**
      * Stores what time the pharmacy opens every day.
      */
-    private LocalTime openTime;
+    private Map<DayOfWeek,LocalTime> openingTimes;
     /**
      * Stores what time the pharmacy closes every day.
      */
-    private LocalTime closeTime;
+    private Map<DayOfWeek,LocalTime> closingTimes;
     //maybe have this as weekly arrays?
 
     /**
@@ -39,16 +42,16 @@ public class Pharmacy {
      * Builds a new pharmacy.
      * @param name the name of the pharmacy
      * @param location the location of the pharmacy
-     * @param openTime the opening time of the pharmacy
-     * @param closeTime the closing time of the pharmacy
+     * @param openingTimes the opening time of the pharmacy
+     * @param closingTimes the closing time of the pharmacy
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, LocalTime openTime, LocalTime closeTime, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
+    public Pharmacy(String name, String location, Map<DayOfWeek,LocalTime> openingTimes, Map<DayOfWeek,LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
         this.name = name;
         this.location = location;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
+        this.openingTimes = openingTimes;
+        this.closingTimes = closingTimes;
         this.servicesOffered = servicesOffered;
         this.servicesInWelsh = servicesInWelsh;
     }
@@ -70,19 +73,36 @@ public class Pharmacy {
     }
 
     /**
-     * Gets the opening time of the pharmacy.
+     * Gets the opening time of the pharmacy today.
      * @return the opening time.
      */
     public LocalTime getOpenTime() {
-        return openTime;
+
+        return openingTimes.get(LocalDate.now().getDayOfWeek());
     }
 
     /**
-     * Gets the closing time of the pharmacy.
+     * Gets all opening times of the pharmacy
+     * @return a map of opening times
+     */
+    public Map<DayOfWeek, LocalTime> getOpeningTimes() {
+        return openingTimes;
+    }
+
+    /**
+     * Gets all closing times of the pharmacy
+     * @return - a map of closing times
+     */
+    public Map<DayOfWeek, LocalTime> getClosingTimes() {
+        return closingTimes;
+    }
+
+    /**
+     * Gets the closing time of the pharmacy today.
      * @return closing time
      */
     public LocalTime getCloseTime() {
-        return closeTime;
+        return closingTimes.get(LocalDate.now().getDayOfWeek());
     }
 
     /**
@@ -101,4 +121,5 @@ public class Pharmacy {
         return servicesInWelsh;
     }
     //Perhaps Need setters at a later stage?
+
 }
