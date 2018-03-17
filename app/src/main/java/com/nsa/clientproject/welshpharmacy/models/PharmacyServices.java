@@ -6,7 +6,16 @@ package com.nsa.clientproject.welshpharmacy.models;
  */
 
 public enum PharmacyServices {
-    FLU_SHOT,
-    BLOOD_PRESSURE_MONITORING,
+    FLU_SHOT("Flu Shot"),
+    BLOOD_PRESSURE_MONITORING("Blood Pressure Monitoring");
 
+    private final String textRepresentation;
+
+    private PharmacyServices(String textRepresentation) {
+        this.textRepresentation = textRepresentation;
+    }
+
+    @Override public String toString() {
+        return textRepresentation;
+    }
 }

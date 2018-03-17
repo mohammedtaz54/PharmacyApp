@@ -28,6 +28,15 @@
         tools:layout_editor_absoluteY="309dp"
         android:layout_marginLeft="40dp"/>
 
+    <TextView
+        android:id="@+id/single_times"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Opening Times"
+        tools:layout_editor_absoluteX="189dp"
+        tools:layout_editor_absoluteY="509dp"
+        android:layout_marginLeft="40dp"/>
+
 
     <ListView
         android:id="@+id/single_services"

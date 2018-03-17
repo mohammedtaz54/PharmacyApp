@@ -6,6 +6,8 @@ import android.widget.TextView;
 import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
 import android.widget.ArrayAdapter;
 
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
@@ -28,20 +30,15 @@ public class PharmacyView extends AppCompatActivity {
         TextView singleName=(TextView)findViewById(R.id.single_name);
         singleName.setText(pharmacy.getName());
 
+        //Change Text in times text field in single pharmacy view
+        TextView singleTimes=(TextView)findViewById(R.id.single_times);
+        singleTimes.setText(pharmacy.getOpenTime() + " until " + pharmacy.getCloseTime());
+
         //Change Text in location text field in single pharmacy view
         TextView singleLocation=(TextView)findViewById(R.id.single_location);
         singleLocation.setText("PostCode:" + pharmacy.getLocation());
 
         //Change items in services list view in single pharmacy view
-        ArrayList<String> serviceList = new ArrayList();
-
-        // Get a handle to the list view
-        lv = (ListView) findViewById(R.id.single_services);
-
-        // Convert ArrayList to array
-        servicesConvert = (String[]) ArrayList.toArray();
-        lv.setAdapter(new ArrayAdapter<String>(Start.this,
-                android.R.layout.simple_list_item_1, lv_arr));
 
 
     }
