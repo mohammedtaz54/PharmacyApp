@@ -1,9 +1,12 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
 import java.lang.reflect.Array;
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class stores the list of pharmacies that are in our app.
@@ -17,49 +20,69 @@ public class PharmacyList {
 
     /**
      * Gets all the pharmacies
+     *
      * @return a list of pharmacies.
      */
     public List<Pharmacy> getPharmacies() {
         return pharmacies;
     }
+
     /**
      * Updates the list of pharmacies.
      */
-    public void updatePharmacies(){
-        final ArrayList<PharmacyServices> services = new ArrayList<PharmacyServices>(){{
+    public void updatePharmacies() {
+        final ArrayList<PharmacyServices> services = new ArrayList<PharmacyServices>() {{
             add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
             add(PharmacyServices.FLU_SHOT);
         }};
-        this.pharmacies = new ArrayList<Pharmacy>(){{
+        this.pharmacies = new ArrayList<Pharmacy>() {{
+            Map<DayOfWeek, LocalTime> openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+                put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
+                put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
+                put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
+                put(DayOfWeek.THURSDAY, LocalTime.of(9, 30));
+                put(DayOfWeek.FRIDAY, LocalTime.of(9, 30));
+                put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
+                put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
+            }};
+            Map<DayOfWeek, LocalTime> closingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+                put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
+                put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
+                put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
+                put(DayOfWeek.THURSDAY, LocalTime.of(17, 0));
+                put(DayOfWeek.FRIDAY, LocalTime.of(17, 0));
+                put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
+                put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
+            }};
             add(new Pharmacy(
                     "Pharmacy 1",
                     "CF103EP",
-                    LocalTime.of(9,30),
-                    LocalTime.of(17,0),
+                    openingTimes,
+                    closingTimes,
                     services,
                     services
             ));
             add(new Pharmacy(
                     "Pharmacy 2",
                     "CF103EF",
-                    LocalTime.of(17,0),
-                    LocalTime.of(9,30),
+                    closingTimes,
+                    openingTimes,
                     services,
                     services
             ));
             add(new Pharmacy(
                     "Pharmacy 3",
                     "CF243EP",
-                    LocalTime.of(9,30),
-                    LocalTime.of(17,0),
+                    openingTimes,
+                    closingTimes,
                     services,
                     services
             ));
             add(new Pharmacy(
                     "Pharmacy 4",
                     "CF243EJ",
-                    LocalTime.of(9,30),
-                    LocalTime.of(17,0),
+                    openingTimes,
+                    closingTimes,
                     services,
                     services
             ));
