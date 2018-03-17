@@ -31,11 +31,11 @@ public class PharmacyView extends AppCompatActivity {
 
         //Change Text in times text field in single pharmacy view
         TextView singleTimes = (TextView) findViewById(R.id.single_times);
-        singleTimes.setText(pharmacy.getOpenTime() + " until " + pharmacy.getCloseTime());
+        singleTimes.setText(getString(R.string.opening_closing_time,pharmacy.getOpenTime(),pharmacy.getCloseTime()));
 
         //Change Text in location text field in single pharmacy view
         TextView singleLocation = (TextView) findViewById(R.id.single_location);
-        singleLocation.setText("PostCode:" + pharmacy.getLocation());
+        singleLocation.setText(getString(R.string.address,pharmacy.getLocation()));
 
         //Change items in services list view in single pharmacy view
 
