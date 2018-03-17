@@ -1,5 +1,6 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -24,7 +25,7 @@ import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
  * and ideally a map of them in the future
  */
 public class MultiPharmacyActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,ListOfPharmaciesCards.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.content_pharmacy_list,new ListOfPharmaciesCards())
+                .replace(R.id.content_pharmacy_list, new ListOfPharmaciesCards())
                 .commit();
     }
 
@@ -62,6 +63,10 @@ public class MultiPharmacyActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.settings) {
+            Intent i = new Intent(this, DefaultSettings.class);
+            startActivity(i);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -69,11 +74,15 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     /**
      * Takes care of a pharmacy click, so it goes to its own view.
+     *
      * @param pharmacy the pharmacy the user clicked.
      */
     @Override
     public void onFragmentInteraction(Pharmacy pharmacy) {
-        Toast.makeText(this,pharmacy.getName(),Toast.LENGTH_SHORT).show();
-
+        //Reference:https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
+        //Accessed 17 March 2018
+        Intent i = new Intent(this, PharmacyView.class);
+        i.putExtra("pharmacy", pharmacy);
+        startActivity(i);
     }
 }

@@ -1,15 +1,19 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Map;
+//Reference:https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
+//Accessed 17 March 2018
 
 /**
  * Stores the data of a single pharmacy.
  */
-public class Pharmacy {
+public class Pharmacy implements Serializable {
+
     /**
      * Stores the name of the pharmacy.
      */
@@ -22,11 +26,11 @@ public class Pharmacy {
     /**
      * Stores what time the pharmacy opens every day.
      */
-    private Map<DayOfWeek,LocalTime> openingTimes;
+    private Map<DayOfWeek, LocalTime> openingTimes;
     /**
      * Stores what time the pharmacy closes every day.
      */
-    private Map<DayOfWeek,LocalTime> closingTimes;
+    private Map<DayOfWeek, LocalTime> closingTimes;
     //maybe have this as weekly arrays?
 
     /**
@@ -40,14 +44,15 @@ public class Pharmacy {
 
     /**
      * Builds a new pharmacy.
-     * @param name the name of the pharmacy
-     * @param location the location of the pharmacy
-     * @param openingTimes the opening time of the pharmacy
-     * @param closingTimes the closing time of the pharmacy
+     *
+     * @param name            the name of the pharmacy
+     * @param location        the location of the pharmacy
+     * @param openingTimes    the opening time of the pharmacy
+     * @param closingTimes    the closing time of the pharmacy
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, Map<DayOfWeek,LocalTime> openingTimes, Map<DayOfWeek,LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
+    public Pharmacy(String name, String location, Map<DayOfWeek, LocalTime> openingTimes, Map<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
@@ -58,6 +63,7 @@ public class Pharmacy {
 
     /**
      * Gets the name of the pharmacy
+     *
      * @return the name.
      */
     public String getName() {
@@ -66,6 +72,7 @@ public class Pharmacy {
 
     /**
      * Gets the location of the pharmacy.
+     *
      * @return the location.
      */
     public String getLocation() {
@@ -74,6 +81,7 @@ public class Pharmacy {
 
     /**
      * Gets the opening time of the pharmacy today.
+     *
      * @return the opening time.
      */
     public LocalTime getOpenTime() {
@@ -83,6 +91,7 @@ public class Pharmacy {
 
     /**
      * Gets all opening times of the pharmacy
+     *
      * @return a map of opening times
      */
     public Map<DayOfWeek, LocalTime> getOpeningTimes() {
@@ -91,6 +100,7 @@ public class Pharmacy {
 
     /**
      * Gets all closing times of the pharmacy
+     *
      * @return - a map of closing times
      */
     public Map<DayOfWeek, LocalTime> getClosingTimes() {
@@ -99,6 +109,7 @@ public class Pharmacy {
 
     /**
      * Gets the closing time of the pharmacy today.
+     *
      * @return closing time
      */
     public LocalTime getCloseTime() {
@@ -107,6 +118,7 @@ public class Pharmacy {
 
     /**
      * Get all the pharmacy services offered.
+     *
      * @return a list of services.
      */
     public List<PharmacyServices> getServicesOffered() {
@@ -115,6 +127,7 @@ public class Pharmacy {
 
     /**
      * Get all the pharmacy services offered in welsh.
+     *
      * @return a list of services
      */
     public List<PharmacyServices> getServicesInWelsh() {

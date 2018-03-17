@@ -1,5 +1,6 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -12,7 +13,7 @@ import java.util.Map;
  * This class stores the list of pharmacies that are in our app.
  */
 
-public class PharmacyList {
+public class PharmacyList implements Serializable{
     /**
      * Stores all the pharmacies.
      */
