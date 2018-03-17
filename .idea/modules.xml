@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/team-1-pharmacy-alex-jobie-hristo-mohammed.iml" filepath="$PROJECT_DIR$/.idea/team-1-pharmacy-alex-jobie-hristo-mohammed.iml" />
-      <module fileurl="file://C:\Users\c1734384\OneDrive - Cardiff University\project\team-1-pharmacy-alex-jobie-hristo-mohammed\team-1-pharmacy-alex-jobie-hristo-mohammed.iml" filepath="C:\Users\c1734384\OneDrive - Cardiff University\project\team-1-pharmacy-alex-jobie-hristo-mohammed\team-1-pharmacy-alex-jobie-hristo-mohammed.iml" />
+      <module fileurl="file://$PROJECT_DIR$/team-1-pharmacy-alex-jobie-hristo-mohammed.iml" filepath="$PROJECT_DIR$/team-1-pharmacy-alex-jobie-hristo-mohammed.iml" />
+      <module fileurl="file://C:\Users\c1734384\OneDrive - Cardiff University\project\team-1-pharmacy-alex-jobie-hristo-mohammed\.idea\team-1-pharmacy-alex-jobie-hristo-mohammed.iml" filepath="C:\Users\c1734384\OneDrive - Cardiff University\project\team-1-pharmacy-alex-jobie-hristo-mohammed\.idea\team-1-pharmacy-alex-jobie-hristo-mohammed.iml" />
     </modules>
   </component>
 </project>

@@ -16,6 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.nsa.clientproject.welshpharmacy.PharmacyView" />
         <activity android:name=".DefaultSettings"></activity>
         <activity
             android:name=".MultiPharmacyActivity"
