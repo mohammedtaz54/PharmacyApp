@@ -16,7 +16,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
         <activity android:name=".PharmacyView"></activity>
+=======
+        <activity android:name=".DefaultSettings"></activity>
+        <activity
+            android:name=".MultiPharmacyActivity"
+            android:label="@string/title_activity_pharmacy_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+>>>>>>> c2b6e061a4d4d058ff7c67cb4a20652797884b76
     </application>
 
 </manifest>

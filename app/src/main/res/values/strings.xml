@@ -3,4 +3,20 @@
     <!-- define all pharmacy services names here -->
     <string name="FLU_SHOT">Flu shot</string>
     <string name="BLOOD_PRESSURE_MONITORING">Blood pressure monitoring</string>
+    <string name="save_settings">Save settings</string>
+    <string name="saved_message">Your settings have been saved</string>
+    <string name="reset_text">Settings have been reset</string>
+    <string name="title_activity_pharmacy_list">PharmacyList</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="map_view">Map view</string>
+    <string name="list_view">List view</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">open</string>
+    <string name="closed">closed</string>
 </resources>
