@@ -28,7 +28,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_settings);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //fetches widgets
 
         this.bloodPressure = this.findViewById(R.id.cbBP);

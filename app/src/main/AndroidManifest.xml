@@ -9,8 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.nsa.clientproject.welshpharmacy.PharmacyView" />
-        <activity android:name=".DefaultSettings"/>
+        <activity android:name="com.nsa.clientproject.welshpharmacy.PharmacyView"
+            android:parentActivityName=".MultiPharmacyActivity"/>
+        <activity
+            android:parentActivityName=".MultiPharmacyActivity"
+            android:name=".DefaultSettings"/>
         <activity
             android:name=".MultiPharmacyActivity"
             android:label="@string/title_activity_pharmacy_list"
