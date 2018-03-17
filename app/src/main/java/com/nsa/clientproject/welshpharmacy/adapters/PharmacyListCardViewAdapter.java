@@ -55,8 +55,10 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(this.context)
                     .inflate(R.layout.card_pharmacy_list, parent, false);
         }
-        TextView textView = convertView.findViewById(R.id.pharmacy_name);
-        textView.setText(getItem(position).getName());
+        TextView pharmacyName = convertView.findViewById(R.id.pharmacy_name);
+        TextView pharmacyLocation = convertView.findViewById(R.id.location_text);
+        pharmacyLocation.setText(getItem(position).getLocation());
+        pharmacyName.setText(getItem(position).getName());
         return convertView;
     }
 }
