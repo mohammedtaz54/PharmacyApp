@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="25dp"
     tools:context="com.nsa.clientproject.welshpharmacy.DefaultSettings">
 
 
@@ -25,18 +26,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="bottom|center">
-
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/savebutton"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/user_postcode"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/save_settings"/>
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="25dp"
+        android:hint="@string/current_postcode"
+        android:maxLength="8" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center">
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/savebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_settings" />
+
+    </LinearLayout>
 
 
 

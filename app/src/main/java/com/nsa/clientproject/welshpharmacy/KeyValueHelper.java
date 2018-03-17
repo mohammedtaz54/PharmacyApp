@@ -15,5 +15,7 @@ public class KeyValueHelper {
     public static final String KEY_FLUSHOT_CHECKBOX = "checkbox_flushot";
     public static final boolean DEFAULT_FLUSHOT_CHECKBOX = false;
 
+    public static final String KEY_POSTCODE_TEXT = "edittext_postcode";
+    public static final String DEFAULT_POSTCODE_TEXT = "";
 
 }
