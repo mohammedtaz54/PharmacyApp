@@ -4,12 +4,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.ListView;
+import java.util.ArrayList;
+import java.util.Arrays;
 import android.widget.ArrayAdapter;
 
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
 
+
 public class PharmacyView extends AppCompatActivity {
+    ListView lv ;
+    String[] servicesConvert;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +33,13 @@ public class PharmacyView extends AppCompatActivity {
         singleLocation.setText("PostCode:" + pharmacy.getLocation());
 
         //Change items in services list view in single pharmacy view
-        setContentView(R.layout.pharmacy_view);
+        ArrayList<String> serviceList = new ArrayList();
 
         // Get a handle to the list view
-        ListView lv =(ListView)findViewById(R.id.single_services);
+        lv = (ListView) findViewById(R.id.single_services);
 
         // Convert ArrayList to array
-        lv_arr = (String[]) arrayList.toArray();
+        servicesConvert = (String[]) ArrayList.toArray();
         lv.setAdapter(new ArrayAdapter<String>(Start.this,
                 android.R.layout.simple_list_item_1, lv_arr));
 
