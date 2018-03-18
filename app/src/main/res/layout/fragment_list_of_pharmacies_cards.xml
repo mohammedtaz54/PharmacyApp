@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.nsa.clientproject.welshpharmacy.ListOfPharmaciesCards">
-    <android.support.v7.widget.ListViewCompat
+    <ListView
         android:listSelector="@color/cardview_light_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
