@@ -3,11 +3,11 @@ package com.nsa.clientproject.welshpharmacy;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.ListViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.nsa.clientproject.welshpharmacy.adapters.PharmacyListCardViewAdapter;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
@@ -35,7 +35,7 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_of_pharmacies_cards, container, false);
-        ListViewCompat cardList =  v.findViewById(R.id.card_list);
+        ListView cardList =  v.findViewById(R.id.card_list);
         PharmacyList pharmacyList = new PharmacyList();
         pharmacyList.updatePharmacies();
         PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
