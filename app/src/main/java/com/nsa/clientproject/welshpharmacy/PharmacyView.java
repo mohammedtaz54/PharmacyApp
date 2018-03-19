@@ -23,6 +23,7 @@ public class PharmacyView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pharmacy_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
 
         //Change Text in name text field in single pharmacy view
