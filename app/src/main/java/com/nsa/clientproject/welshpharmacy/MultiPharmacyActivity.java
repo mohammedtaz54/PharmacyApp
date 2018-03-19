@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
+import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Shows the pharmacy list interface and loads the list of cards
@@ -26,6 +32,9 @@ import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
  */
 public class MultiPharmacyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener {
+
+    public static final String PHARMACY_KEY = "PHARMACY_KEY";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.content_pharmacy_list, new ListOfPharmaciesCards())
                 .commit();
+
     }
 
     @Override
@@ -58,19 +68,49 @@ public class MultiPharmacyActivity extends AppCompatActivity
     }
 
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.settings) {
-            Intent i = new Intent(this, DefaultSettings.class);
-            startActivity(i);
+
+        switch (item.getItemId())   {
+            case R.id.settings:
+                Intent i = new Intent(this, DefaultSettings.class);
+                startActivity(i);
+                break;
+            case R.id.map_view:
+                Intent mapIntent = new Intent(this, ViewMapActivity.class);
+                //Create the bundle
+                Bundle bundle = new Bundle();
+
+                PharmacyList pharmacyList = new PharmacyList();
+                List<Pharmacy> pharmacies = new ArrayList<>();
+                pharmacyList.updatePharmacies();
+                pharmacies = pharmacyList.getPharmacies();
+
+                //Add your data from getFactualResults method to bundle
+                bundle.putSerializable(PHARMACY_KEY, (Serializable) pharmacies);
+                //Add the bundle to the intent
+                mapIntent.putExtras(bundle);
+
+                startActivity(mapIntent);
+                break;
+
         }
+        // Changed if function to switch statement
+//        if (id == R.id.settings) {
+//            Intent i = new Intent(this, DefaultSettings.class);
+//            startActivity(i);
+//        }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     /**
      * Takes care of a pharmacy click, so it goes to its own view.

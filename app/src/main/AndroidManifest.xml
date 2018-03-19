@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.nsa.clientproject.welshpharmacy.PharmacyView"
-            android:parentActivityName=".MultiPharmacyActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAIIKfsNbH6SvXDrmCgXFNLwahWT_6Nn28"/>
+
+
         <activity
-            android:parentActivityName=".MultiPharmacyActivity"
-            android:name=".DefaultSettings"/>
+            android:name=".PharmacyView"
+            android:parentActivityName=".MultiPharmacyActivity" />
+        <activity
+            android:name=".DefaultSettings"
+            android:parentActivityName=".MultiPharmacyActivity" />
         <activity
             android:name=".MultiPharmacyActivity"
             android:label="@string/title_activity_pharmacy_list"
@@ -24,6 +31,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ViewMapActivity"></activity>
     </application>
 
 </manifest>
