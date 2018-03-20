@@ -83,19 +83,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 break;
             case R.id.map_view:
                 Intent mapIntent = new Intent(this, ViewMapActivity.class);
-                //Create the bundle
-                Bundle bundle = new Bundle();
-
-                PharmacyList pharmacyList = new PharmacyList();
-                List<Pharmacy> pharmacies = new ArrayList<>();
-                pharmacyList.updatePharmacies();
-                pharmacies = pharmacyList.getPharmacies();
-
-                //Add your data from getFactualResults method to bundle
-                bundle.putSerializable(PHARMACY_KEY, (Serializable) pharmacies);
-                //Add the bundle to the intent
-                mapIntent.putExtras(bundle);
-
                 startActivity(mapIntent);
                 break;
 

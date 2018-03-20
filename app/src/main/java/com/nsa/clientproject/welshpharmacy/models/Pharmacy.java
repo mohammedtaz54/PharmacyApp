@@ -1,5 +1,7 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -23,6 +25,14 @@ public class Pharmacy implements Serializable {
      * Stores the location of the pharmacy
      */
     private String location;
+    /**
+     * Stores the coordinates of the pharmacy.
+     */
+    private double pharmacyLat;
+    /**
+     * Stores the long of the pharmacy
+     */
+    private double pharmacyLng;
     /**
      * Stores what time the pharmacy opens every day.
      */
@@ -52,13 +62,16 @@ public class Pharmacy implements Serializable {
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, Map<DayOfWeek, LocalTime> openingTimes, Map<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
+    public Pharmacy(String name, String location, Map<DayOfWeek, LocalTime> openingTimes, Map<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
         this.closingTimes = closingTimes;
         this.servicesOffered = servicesOffered;
         this.servicesInWelsh = servicesInWelsh;
+        this.pharmacyLat = pharmacyLat;
+        this.pharmacyLng = pharmacyLng;
+
     }
 
     /**
@@ -133,6 +146,23 @@ public class Pharmacy implements Serializable {
     public List<PharmacyServices> getServicesInWelsh() {
         return servicesInWelsh;
     }
-    //Perhaps Need setters at a later stage?
+    //Perhaps Need setters at a later stage?]
+
+    /**
+     * Gets the lattude of the pharmacy
+     * @return the latutude
+     */
+    public double getPharmacyLat() {
+        return pharmacyLat;
+    }
+
+    /**
+     * Gets the long of the pharmacy
+     * @return the long
+     */
+    public double getPharmacyLng() {
+        return pharmacyLng;
+    }
+
 
 }

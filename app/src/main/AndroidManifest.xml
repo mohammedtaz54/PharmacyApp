@@ -12,7 +12,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAIIKfsNbH6SvXDrmCgXFNLwahWT_6Nn28"/>
+            android:value="AIzaSyCCgpenNlO7Re6xcWxjzxFQiYrMHT97Rt8"/>
 
 
         <activity
@@ -31,7 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewMapActivity"></activity>
+        <activity android:name=".ViewMapActivity"
+            android:parentActivityName=".MultiPharmacyActivity" />
     </application>
 
 </manifest>
