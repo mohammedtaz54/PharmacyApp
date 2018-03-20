@@ -5,6 +5,10 @@ import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,7 +22,6 @@ import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ViewMapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -74,30 +77,36 @@ public class ViewMapActivity extends AppCompatActivity implements OnMapReadyCall
     }
 
 
-
-    public void geoLocFromPostCode(double lat, double longitude, float zoom)   {
-        Log.d(TAG, "geoLocFromPostcode");
-
-        LatLng ll = new LatLng(lat,longitude);
+    private void gotoLocation(double lat, double lng, float zoom) {
+        LatLng ll = new LatLng(lat, lng);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mMap.moveCamera(update);
+    }
+
+    public void geoLocation(View v) throws IOException {
+        hideSoftKeyboard(v);
+
+        EditText et = (EditText) findViewById(R.id.editText1);
+        String location = et.getText().toString();
+
+        Geocoder gc = new Geocoder(this);
+        List<Address> list = gc.getFromLocationName(location, 1);
+        Address add = list.get(0);
+        String locality = add.getLocality();
+        Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
+
+        double lat = add.getLatitude();
+        double lng = add.getLongitude();
+
+        gotoLocation(lat, lng, 10);
 
 
-        Geocoder geocoder = new Geocoder(ViewMapActivity.this);
-        List<Address> list = new ArrayList<>();
-        try{
-            list = geocoder.getFromLocationName("Postcode", 1);
-        }catch(IOException e)   {
-            Log.e(TAG, "geoLocate: IOException: " + e.getMessage());
-        }
+    }
 
-        if (list.size() > 0)    {
-            Address address = list.get(0);
-            lat = address.getLatitude();
-            longitude = address.getLongitude();
-//                instatiate the above 2
-            Log.d(TAG, "geoLocation: found a location: " + lat + " // " + longitude );
-        }
+
+    private void hideSoftKeyboard(View v) {
+        InputMethodManager imm =(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
     }
 
 
