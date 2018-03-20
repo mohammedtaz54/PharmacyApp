@@ -11,6 +11,7 @@ import java.util.Map;
 //Reference:https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
 //Accessed 17 March 2018
 
+
 /**
  * Stores the data of a single pharmacy.
  */
