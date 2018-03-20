@@ -2,6 +2,7 @@ package com.nsa.clientproject.welshpharmacy;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.ListView;
 
@@ -34,7 +35,6 @@ public class PharmacyView extends AppCompatActivity {
         //Change Text in name text field in single pharmacy view
         TextView singleName = (TextView) findViewById(R.id.single_name);
         singleName.setText(pharmacy.getName());
-
         //Change Text in times text field in single pharmacy view
         TextView singleTimes = (TextView) findViewById(R.id.single_times);
         singleTimes.setText(getString(R.string.opening_closing_time, pharmacy.getOpenTime(), pharmacy.getCloseTime()));
@@ -45,7 +45,6 @@ public class PharmacyView extends AppCompatActivity {
 
         //Change items in services list view in single pharmacy view
         ArrayList<String> services;
-        setContentView(R.layout.pharmacy_view);
 
         //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
         //accessed 20 March 2018
