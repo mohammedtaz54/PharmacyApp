@@ -1,11 +1,15 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.Manifest;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.PermissionChecker;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -42,6 +46,13 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        if(ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
+                == PermissionChecker.PERMISSION_GRANTED){
+            mMap.setMyLocationEnabled(true);
+        }
+        else{
+            Toast.makeText(this.getContext(), R.string.location_not_found, Toast.LENGTH_SHORT).show();
+        }
         for(Pharmacy p: pharmacyList){
             MarkerOptions marker = new MarkerOptions()
                     .position(new LatLng(p.getPharmacyLat(),p.getPharmacyLng()))
