@@ -24,4 +24,8 @@
     <string name="settings">Settings</string>
     <string name="address">Address: %1$s</string>
     <string name="opening_closing_time">Open from  %1$s to %2$s</string>
+    <string name="default_postcode_fallback">Cannot use location - falling back to default postcode</string>
+    <string name="default_nopostcode_fallback">Cannot fallback to default postcode - either grant location permission or set default postcode</string>
+    <string name="have_location_permission">Have location permission</string>
+    <string name="location_not_found">Cannot find location</string>
 </resources>
