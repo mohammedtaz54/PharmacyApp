@@ -1,5 +1,7 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.time.DayOfWeek;
@@ -62,7 +64,8 @@ public class PharmacyList implements Serializable{
                     openingTimes,
                     closingTimes,
                     services,
-                    services
+                    services,
+                    51.4927031,-3.1873809
             ));
             add(new Pharmacy(
                     "Pharmacy 2",
@@ -70,7 +73,8 @@ public class PharmacyList implements Serializable{
                     closingTimes,
                     openingTimes,
                     services,
-                    services
+                    services,
+                    51.49164649999999,-3.1848503
             ));
             add(new Pharmacy(
                     "Pharmacy 3",
@@ -78,7 +82,8 @@ public class PharmacyList implements Serializable{
                     openingTimes,
                     closingTimes,
                     services,
-                    services
+                    services,
+                    51.4865716,-3.1657761
             ));
             add(new Pharmacy(
                     "Pharmacy 4",
@@ -86,9 +91,14 @@ public class PharmacyList implements Serializable{
                     openingTimes,
                     closingTimes,
                     services,
-                    services
+                    services,
+                    51.48921559999999,-3.1666502
+
             ));
         }};
 
     }
+
+
+
 }
