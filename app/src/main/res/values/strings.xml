@@ -28,4 +28,5 @@
     <string name="default_nopostcode_fallback">Cannot fallback to default postcode - either grant location permission or set default postcode</string>
     <string name="have_location_permission">Have location permission</string>
     <string name="location_not_found">Cannot find location</string>
+    <string name="cannot_resolve_postcode">Cannot resolve default postcode - perhaps network is down?</string>
 </resources>
