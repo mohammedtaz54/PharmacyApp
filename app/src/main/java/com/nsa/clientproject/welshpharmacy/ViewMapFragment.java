@@ -35,14 +35,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public class ViewMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, OnCompleteListener {
+public class ViewMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, OnCompleteListener, UpdatableOnFilterChange{
 
     private GoogleMap mMap;
-    private List<Pharmacy> pharmacyList;
+    private PharmacyList pharmacyList;
     private static final int DEFAULT_ZOOM_LVL = 15;
     private static final int WALES_ZOOM_LVL = 7;
     private SharedPreferences defaultSettings;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,9 +50,8 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        PharmacyList pl = new PharmacyList();
-        pl.updatePharmacies();
-        pharmacyList = pl.getPharmacies();
+        this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
+
         defaultSettings = this.getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
         return v;
 
@@ -76,7 +74,17 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
             moveCameraToHome();
 
         }
-        for (Pharmacy p : pharmacyList) {
+        updateMapPins();
+        mMap.setOnMarkerClickListener(this);
+    }
+
+    /**
+     * Updates all the pins in the map
+     */
+    private void updateMapPins() {
+        mMap.clear();
+        List<Pharmacy> pharmacies = pharmacyList.getPharmacies();
+        for (Pharmacy p : pharmacies) {
             MarkerOptions marker = new MarkerOptions()
                     .position(new LatLng(p.getPharmacyLat(), p.getPharmacyLng()))
                     .title(p.getName());
@@ -84,7 +92,6 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
             Marker m = mMap.addMarker(marker);
             m.setTag(p);
         }
-        mMap.setOnMarkerClickListener(this);
     }
 
 
@@ -195,6 +202,14 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
     private void moveCameraToLocation(LatLng l, int zoom) {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(l, zoom));
 
+    }
+
+    /**
+     * When the filters are changed, re-render all the pins
+     */
+    @Override
+    public void onFiltersChanged() {
+        updateMapPins();
     }
 }
 

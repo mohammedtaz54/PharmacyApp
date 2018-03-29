@@ -20,6 +20,10 @@ public class PharmacyList implements Serializable{
      * Stores all the pharmacies.
      */
     private List<Pharmacy> pharmacies;
+    /**
+     * Stores the pharmacy search criteria.
+     */
+    private PharmacySearchCriteria pharmacySearchCriteria;
 
     /**
      * Gets all the pharmacies
@@ -27,7 +31,12 @@ public class PharmacyList implements Serializable{
      * @return a list of pharmacies.
      */
     public List<Pharmacy> getPharmacies() {
-        return pharmacies;
+        if(pharmacySearchCriteria==null) {
+            return pharmacies;
+        }
+        else{
+            return new ArrayList<>();
+        }
     }
 
     /**
@@ -99,6 +108,19 @@ public class PharmacyList implements Serializable{
 
     }
 
+    /**
+     * Gets the pharmacies search criteria
+     * @return the search criteria
+     */
+    public PharmacySearchCriteria getPharmacySearchCriteria() {
+        return pharmacySearchCriteria;
+    }
 
-
+    /**
+     * Sets the pharmacy search criteria
+     * @param pharmacySearchCriteria the search criteria.
+     */
+    public void setPharmacySearchCriteria(PharmacySearchCriteria pharmacySearchCriteria) {
+        this.pharmacySearchCriteria = pharmacySearchCriteria;
+    }
 }
