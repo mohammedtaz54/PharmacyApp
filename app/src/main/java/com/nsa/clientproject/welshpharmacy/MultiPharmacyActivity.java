@@ -19,6 +19,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
+import com.nsa.clientproject.welshpharmacy.models.PharmacySearchCriteria;
+import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 import java.security.Key;
 
@@ -27,7 +29,8 @@ import java.security.Key;
  * and ideally a map of them in the future
  */
 public class MultiPharmacyActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,
+FilterDialogFragment.SearchCriteriaUpdater{
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -187,5 +190,16 @@ public class MultiPharmacyActivity extends AppCompatActivity
         Intent i = new Intent(this, PharmacyView.class);
         i.putExtra("pharmacy", pharmacy);
         startActivity(i);
+    }
+
+    /**
+     * Saves the pharmacySearchCriteria given from the filter
+     * @param pharmacySearchCriteria the given criteria
+     */
+    @Override
+    public void setPreferences(PharmacySearchCriteria pharmacySearchCriteria) {
+        if(pharmacySearchCriteria.getServicesRequired().get(PharmacyServices.BLOOD_PRESSURE_MONITORING)!=null){
+            Toast.makeText(this, "required BP", Toast.LENGTH_SHORT).show();
+        }
     }
 }
