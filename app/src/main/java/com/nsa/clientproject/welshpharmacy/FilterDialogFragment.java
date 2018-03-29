@@ -41,6 +41,10 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
             CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
             bpMonitoring.setChecked(true);
         }
+        if(defaultSettings.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX,false)){
+            CheckBox fluShot = currentView.findViewById(R.id.has_flu_shot);
+            fluShot.setChecked(true);
+        }
         return builder.create();
     }
 
@@ -51,6 +55,10 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         //todo: add any future search criteria here.
         if(((CheckBox) currentView.findViewById(R.id.has_bp_monitoring)).isChecked()){
             servicesRequired.put(PharmacyServices.BLOOD_PRESSURE_MONITORING,true);
+        }
+        if(((CheckBox) currentView.findViewById(R.id.has_flu_shot)).isChecked()){
+            servicesRequired.put(PharmacyServices.FLU_SHOT,true);
+
         }
         searchCriteria.setServicesRequired(servicesRequired);
         this.parent.setPreferences(searchCriteria);

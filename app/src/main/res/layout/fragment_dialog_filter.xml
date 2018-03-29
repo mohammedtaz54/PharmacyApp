@@ -19,10 +19,16 @@
     <android.support.v7.widget.AppCompatCheckBox
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:id="@+id/has_bp_monitoring"
         android:layout_marginTop="8dp"
         android:text="@string/BLOOD_PRESSURE_MONITORING"/>
+    <android.support.v7.widget.AppCompatCheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/has_flu_shot"
+        android:text="@string/FLU_SHOT"
+        />
     <android.support.v7.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
