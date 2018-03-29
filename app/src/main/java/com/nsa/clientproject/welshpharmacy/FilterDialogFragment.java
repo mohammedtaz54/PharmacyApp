@@ -2,6 +2,8 @@ package com.nsa.clientproject.welshpharmacy;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
@@ -34,6 +36,11 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         builder.setView(currentView);
         Button b = currentView.findViewById(R.id.submit_filter);
         b.setOnClickListener(this);
+        SharedPreferences defaultSettings = getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
+        if(defaultSettings.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX,false)){
+            CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
+            bpMonitoring.setChecked(true);
+        }
         return builder.create();
     }
 
