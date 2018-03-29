@@ -44,7 +44,9 @@ public class PharmacyUnitTests {
                 openingTimes,
                 closingTimes,
                 Arrays.asList(services),
-                Arrays.asList(services)
+                Arrays.asList(services),
+                30,
+                30
                 );
     }
     @Test
