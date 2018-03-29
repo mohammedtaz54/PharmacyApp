@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_dialog_box">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/filters"
+        android:textSize="@dimen/title_text_size"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/require_services"/>
+    <android.support.v7.widget.AppCompatCheckBox
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:id="@+id/has_bp_monitoring"
+        android:layout_marginTop="8dp"
+        android:text="@string/BLOOD_PRESSURE_MONITORING"/>
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/filter"
+        android:id="@+id/submit_filter"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/text_on_dark_background"/>
+</android.support.v7.widget.LinearLayoutCompat>
