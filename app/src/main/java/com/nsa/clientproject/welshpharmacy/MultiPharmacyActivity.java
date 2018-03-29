@@ -30,6 +30,9 @@ public class MultiPharmacyActivity extends AppCompatActivity
      * Code to be returned when the permission for location is granted.
      */
     private static final int ON_LOCATION_PERMISSION_GRANTED = 1;
+    /**
+     * Stores the default settings.
+     */
     private SharedPreferences defaultSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
