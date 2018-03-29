@@ -134,7 +134,7 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
      */
     @Override
     public void onComplete(@NonNull Task task) {
-        if (task.isSuccessful()) {
+        if (task.isSuccessful() && task.getResult()!=null) {
             moveCameraToLocation((Location) task.getResult(), DEFAULT_ZOOM_LVL);
         } else {
             moveCameraToHome();
