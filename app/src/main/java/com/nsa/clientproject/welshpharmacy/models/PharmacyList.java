@@ -34,18 +34,31 @@ public class PharmacyList implements Serializable {
         if (pharmacySearchCriteria == null) {
             return pharmacies;
         } else {
-            List<Pharmacy> pharmacyListReturn =  new ArrayList<>();
+            List<Pharmacy> pharmacyListReturn = new ArrayList<>();
             List<PharmacyServices> servicesRequiredList = new ArrayList<>();
+            //Todo: This is very repetitive. Maybe move to a function?
+            //Build list of services required by pharmacy
             Map<PharmacyServices, Boolean> servicesRequired = pharmacySearchCriteria.getServicesRequired();
             if (servicesRequired != null) {
-                for(PharmacyServices service: servicesRequired.keySet()){
-                    if(servicesRequired.get(service)){
+                for (PharmacyServices service : servicesRequired.keySet()) {
+                    if (servicesRequired.get(service)) {
                         servicesRequiredList.add(service);
                     }
                 }
             }
-            for(Pharmacy pharmacy:pharmacies){
-                if(pharmacy.getServicesOffered().containsAll(servicesRequiredList)){
+            Map<PharmacyServices, Boolean> servicesRequiredWelsh = pharmacySearchCriteria.getServicesRequiredInWelsh();
+            List<PharmacyServices> servicesRequiredWelshList = new ArrayList<>();
+
+            if (servicesRequiredWelsh != null) {
+                for (PharmacyServices service : servicesRequiredWelsh.keySet()) {
+                    if (servicesRequiredWelsh.get(service)) {
+                        servicesRequiredWelshList.add(service);
+                    }
+                }
+            }
+            for (Pharmacy pharmacy : pharmacies) {
+                if (pharmacy.getServicesOffered().containsAll(servicesRequiredList)
+                        && pharmacy.getServicesInWelsh().containsAll(servicesRequiredWelshList)) {
                     pharmacyListReturn.add(pharmacy);
                 }
             }
@@ -97,7 +110,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     openingTimes,
                     services,
-                    services,
+                    servicesEmpty,
                     51.49164649999999, -3.1848503
             ));
             add(new Pharmacy(

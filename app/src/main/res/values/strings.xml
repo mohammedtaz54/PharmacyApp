@@ -34,4 +34,5 @@
     <string name="filter_settings">Filter settings</string>
     <string name="filters">Filters</string>
     <string name="require_services">Require the following services</string>
+    <string name="require_services_welsh">Require the following services in Welsh</string>
 </resources>

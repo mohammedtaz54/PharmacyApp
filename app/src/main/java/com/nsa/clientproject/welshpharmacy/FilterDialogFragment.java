@@ -36,14 +36,20 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         builder.setView(currentView);
         Button b = currentView.findViewById(R.id.submit_filter);
         b.setOnClickListener(this);
+        //todo: perhaps have separate defaults for welsh vs not welsh?
         SharedPreferences defaultSettings = getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
         if(defaultSettings.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX,false)){
             CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
             bpMonitoring.setChecked(true);
+            CheckBox bpMonitoringWelsh = currentView.findViewById(R.id.has_bp_monitoring_welsh);
+            bpMonitoringWelsh.setChecked(true);
         }
         if(defaultSettings.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX,false)){
             CheckBox fluShot = currentView.findViewById(R.id.has_flu_shot);
             fluShot.setChecked(true);
+            CheckBox fluShotWelsh = currentView.findViewById(R.id.has_flu_shot_welsh);
+            fluShotWelsh.setChecked(true);
+
         }
         return builder.create();
     }
@@ -52,6 +58,7 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     public void onClick(View v) {
         PharmacySearchCriteria searchCriteria = new PharmacySearchCriteria();
         Map<PharmacyServices,Boolean> servicesRequired = new HashMap<>();
+        Map<PharmacyServices,Boolean> servicesRequiredWelsh = new HashMap<>();
         //todo: add any future search criteria here.
         if(((CheckBox) currentView.findViewById(R.id.has_bp_monitoring)).isChecked()){
             servicesRequired.put(PharmacyServices.BLOOD_PRESSURE_MONITORING,true);
@@ -60,7 +67,14 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
             servicesRequired.put(PharmacyServices.FLU_SHOT,true);
 
         }
+        if(((CheckBox) currentView.findViewById(R.id.has_bp_monitoring_welsh)).isChecked()){
+            servicesRequiredWelsh.put(PharmacyServices.BLOOD_PRESSURE_MONITORING,true);
+        }
+        if(((CheckBox) currentView.findViewById(R.id.has_flu_shot_welsh)).isChecked()){
+            servicesRequiredWelsh.put(PharmacyServices.FLU_SHOT,true);
+        }
         searchCriteria.setServicesRequired(servicesRequired);
+        searchCriteria.setServicesRequiredInWelsh(servicesRequiredWelsh);
         this.parent.setPreferences(searchCriteria);
         dismiss();
     }
