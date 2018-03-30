@@ -109,6 +109,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_text"
+                android:enabled="false"
+                android:id="@+id/postcode_string"
                 app:layout_constraintBottom_toBottomOf="@id/radio_select_location"
                 app:layout_constraintLeft_toRightOf="@id/radio_select_location" />
         </android.support.constraint.ConstraintLayout>
