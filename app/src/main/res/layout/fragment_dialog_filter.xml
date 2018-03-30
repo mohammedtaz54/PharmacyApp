@@ -92,7 +92,9 @@
                 <android.support.v7.widget.AppCompatRadioButton
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/use_my_location" />
+                    android:text="@string/use_my_location"
+                    android:id="@+id/use_location"
+                    android:enabled="false"/>
 
 
                 <android.support.v7.widget.AppCompatRadioButton
