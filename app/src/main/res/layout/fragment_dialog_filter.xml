@@ -72,13 +72,15 @@
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/maximum_distance_miles" />
+            android:text="@string/maximum_distance_miles"
+            />
 
         <android.support.v7.widget.AppCompatEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_the_maximum_distance_in_miles"
-            android:inputType="number" />
+            android:inputType="number"
+            android:id="@+id/maximum_distance"/>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"

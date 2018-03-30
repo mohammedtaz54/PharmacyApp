@@ -72,6 +72,11 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         //Load default values into the system
         //todo: perhaps have separate defaults for welsh vs not welsh?
         SharedPreferences defaultSettings = getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
+
+        EditText postcode = currentView.findViewById(R.id.postcode_string);
+        postcode.setText(defaultSettings.getString(KeyValueHelper.KEY_POSTCODE_TEXT,KeyValueHelper.DEFAULT_POSTCODE_TEXT));
+        EditText maximumDistance = currentView.findViewById(R.id.maximum_distance);
+        maximumDistance.setText(defaultSettings.getString(KeyValueHelper.KEY_MAXDISTANCE_TEXT,KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
         if (defaultSettings.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, false)) {
             CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
             bpMonitoring.setChecked(true);
@@ -88,6 +93,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         return builder.create();
     }
 
+    /**
+     * Submits the changes to the parent and updates the model.
+     */
     @Override
     public void onClick(View v) {
         PharmacySearchCriteria searchCriteria = new PharmacySearchCriteria();
@@ -113,7 +121,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         dismiss();
     }
 
-
+    /**
+     * Takes care of disabling the postcode if checked button isn't the postcode one
+     */
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         EditText input = this.currentView.findViewById(R.id.postcode_string);
@@ -125,6 +135,9 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         }
     }
 
+    /**
+     * saves the user's location and enables the option to use it.
+     */
     @Override
     public void onSuccess(Location location) {
         if(location!=null){
