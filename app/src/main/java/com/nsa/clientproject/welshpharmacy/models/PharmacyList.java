@@ -1,5 +1,8 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import android.location.Location;
+import android.util.Log;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -24,6 +27,10 @@ public class PharmacyList implements Serializable {
      * Stores the pharmacy search criteria.
      */
     private PharmacySearchCriteria pharmacySearchCriteria;
+    /**
+     * The number we multiply to to convert from metres to miles
+     */
+    private static final double METRES_TO_MILE = 0.000621371;
 
     /**
      * Gets the filtered pharmacies
@@ -34,6 +41,7 @@ public class PharmacyList implements Serializable {
         if (pharmacySearchCriteria == null) {
             return pharmacies;
         } else {
+
             List<Pharmacy> pharmacyListReturn = new ArrayList<>();
             List<PharmacyServices> servicesRequiredList = new ArrayList<>();
             //Todo: This is very repetitive. Maybe move to a function?
@@ -59,7 +67,28 @@ public class PharmacyList implements Serializable {
             for (Pharmacy pharmacy : pharmacies) {
                 if (pharmacy.getServicesOffered().containsAll(servicesRequiredList)
                         && pharmacy.getServicesInWelsh().containsAll(servicesRequiredWelshList)) {
-                    pharmacyListReturn.add(pharmacy);
+                    //Location filtering
+                    if (pharmacySearchCriteria.getUserLat() != null
+                            && pharmacySearchCriteria.getUserLng() != null
+                            && pharmacySearchCriteria.getMaxDistance() != null) {
+                        float[] results = new float[1];
+                        Location.distanceBetween(
+                                pharmacySearchCriteria.getUserLat(),
+                                pharmacySearchCriteria.getUserLng(),
+                                pharmacy.getPharmacyLat(),
+                                pharmacy.getPharmacyLng(),
+                                results);
+                        Log.d("HELP",Double.toString(results[0]));
+                        Log.d("UserCoords", pharmacySearchCriteria.getUserLat().toString() + " " + pharmacySearchCriteria.getUserLng().toString());
+                        Log.d("PharmacyCoords", pharmacy.getPharmacyLat() + " " + pharmacy.getPharmacyLng());
+
+                        Log.d("HELP",Double.toString(results[0] * METRES_TO_MILE));
+                        if (results[0] * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
+                            pharmacyListReturn.add(pharmacy);
+                        }
+                    } else {
+                        pharmacyListReturn.add(pharmacy);
+                    }
                 }
             }
             return pharmacyListReturn;
@@ -132,7 +161,17 @@ public class PharmacyList implements Serializable {
                     51.48921559999999, -3.1666502
 
             ));
+            add(new Pharmacy(
+                    "Newport Pharmacy",
+                    "NP204NW",
+                    openingTimes,
+                    closingTimes,
+                    services,
+                    services,
+                    51.5893927, -3.0012496
+            ));
         }};
+
 
     }
 

@@ -72,15 +72,14 @@
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/maximum_distance_miles"
-            />
+            android:text="@string/maximum_distance_miles" />
 
         <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/maximum_distance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/hint_enter_the_maximum_distance_in_miles"
-            android:inputType="number"
-            android:id="@+id/maximum_distance"/>
+            android:inputType="number|numberDecimal" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -92,29 +91,26 @@
                 android:layout_height="wrap_content">
 
                 <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/use_location"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/use_my_location"
-                    android:id="@+id/use_location"
-                    android:enabled="false"/>
-
+                    android:enabled="false"
+                    android:text="@string/use_my_location" />
 
                 <android.support.v7.widget.AppCompatRadioButton
                     android:id="@+id/use_postcode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/use_postcode" />
-
-
             </RadioGroup>
 
 
             <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/postcode_string"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_text"
                 android:enabled="false"
-                android:id="@+id/postcode_string"
+                android:hint="@string/hint_text"
                 app:layout_constraintBottom_toBottomOf="@id/radio_select_location"
                 app:layout_constraintLeft_toRightOf="@id/radio_select_location" />
         </android.support.constraint.ConstraintLayout>
