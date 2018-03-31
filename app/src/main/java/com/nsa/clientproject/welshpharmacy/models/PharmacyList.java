@@ -78,15 +78,11 @@ public class PharmacyList implements Serializable {
                                 pharmacy.getPharmacyLat(),
                                 pharmacy.getPharmacyLng(),
                                 results);
-                        Log.d("HELP",Double.toString(results[0]));
-                        Log.d("UserCoords", pharmacySearchCriteria.getUserLat().toString() + " " + pharmacySearchCriteria.getUserLng().toString());
-                        Log.d("PharmacyCoords", pharmacy.getPharmacyLat() + " " + pharmacy.getPharmacyLng());
-
-                        Log.d("HELP",Double.toString(results[0] * METRES_TO_MILE));
                         if (results[0] * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
                             pharmacyListReturn.add(pharmacy);
                         }
                     } else {
+                        //if we aren't filtering by location
                         pharmacyListReturn.add(pharmacy);
                     }
                 }
