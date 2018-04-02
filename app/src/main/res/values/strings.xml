@@ -35,4 +35,13 @@
     <string name="filters">Filters</string>
     <string name="require_services">Require the following services</string>
     <string name="require_services_welsh">Require the following services in Welsh</string>
+    <string name="location_filters">Location filters</string>
+    <string name="services_filters">Services filters</string>
+    <string name="maximum_distance_miles">Maximum distance (miles)</string>
+    <string name="hint_enter_the_maximum_distance_in_miles">Enter the maximum distance in miles</string>
+    <string name="use_my_location">Use my location</string>
+    <string name="use_postcode">Use postcode:</string>
+    <string name="hint_text">XXYY YYYY</string>
+    <string name="cannot_locate_addr_not_filtering">Cannot locate address - not filtering by location</string>
+    <string name="not_filtering_location_not_given">Not filtering by location - no location given</string>
 </resources>

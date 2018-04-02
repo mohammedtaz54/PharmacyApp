@@ -1,15 +1,19 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
 
+import android.location.Location;
+
 import org.junit.Before;
 import org.junit.Test;
+
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
 
-
+//Reference:https://stackoverflow.com/questions/24158766/unit-test-static-method-with-dependency
+//Accessed 31 March 2018
 public class PharmacyListTests {
     private PharmacyList pharmacyList;
 
@@ -59,6 +63,21 @@ public class PharmacyListTests {
         assertTrue(hasPharmacy1);
 
 
+    }
+    //Can't unit test this because I have no idea how to mock static dependencies
+    //Especially ones that change an array that is given to them as a parameter
+    //51.5893927, -3.0012496
+    @Test
+    public void evaluateSearchByLocation(){
+
+//        Location locationMock = mock(Location.class);
+//        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
+//        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
+//        assertTrue(pharmacyList.getPharmacies().size()>1);
+//        pharmacySearchCriteria.setUserLat(51.5893927);
+//        pharmacySearchCriteria.setUserLng(-3.0012496);
+//        pharmacySearchCriteria.setMaxDistance(5);
+//        assertEquals("Newport Pharmacy",pharmacyList.getPharmacies().get(0).getName());
     }
 
 }
