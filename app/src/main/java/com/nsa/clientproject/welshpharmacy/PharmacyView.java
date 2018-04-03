@@ -93,8 +93,7 @@ public class PharmacyView extends AppCompatActivity {
         serviceListWelsh.setAdapter(arrayAdapter);
 
         // register onClickListener to handle click events on each item
-        ;
-/////////////////////////////////////////////////////////
+        
         //Change items in services list view in single pharmacy view
         ArrayList<String> opening;
 
@@ -105,7 +104,6 @@ public class PharmacyView extends AppCompatActivity {
 
         ArrayList<String> timesArrayList = new ArrayList<>();
 
-//        String value = (new ArrayList<String>(linkedHashMap.values())).get(pos);
 
         for(int i = 0; i < pharmacy.getOpeningTimes().values().size(); ++i){
                 String openingString = new ArrayList<>(pharmacy.getOpeningTimes().values()).get(i).toString();
