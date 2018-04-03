@@ -6,8 +6,8 @@ import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 //Reference:https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
 //Accessed 17 March 2018
 
@@ -37,11 +37,11 @@ public class Pharmacy implements Serializable {
     /**
      * Stores what time the pharmacy opens every day.
      */
-    private Map<DayOfWeek, LocalTime> openingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> openingTimes;
     /**
      * Stores what time the pharmacy closes every day.
      */
-    private Map<DayOfWeek, LocalTime> closingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> closingTimes;
     //maybe have this as weekly arrays?
 
     /**
@@ -63,7 +63,7 @@ public class Pharmacy implements Serializable {
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, Map<DayOfWeek, LocalTime> openingTimes, Map<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
+    public Pharmacy(String name, String location, LinkedHashMap<DayOfWeek, LocalTime> openingTimes, LinkedHashMap<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
@@ -108,7 +108,7 @@ public class Pharmacy implements Serializable {
      *
      * @return a map of opening times
      */
-    public Map<DayOfWeek, LocalTime> getOpeningTimes() {
+    public LinkedHashMap<DayOfWeek, LocalTime> getOpeningTimes() {
         return openingTimes;
     }
 
@@ -117,7 +117,7 @@ public class Pharmacy implements Serializable {
      *
      * @return - a map of closing times
      */
-    public Map<DayOfWeek, LocalTime> getClosingTimes() {
+    public LinkedHashMap<DayOfWeek, LocalTime> getClosingTimes() {
         return closingTimes;
     }
 
