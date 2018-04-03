@@ -6,8 +6,11 @@ import android.util.Log;
 import android.widget.TextView;
 import android.widget.ListView;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -88,6 +91,34 @@ public class PharmacyView extends AppCompatActivity {
                 new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, services);
         // Set The Adapter
         serviceListWelsh.setAdapter(arrayAdapter);
+
+        // register onClickListener to handle click events on each item
+        ;
+/////////////////////////////////////////////////////////
+        //Change items in services list view in single pharmacy view
+        ArrayList<String> opening;
+
+        //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
+        //accessed 20 March 2018
+        // Get the reference of ListView
+        ListView serviceOpening = (ListView) findViewById(R.id.single_opening);
+
+        ArrayList<String> timesArrayList = new ArrayList<>();
+
+//        String value = (new ArrayList<String>(linkedHashMap.values())).get(pos);
+
+        for(int i = 0; i < pharmacy.getOpeningTimes().values().size(); ++i){
+                String openingString = new ArrayList<>(pharmacy.getOpeningTimes().values()).get(i).toString();
+                String closingString = new ArrayList<>(pharmacy.getClosingTimes().values()).get(i).toString();
+                String dayString = new ArrayList<>(pharmacy.getClosingTimes().keySet()).get(i).toString();
+                timesArrayList.add(dayString +  ": " + openingString + " - " + closingString);
+        }
+
+        // Create The Adapter with passing ArrayList as 3rd parameter
+        ArrayAdapter<String> arrayAdapterTime =
+                new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, timesArrayList);
+        // Set The Adapter
+        serviceOpening.setAdapter(arrayAdapterTime);
 
         // register onClickListener to handle click events on each item
         ;
