@@ -40,4 +40,6 @@
     <string name="hint_text">XXYY YYYY</string>
     <string name="BLOOD_PRESSURE_MONITORING_WELSH">Monitro pwysedd gwaed yn y Gymraeg</string>
     <string name="FLU_SHOT_WELSH">Lluniwyd ffliw yn Gymraeg</string>
+    <string name="services_offered_in_english">Gwasanaethau a gynigir yn Saesneg</string>
+    <string name="services_offered_in_welsh">Gwasanaethau a gynigir yn Gymraeg</string>
 </resources>
