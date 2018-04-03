@@ -38,4 +38,6 @@
     <string name="BLOOD_PRESSURE_MONITORING">Monitro pwysedd gwaed</string>
     <string name="only_show_pharmacies_that_have_blood_pressure_monitoring">Monitro pwysedd gwaed</string>
     <string name="hint_text">XXYY YYYY</string>
+    <string name="BLOOD_PRESSURE_MONITORING_WELSH">Monitro pwysedd gwaed yn y Gymraeg</string>
+    <string name="FLU_SHOT_WELSH">Lluniwyd ffliw yn Gymraeg</string>
 </resources>

@@ -99,6 +99,12 @@ public class PharmacyList implements Serializable {
             add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
             add(PharmacyServices.FLU_SHOT);
         }};
+        final ArrayList<PharmacyServices> FluServices = new ArrayList<PharmacyServices>() {{
+            add(PharmacyServices.FLU_SHOT);
+        }};
+        final ArrayList<PharmacyServices> BloodServices = new ArrayList<PharmacyServices>() {{
+            add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
+        }};
         final ArrayList<PharmacyServices> servicesEmpty = new ArrayList<PharmacyServices>();
         final Map<DayOfWeek, LocalTime> openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
             put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
@@ -152,7 +158,7 @@ public class PharmacyList implements Serializable {
                     "CF243EJ",
                     openingTimes,
                     closingTimes,
-                    services,
+                    FluServices,
                     services,
                     51.48921559999999, -3.1666502
 
@@ -162,8 +168,8 @@ public class PharmacyList implements Serializable {
                     "NP204NW",
                     openingTimes,
                     closingTimes,
-                    services,
-                    services,
+                    FluServices,
+                    BloodServices,
                     51.5893927, -3.0012496
             ));
         }};

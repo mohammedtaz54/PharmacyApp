@@ -8,5 +8,4 @@ package com.nsa.clientproject.welshpharmacy.models;
 public enum PharmacyServices {
     FLU_SHOT,
     BLOOD_PRESSURE_MONITORING,
-
 }
