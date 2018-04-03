@@ -55,7 +55,9 @@ public class PharmacyView extends AppCompatActivity {
         services = new ArrayList<String>();
 
         for(PharmacyServices pharmacyService: pharmacy.getServicesOffered()){
-            services.add(pharmacyService.name());
+            //Reference:https://stackoverflow.com/questions/4427608/android-getting-resource-id-from-string
+            //Accessed 3 April 2018
+            services.add(getString(getResources().getIdentifier(pharmacyService.name(),"string",getPackageName())));
         }
 
         // Create The Adapter with passing ArrayList as 3rd parameter
