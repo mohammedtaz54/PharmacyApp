@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">welshpharmacy</string>
+    <string name="use_postcode">Defnyddiwch god post:</string>
+    <string name="use_my_location">Defnyddiwch fy lleoliad</string>
+    <string name="reset_text">Mae\'r gosodiadau wedi eu hailosod</string>
+    <string name="action_settings">Gosodiadau</string>
+    <string name="settings">Gosodiadau</string>
+    <string name="maximum_distance_to_travel">Gosodwch y pellter teithio mwyaf (milltiroedd)</string>
+    <string name="services_filters">Hidlwyr Gwasanaethau</string>
+    <string name="save_settings">Cadw lleoliadau</string>
+    <string name="require_services_welsh">Angen y gwasanaethau canlynol yn Gymraeg</string>
+    <string name="require_services">Gofyn am y gwasanaethau canlynol</string>
+    <string name="title_activity_pharmacy_list">Rhestr Fferyllfa</string>
+    <string name="navigation_drawer_open">Drawer mordwyo agored</string>
+    <string name="opening_closing_time">Agor o  %1$s i %2$s</string>
+    <string name="open">yn agored</string>
+    <string name="not_filtering_location_not_given">Ddim yn hidlo yn ôl lleoliad - dim lleoliad wedi\'i roi</string>
+    <string name="maximum_distance_miles">Pellter uchaf (milltiroedd)</string>
+    <string name="map_view">Golwg map</string>
+    <string name="location_filters">Hidlwyr Lleoliad</string>
+    <string name="list_view">Gweld y rhestr</string>
+    <string name="hello_blank_fragment">Helo darn gwag</string>
+    <string name="have_location_permission">Cael caniatâd lleoliad</string>
+    <string name="FLU_SHOT">Llofnodwyd ffliw</string>
+    <string name="filter_settings">Lleoliadau hidlo</string>
+    <string name="filters">Hidlau</string>
+    <string name="filter">Hidlo</string>
+    <string name="hint_enter_the_maximum_distance_in_miles">Rhowch y pellter mwyaf mewn milltiroedd</string>
+    <string name="current_postcode">Rhowch y cod post cyfredol</string>
+    <string name="navigation_drawer_close">"Drawer llywio agos "</string>
+    <string name="closed">wedi cau</string>
+    <string name="default_postcode_fallback">Methu defnyddio lleoliad - syrthio yn ôl i god post diofyn</string>
+    <string name="cannot_resolve_postcode">Methu datrys cod post diofyn - efallai bod y rhwydwaith i lawr?</string>
+    <string name="cannot_locate_addr_not_filtering">Methu lleoli cyfeiriad - heb ei hidlo yn ôl lleoliad</string>
+    <string name="location_not_found">Methu canfod lleoliad</string>
+    <string name="default_nopostcode_fallback">Methu gwrthod y cod post rhagosodedig - naill ai ganiatâd lleoliad grant neu osod cod post diofyn</string>
+    <string name="BLOOD_PRESSURE_MONITORING">Monitro pwysedd gwaed</string>
+    <string name="only_show_pharmacies_that_have_blood_pressure_monitoring">Monitro pwysedd gwaed</string>
+    <string name="hint_text">XXYY YYYY</string>
+</resources>
