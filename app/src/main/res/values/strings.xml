@@ -24,4 +24,15 @@
     <string name="settings">Settings</string>
     <string name="address">Address: %1$s</string>
     <string name="opening_closing_time">Open from  %1$s to %2$s</string>
+    <string name="default_postcode_fallback">Cannot use location - falling back to default postcode</string>
+    <string name="default_nopostcode_fallback">Cannot fallback to default postcode - either grant location permission or set default postcode</string>
+    <string name="have_location_permission">Have location permission</string>
+    <string name="location_not_found">Cannot find location</string>
+    <string name="cannot_resolve_postcode">Cannot resolve default postcode - perhaps network is down?</string>
+    <string name="only_show_pharmacies_that_have_blood_pressure_monitoring">Blood pressure monitoring</string>
+    <string name="filter">Filter</string>
+    <string name="filter_settings">Filter settings</string>
+    <string name="filters">Filters</string>
+    <string name="require_services">Require the following services</string>
+    <string name="require_services_welsh">Require the following services in Welsh</string>
 </resources>
