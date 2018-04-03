@@ -37,10 +37,36 @@
         tools:layout_editor_absoluteY="509dp"
         android:layout_marginLeft="40dp"/>
 
+    <TextView
+        android:id="@+id/services_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/services_offered_in_english"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="20dp"
+        android:textSize="19sp"/>
+
 
     <ListView
         android:id="@+id/single_services"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-            ></ListView>
+        android:background="@android:color/white"
+        ></ListView>
+    <TextView
+        android:id="@+id/services_title_welsh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/services_offered_in_welsh"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="10dp"
+        android:textSize="19sp"/>
+    <ListView
+        android:id="@+id/single_welsh_services"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        ></ListView>
     </android.support.v7.widget.LinearLayoutCompat>

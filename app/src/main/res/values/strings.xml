@@ -44,4 +44,6 @@
     <string name="hint_text">XXYY YYYY</string>
     <string name="cannot_locate_addr_not_filtering">Cannot locate address - not filtering by location</string>
     <string name="not_filtering_location_not_given">Not filtering by location - no location given</string>
+    <string name="services_offered_in_english">Services offered in English</string>
+    <string name="services_offered_in_welsh">Services offered in Welsh</string>
 </resources>

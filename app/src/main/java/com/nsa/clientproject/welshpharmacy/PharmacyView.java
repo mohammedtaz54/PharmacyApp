@@ -69,6 +69,29 @@ public class PharmacyView extends AppCompatActivity {
         // register onClickListener to handle click events on each item
         ;
 
+        //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
+        //accessed 20 March 2018
+        // Get the reference of ListView
+        ListView serviceListWelsh = (ListView) findViewById(R.id.single_welsh_services);
+
+
+        services = new ArrayList<String>();
+
+        for(PharmacyServices pharmacyService: pharmacy.getServicesInWelsh()){
+            //Reference:https://stackoverflow.com/questions/4427608/android-getting-resource-id-from-string
+            //Accessed 3 April 2018
+            services.add(getString(getResources().getIdentifier(pharmacyService.name(),"string",getPackageName())));
+        }
+
+        // Create The Adapter with passing ArrayList as 3rd parameter
+        arrayAdapter =
+                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, services);
+        // Set The Adapter
+        serviceListWelsh.setAdapter(arrayAdapter);
+
+        // register onClickListener to handle click events on each item
+        ;
+
 
     }
 }
