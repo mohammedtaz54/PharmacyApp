@@ -17,8 +17,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="open">open</string>
-    <string name="closed">closed</string>
+    <string name="open">Open</string>
+    <string name="closed">Closed</string>
     <string name="current_postcode">Enter current postcode</string>
     <string name="maximum_distance_to_travel">Set maximum travel distance (miles)</string>
     <string name="settings">Settings</string>
@@ -46,4 +46,12 @@
     <string name="not_filtering_location_not_given">Not filtering by location - no location given</string>
     <string name="services_offered_in_english">Services offered in English</string>
     <string name="services_offered_in_welsh">Services offered in Welsh</string>
+    <string name="MONDAY">Monday</string>
+    <string name="TUESDAY">Tuesday</string>
+    <string name="WEDNESDAY">Wednesday</string>
+    <string name="THURSDAY">Thursday</string>
+    <string name="FRIDAY">Friday</string>
+    <string name="SATURDAY">Saturday</string>
+    <string name="SUNDAY">Sunday</string>
+    <string name="opening_times">Opening Times</string>
 </resources>
