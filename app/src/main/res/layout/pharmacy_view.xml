@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -28,24 +31,17 @@
         tools:layout_editor_absoluteY="309dp"
         android:layout_marginLeft="40dp"/>
 
-    <TextView
-        android:id="@+id/single_times"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Opening Times"
-        tools:layout_editor_absoluteX="189dp"
-        tools:layout_editor_absoluteY="509dp"
-        android:layout_marginLeft="40dp"/>
+
 
     <TextView
         android:id="@+id/services_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/services_offered_in_english"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginBottom="7dp"
         android:layout_marginTop="20dp"
-        android:textSize="19sp"/>
+        android:textSize="@dimen/size_title_single_pharmacy"/>
 
 
     <ListView
@@ -53,20 +49,37 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        ></ListView>
+        />
     <TextView
         android:id="@+id/services_title_welsh"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/services_offered_in_welsh"
-        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
         android:layout_marginBottom="7dp"
         android:layout_marginTop="10dp"
-        android:textSize="19sp"/>
+        android:textSize="@dimen/size_title_single_pharmacy"/>
     <ListView
         android:id="@+id/single_welsh_services"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        ></ListView>
+        />
+    <TextView
+        android:id="@+id/opening_times"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/opening_times"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="10dp"
+        android:textSize="@dimen/size_title_single_pharmacy"/>
+    <ListView
+        android:id="@+id/single_opening"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:layout_marginTop="25dp"
+        />
     </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>

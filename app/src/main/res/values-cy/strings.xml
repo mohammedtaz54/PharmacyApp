@@ -14,7 +14,7 @@
     <string name="title_activity_pharmacy_list">Rhestr Fferyllfa</string>
     <string name="navigation_drawer_open">Drawer mordwyo agored</string>
     <string name="opening_closing_time">Agor o  %1$s i %2$s</string>
-    <string name="open">yn agored</string>
+    <string name="open">Yn agored</string>
     <string name="not_filtering_location_not_given">Ddim yn hidlo yn ôl lleoliad - dim lleoliad wedi\'i roi</string>
     <string name="maximum_distance_miles">Pellter uchaf (milltiroedd)</string>
     <string name="map_view">Golwg map</string>
@@ -29,7 +29,7 @@
     <string name="hint_enter_the_maximum_distance_in_miles">Rhowch y pellter mwyaf mewn milltiroedd</string>
     <string name="current_postcode">Rhowch y cod post cyfredol</string>
     <string name="navigation_drawer_close">"Drawer llywio agos "</string>
-    <string name="closed">wedi cau</string>
+    <string name="closed">Wedi cau</string>
     <string name="default_postcode_fallback">Methu defnyddio lleoliad - syrthio yn ôl i god post diofyn</string>
     <string name="cannot_resolve_postcode">Methu datrys cod post diofyn - efallai bod y rhwydwaith i lawr?</string>
     <string name="cannot_locate_addr_not_filtering">Methu lleoli cyfeiriad - heb ei hidlo yn ôl lleoliad</string>
@@ -42,4 +42,14 @@
     <string name="FLU_SHOT_WELSH">Lluniwyd ffliw yn Gymraeg</string>
     <string name="services_offered_in_english">Gwasanaethau a gynigir yn Saesneg</string>
     <string name="services_offered_in_welsh">Gwasanaethau a gynigir yn Gymraeg</string>
+    <string name="MONDAY">Dydd Llun</string>
+    <string name="TUESDAY">Dydd Mawrth</string>
+    <string name="WEDNESDAY">Dydd Mercher</string>
+    <string name="THURSDAY">Dydd Iau</string>
+    <string name="FRIDAY">Dydd Gwener</string>
+    <string name="SATURDAY">Sadwrn</string>
+    <string name="SUNDAY">Sul</string>
+    <string name="opening_times">Amseroedd Agor</string>
+    <string name="address">Cyfeiriad: %1$s</string>
+
 </resources>

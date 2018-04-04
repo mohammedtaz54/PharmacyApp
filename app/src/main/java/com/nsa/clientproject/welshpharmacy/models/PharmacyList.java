@@ -10,7 +10,7 @@ import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,6 +54,7 @@ public class PharmacyList implements Serializable {
                     }
                 }
             }
+
             Map<PharmacyServices, Boolean> servicesRequiredWelsh = pharmacySearchCriteria.getServicesRequiredInWelsh();
             List<PharmacyServices> servicesRequiredWelshList = new ArrayList<>();
 
@@ -106,7 +107,7 @@ public class PharmacyList implements Serializable {
             add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
         }};
         final ArrayList<PharmacyServices> servicesEmpty = new ArrayList<PharmacyServices>();
-        final Map<DayOfWeek, LocalTime> openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+        final LinkedHashMap<DayOfWeek, LocalTime> openingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
             put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
             put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
             put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
@@ -115,7 +116,7 @@ public class PharmacyList implements Serializable {
             put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
             put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
         }};
-        final Map<DayOfWeek, LocalTime> closingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+        final LinkedHashMap<DayOfWeek, LocalTime> closingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
             put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
             put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
             put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
