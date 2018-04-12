@@ -51,5 +51,7 @@
     <string name="SUNDAY">Sul</string>
     <string name="opening_times">Amseroedd Agor</string>
     <string name="address">Cyfeiriad: %1$s</string>
+    <string name="liked">Tebygol</string>
+    <string name="disliked">Wedi\'i waredu</string>
 
 </resources>
