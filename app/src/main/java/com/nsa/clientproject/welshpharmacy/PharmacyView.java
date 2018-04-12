@@ -69,14 +69,20 @@ public class PharmacyView extends AppCompatActivity {
         thumbsup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PharmacyView.this, "Liked", Toast.LENGTH_SHORT).show();
+                thumbsup.setVisibility(View.GONE);
+                thumbsdown.setVisibility(View.GONE);
+
+                Toast.makeText(PharmacyView.this, R.string.liked, Toast.LENGTH_SHORT).show();
             }
         });
         //toast if the thumbs down button is clicked "Disliked"
         thumbsdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PharmacyView.this, "Disliked", Toast.LENGTH_SHORT).show();
+                thumbsup.setVisibility(View.GONE);
+                thumbsdown.setVisibility(View.GONE);
+
+                Toast.makeText(PharmacyView.this, R.string.disliked, Toast.LENGTH_SHORT).show();
             }
         });
 
