@@ -98,17 +98,19 @@
         android:layout_height="wrap_content"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/plusmenu"
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="20dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:clickable="true"
-        android:src="@drawable/ic_add_circle_black_24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        tools:backgroundTint="@android:color/white" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/plusmenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:clickable="true"
+            android:src="@drawable/ic_add_circle_black_24dp"
+            app:backgroundTint="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
     <LinearLayout
         app:layout_constraintBottom_toTopOf="@id/plusmenu"
@@ -125,11 +127,13 @@
             android:id="@+id/thumbsup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            app:fabSize="mini"
-            android:src="@drawable/ic_thumb_up_black_24dp">
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:clickable="true"
+            android:src="@drawable/ic_thumb_up_black_24dp"
+            android:visibility="invisible"
+            app:fabSize="mini">
 
         </android.support.design.widget.FloatingActionButton>
 
@@ -137,9 +141,11 @@
             android:id="@+id/thumbsdown"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
             android:clickable="true"
-            app:fabSize="mini"
-            android:src="@drawable/ic_thumb_down_black_24dp"/>
+            android:src="@drawable/ic_thumb_down_black_24dp"
+            android:visibility="invisible"
+            app:fabSize="mini" />
 
 
     </LinearLayout>

@@ -1,10 +1,12 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -30,6 +32,10 @@ public class PharmacyView extends AppCompatActivity {
     ListView lv;
     String[] servicesConvert;
 
+    FloatingActionButton plusmenu;
+    FloatingActionButton thumbsup, thumbsdown;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,8 +44,45 @@ public class PharmacyView extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
 
+
+        plusmenu = findViewById(R.id.plusmenu);
+        thumbsup = findViewById(R.id.thumbsup);
+        thumbsdown = findViewById(R.id.thumbsdown);
+
+        /*Floating action button methods shows / hides the thumbs up if menu is clicked
+        The default for the thumbs up / thumbs down button is set to invisible. Once the plus
+        button is clicked, the two thumbs buttons appear. Once clicked again they disappear.
+        */
+        plusmenu.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(thumbsup.getVisibility()== View.VISIBLE && thumbsdown.getVisibility() == View.VISIBLE){
+                    thumbsup.setVisibility(View.GONE);
+                    thumbsdown.setVisibility(View.GONE);
+                } else {
+                    thumbsup.setVisibility(View.VISIBLE);
+                    thumbsdown.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+        //toast if the thumbs up button is clicked "Liked"
+        thumbsup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(PharmacyView.this, "Liked", Toast.LENGTH_SHORT).show();
+            }
+        });
+        //toast if the thumbs down button is clicked "Disliked"
+        thumbsdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(PharmacyView.this, "Disliked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         //Change Text in name text field in single pharmacy view
-        TextView singleName = (TextView) findViewById(R.id.single_name);
+        TextView singleName = findViewById(R.id.single_name);
         singleName.setText(pharmacy.getName());
         //Not necessary as we're showing all of them lower
         //Change Text in times text field in single pharmacy view
@@ -47,7 +90,7 @@ public class PharmacyView extends AppCompatActivity {
 //        singleTimes.setText(getString(R.string.opening_closing_time, pharmacy.getOpenTime(), pharmacy.getCloseTime()));
 
         //Change Text in location text field in single pharmacy view
-        TextView singleLocation = (TextView) findViewById(R.id.single_location);
+        TextView singleLocation = findViewById(R.id.single_location);
         singleLocation.setText(getString(R.string.address, pharmacy.getLocation()));
 
         //Change items in services list view in single pharmacy view
@@ -56,7 +99,7 @@ public class PharmacyView extends AppCompatActivity {
         //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
         //accessed 20 March 2018
         // Get the reference of ListView
-        ListView serviceList = (ListView) findViewById(R.id.single_services);
+        ListView serviceList = findViewById(R.id.single_services);
 
 
         services = new ArrayList<String>();
@@ -74,12 +117,11 @@ public class PharmacyView extends AppCompatActivity {
         serviceList.setAdapter(arrayAdapter);
 
         // register onClickListener to handle click events on each item
-        ;
 
         //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
         //accessed 20 March 2018
         // Get the reference of ListView
-        ListView serviceListWelsh = (ListView) findViewById(R.id.single_welsh_services);
+        ListView serviceListWelsh = findViewById(R.id.single_welsh_services);
 
 
         services = new ArrayList<String>();
@@ -104,7 +146,7 @@ public class PharmacyView extends AppCompatActivity {
         //Reference: http://www.learn-android-easily.com/2013/05/populating-listview-with-arraylist.html
         //accessed 20 March 2018
         // Get the reference of ListView
-        ListView serviceOpening = (ListView) findViewById(R.id.single_opening);
+        ListView serviceOpening = findViewById(R.id.single_opening);
 
         ArrayList<String> timesArrayList = new ArrayList<>();
 
