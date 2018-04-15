@@ -1,8 +1,10 @@
 package com.nsa.clientproject.welshpharmacy;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -11,6 +13,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.content.PermissionChecker;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,10 +38,17 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
-public class ViewMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, OnCompleteListener, UpdatableOnFilterChange{
+public class ViewMapFragment extends Fragment implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener, OnCompleteListener{
 
     private GoogleMap mMap;
+    /**
+     * Stores the pharmacyList
+     */
     private PharmacyList pharmacyList;
+    /**
+     * Stores the instance of broadcastReceiverFilter
+     */
+    private OnFilterUpdateBroadcast broadcastReceiverFilter;
     private static final int DEFAULT_ZOOM_LVL = 15;
     private static final int WALES_ZOOM_LVL = 7;
     private SharedPreferences defaultSettings;
@@ -55,6 +65,20 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
         defaultSettings = this.getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
         return v;
 
+    }
+
+    @Override
+    public void onResume() {
+        broadcastReceiverFilter = new OnFilterUpdateBroadcast();
+        IntentFilter filter = new IntentFilter("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(broadcastReceiverFilter,filter);
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(broadcastReceiverFilter);
+        super.onPause();
     }
 
     @Override
@@ -207,9 +231,22 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
     /**
      * When the filters are changed, re-render all the pins
      */
-    @Override
-    public void onFiltersChanged() {
-        updateMapPins();
+//    @Override
+//    public void onFiltersChanged() {
+//        updateMapPins();
+//    }
+
+    /**
+     * Class that handles what happens when the filter update broadcast triggers
+     */
+    private class OnFilterUpdateBroadcast extends BroadcastReceiver{
+        /**
+         * Describes what we do when we get the FilterUpdateBroadcast
+         */
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateMapPins();
+        }
     }
 }
 

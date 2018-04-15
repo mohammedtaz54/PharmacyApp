@@ -9,11 +9,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -218,8 +220,11 @@ public class MultiPharmacyActivity extends AppCompatActivity
     @Override
     public void setPreferences(PharmacySearchCriteria pharmacySearchCriteria) {
         this.pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
-        UpdatableOnFilterChange fragment =(UpdatableOnFilterChange) getSupportFragmentManager().findFragmentById(R.id.content_pharmacy_list);
-        fragment.onFiltersChanged();
+        Intent listChanged = new Intent()
+                .setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
+        Log.d("R","SENDING BROADCAST");
+
+        LocalBroadcastManager.getInstance(this).sendBroadcast(listChanged);
     }
 
 
