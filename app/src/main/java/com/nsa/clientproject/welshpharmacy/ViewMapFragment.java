@@ -119,38 +119,6 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
     }
 
 
-//    private void gotoLocation(double lat, double lng, float zoom) {
-//        LatLng ll = new LatLng(lat, lng);
-//        CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
-//        mMap.moveCamera(update);
-//    }
-
-//    public void geoLocation(View v) throws IOException {
-//        hideSoftKeyboard(v);
-//
-//        EditText et = (EditText) findViewById(R.id.editText1);
-//        String location = et.getText().toString();
-//
-//        Geocoder gc = new Geocoder(this);
-//        List<Address> list = gc.getFromLocationName(location, 1);
-//        Address add = list.get(0);
-//        String locality = add.getLocality();
-//        Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
-//
-//        double lat = add.getLatitude();
-//        double lng = add.getLongitude();
-//
-//        gotoLocation(lat, lng, 10);
-//
-//
-//    }
-
-
-//    private void hideSoftKeyboard(View v) {
-//        InputMethodManager imm =(InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-//        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
-//    }
-
 
     @Override
     public boolean onMarkerClick(Marker marker) {

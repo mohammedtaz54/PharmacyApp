@@ -33,8 +33,7 @@ import java.security.Key;
  * and ideally a map of them in the future
  */
 public class MultiPharmacyActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,
-        FilterDialogFragment.SearchCriteriaUpdater {
+        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,FilterDialogFragment.ContainsPharmacyList{
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -186,11 +185,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 loadCardsFragment();
 
         }
-        // Changed if function to switch statement
-//        if (id == R.id.settings) {
-//            Intent i = new Intent(this, DefaultSettings.class);
-//            startActivity(i);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -212,20 +206,16 @@ public class MultiPharmacyActivity extends AppCompatActivity
         startActivity(i);
     }
 
+
+
+
     /**
-     * Saves the pharmacySearchCriteria given from the filter
+     * Gets the pharmacyList object we use through the app
      *
-     * @param pharmacySearchCriteria the given criteria
+     * @return the pharmacyList object
      */
     @Override
-    public void setPreferences(PharmacySearchCriteria pharmacySearchCriteria) {
-        this.pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
-        Intent listChanged = new Intent()
-                .setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
-        Log.d("R","SENDING BROADCAST");
-
-        LocalBroadcastManager.getInstance(this).sendBroadcast(listChanged);
+    public PharmacyList getPharmacyList() {
+        return this.pharmacyList;
     }
-
-
 }
