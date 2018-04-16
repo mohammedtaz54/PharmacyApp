@@ -47,7 +47,8 @@ public class PharmacyUnitTests {
                 Arrays.asList(services),
                 Arrays.asList(services),
                 30,
-                30
+                30,
+                "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
                 );
     }
     @Test
