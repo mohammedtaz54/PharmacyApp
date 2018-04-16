@@ -16,7 +16,10 @@ import java.util.List;
  * Stores the data of a single pharmacy.
  */
 public class Pharmacy implements Serializable {
-
+    /**
+     * The URL of the pharmacy
+     */
+    private String url;
     /**
      * Stores the name of the pharmacy.
      */
@@ -63,7 +66,7 @@ public class Pharmacy implements Serializable {
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, LinkedHashMap<DayOfWeek, LocalTime> openingTimes, LinkedHashMap<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
+    public Pharmacy(String name, String location, LinkedHashMap<DayOfWeek, LocalTime> openingTimes, LinkedHashMap<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng, String url) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
@@ -72,7 +75,7 @@ public class Pharmacy implements Serializable {
         this.servicesInWelsh = servicesInWelsh;
         this.pharmacyLat = pharmacyLat;
         this.pharmacyLng = pharmacyLng;
-
+        this.url = url;
     }
 
     /**
@@ -165,5 +168,9 @@ public class Pharmacy implements Serializable {
         return pharmacyLng;
     }
 
-
+    /**
+     * Gets the URL
+     * @return the url
+     */
+    public String getUrl() {return url; }
 }

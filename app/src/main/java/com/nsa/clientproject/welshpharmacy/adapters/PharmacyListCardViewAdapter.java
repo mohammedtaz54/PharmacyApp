@@ -72,6 +72,9 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
             openOrClosed.setTextColor(context.getColor(R.color.colorClosed));
 
         }
+
+
+
         return convertView;
     }
 }

@@ -125,26 +125,27 @@ public class PharmacyList implements Serializable {
             put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
             put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
         }};
-        this.pharmacies = new ArrayList<Pharmacy>() {{
+        this.pharmacies = new ArrayList<Pharmacy>() {
+            {
 
-            add(new Pharmacy(
-                    "Pharmacy 1",
-                    "CF103EP",
-                    openingTimes,
-                    closingTimes,
-                    servicesEmpty,
-                    servicesEmpty,
-                    51.4927031, -3.1873809
-            ));
-            add(new Pharmacy(
-                    "Pharmacy 2",
-                    "CF103EF",
-                    closingTimes,
-                    openingTimes,
-                    services,
-                    servicesEmpty,
-                    51.49164649999999, -3.1848503
-            ));
+                add(new Pharmacy(
+                        "Pharmacy 1",
+                        "CF103EP",
+                        openingTimes,
+                        closingTimes,
+                        servicesEmpty,
+                        servicesEmpty,
+                        51.4927031, -3.1873809, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
+                ));
+                add(new Pharmacy(
+                        "Pharmacy 2",
+                        "CF103EF",
+                        closingTimes,
+                        openingTimes,
+                        services,
+                        servicesEmpty,
+                        51.49164649999999, -3.1848503, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
+                ));
             add(new Pharmacy(
                     "Pharmacy 3",
                     "CF243EP",
@@ -152,7 +153,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     services,
                     services,
-                    51.4865716, -3.1657761
+                    51.4865716, -3.1657761, "WEBSITE: http://www.nhsdirect.wales.nhs.uk/localservices/ViewLocalService.aspx?id=460&s=Pharmacy"
             ));
             add(new Pharmacy(
                     "Pharmacy 4",
@@ -161,7 +162,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     FluServices,
                     services,
-                    51.48921559999999, -3.1666502
+                    51.48921559999999, -3.1666502, "WEBSITE: https://finder.well.co.uk/store/roath-180-city-road"
 
             ));
             add(new Pharmacy(
@@ -171,28 +172,28 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     FluServices,
                     BloodServices,
-                    51.5893927, -3.0012496
+                    51.5893927, -3.0012496, "WEBSITE: https://finder.well.co.uk/store/newport-clytha-park-road"
             ));
         }};
 
 
-    }
+            }
 
-    /**
-     * Gets the pharmacies search criteria
-     *
-     * @return the search criteria
-     */
-    public PharmacySearchCriteria getPharmacySearchCriteria() {
-        return pharmacySearchCriteria;
-    }
+            /**
+             * Gets the pharmacies search criteria
+             *
+             * @return the search criteria
+             */
+            public PharmacySearchCriteria getPharmacySearchCriteria() {
+                return pharmacySearchCriteria;
+            }
 
-    /**
-     * Sets the pharmacy search criteria
-     *
-     * @param pharmacySearchCriteria the search criteria.
-     */
-    public void setPharmacySearchCriteria(PharmacySearchCriteria pharmacySearchCriteria) {
-        this.pharmacySearchCriteria = pharmacySearchCriteria;
-    }
-}
+            /**
+             * Sets the pharmacy search criteria
+             *
+             * @param pharmacySearchCriteria the search criteria.
+             */
+            public void setPharmacySearchCriteria(PharmacySearchCriteria pharmacySearchCriteria) {
+                this.pharmacySearchCriteria = pharmacySearchCriteria;
+            }
+        }
