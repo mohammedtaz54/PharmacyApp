@@ -119,6 +119,19 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/call_now"/>
 
+            <Button
+                android:id="@+id/map_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/map_now"/>
+
+
+
+
+
 
 
         </android.support.v7.widget.LinearLayoutCompat>

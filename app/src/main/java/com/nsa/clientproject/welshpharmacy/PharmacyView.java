@@ -1,5 +1,6 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
@@ -61,6 +62,18 @@ public class PharmacyView extends AppCompatActivity {
                 startActivity(callIntent);
             }
         });
+
+//        final Button btn1 = (Button) findViewById(R.id.map_button);
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FragmentTransaction ft = getFragmentManager().beginTransaction();
+//                ft.replace(R.id.map, new ViewMapFragment());
+//                ft.commit();
+//                ft.addToBackStack(null);
+//
+//            }
+//        });
 
 
 
