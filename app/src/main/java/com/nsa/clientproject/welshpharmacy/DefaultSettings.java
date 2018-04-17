@@ -38,7 +38,8 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         this.maxdistance = this.findViewById(R.id.pharmacy_max_distance);
 
         //initialises sharededPreferences object
-        this.sharedPreferences = this.getPreferences(MODE_PRIVATE);
+        //Changed this so I can access it from other activities.
+        this.sharedPreferences = this.getSharedPreferences("DEFAULT_SETTINGS",MODE_PRIVATE);
 
         // method used to set the current state of widgets in sharedPreferences
         initValues();

@@ -9,6 +9,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -16,11 +17,11 @@ import static org.junit.Assert.*;
 public class PharmacyUnitTests {
     private Pharmacy pharmacy;
     private PharmacyServices[] services;
-    private Map<DayOfWeek, LocalTime> openingTimes;
-    private Map<DayOfWeek, LocalTime> closingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> openingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> closingTimes;
     @Before
     public void init(){
-         openingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+         openingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
             put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
             put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
             put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
@@ -29,7 +30,7 @@ public class PharmacyUnitTests {
             put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
             put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
         }};
-        closingTimes = new HashMap<DayOfWeek, LocalTime>() {{
+        closingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
             put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
             put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
             put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
@@ -44,7 +45,9 @@ public class PharmacyUnitTests {
                 openingTimes,
                 closingTimes,
                 Arrays.asList(services),
-                Arrays.asList(services)
+                Arrays.asList(services),
+                30,
+                30
                 );
     }
     @Test

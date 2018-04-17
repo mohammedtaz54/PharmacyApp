@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nsa.clientproject.welshpharmacy.adapters.PharmacyListCardViewAdapter;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
@@ -20,10 +21,13 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
  * {@link ListOfPharmaciesCards.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener {
+public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener,UpdatableOnFilterChange {
 
     private OnFragmentInteractionListener mListener;
-
+    /**
+     * Stores the list of pharmacies.
+     */
+    private PharmacyList pharmacyList;
     public ListOfPharmaciesCards() {
         // Required empty public constructor
     }
@@ -36,13 +40,24 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_list_of_pharmacies_cards, container, false);
         ListView cardList =  v.findViewById(R.id.card_list);
-        PharmacyList pharmacyList = new PharmacyList();
-        pharmacyList.updatePharmacies();
+        this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
         PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
         cardList.setAdapter(adapter);
+//        setAdapterForList();
         cardList.setOnItemClickListener(this);
         return v;
     }
+
+    /**
+     * Sets the adapter for the list
+     */
+    private void setAdapterForList(){
+        ListView cardList =  getView().findViewById(R.id.card_list);
+        PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
+        cardList.setAdapter(adapter);
+
+    }
+
 
     @Override
     public void onAttach(Context context) {
@@ -71,6 +86,14 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         mListener.onFragmentInteraction((Pharmacy)parent.getItemAtPosition(position));
+    }
+
+    /**
+     * Executes when the filters are changed.
+     */
+    @Override
+    public void onFiltersChanged() {
+        setAdapterForList();
     }
 
     /**

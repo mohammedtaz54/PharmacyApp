@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nsa.clientproject.welshpharmacy">
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,11 +9,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.nsa.clientproject.welshpharmacy.PharmacyView"
-            android:parentActivityName=".MultiPharmacyActivity"/>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCCgpenNlO7Re6xcWxjzxFQiYrMHT97Rt8"/>
+
+
         <activity
-            android:parentActivityName=".MultiPharmacyActivity"
-            android:name=".DefaultSettings"/>
+            android:name=".PharmacyView"
+            android:parentActivityName=".MultiPharmacyActivity" />
+        <activity
+            android:name=".DefaultSettings"
+            android:parentActivityName=".MultiPharmacyActivity" />
         <activity
             android:name=".MultiPharmacyActivity"
             android:label="@string/title_activity_pharmacy_list"

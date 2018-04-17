@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_dialog_box"
+        android:scrollbars="vertical">
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/filters"
+            android:textSize="@dimen/title_text_size" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/services_filters"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/require_services" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_bp_monitoring"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/BLOOD_PRESSURE_MONITORING" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_flu_shot"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/FLU_SHOT" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/require_services_welsh" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_bp_monitoring_welsh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/BLOOD_PRESSURE_MONITORING" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_flu_shot_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/FLU_SHOT" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/location_filters"
+            android:textStyle="bold" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/maximum_distance_miles" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/maximum_distance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_enter_the_maximum_distance_in_miles"
+            android:inputType="number|numberDecimal" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioGroup
+                android:id="@+id/radio_select_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/use_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:text="@string/use_my_location" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/use_postcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/use_postcode" />
+            </RadioGroup>
+
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/postcode_string"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/hint_text"
+                app:layout_constraintBottom_toBottomOf="@id/radio_select_location"
+                app:layout_constraintLeft_toRightOf="@id/radio_select_location" />
+        </android.support.constraint.ConstraintLayout>
+
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/submit_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:text="@string/filter"
+            android:textColor="@color/text_on_dark_background" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</ScrollView>

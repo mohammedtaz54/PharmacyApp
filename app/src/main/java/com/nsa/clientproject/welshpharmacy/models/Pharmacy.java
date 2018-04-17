@@ -1,13 +1,16 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 //Reference:https://stackoverflow.com/questions/2736389/how-to-pass-an-object-from-one-activity-to-another-on-android
 //Accessed 17 March 2018
+
 
 /**
  * Stores the data of a single pharmacy.
@@ -24,13 +27,21 @@ public class Pharmacy implements Serializable {
      */
     private String location;
     /**
+     * Stores the coordinates of the pharmacy.
+     */
+    private double pharmacyLat;
+    /**
+     * Stores the long of the pharmacy
+     */
+    private double pharmacyLng;
+    /**
      * Stores what time the pharmacy opens every day.
      */
-    private Map<DayOfWeek, LocalTime> openingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> openingTimes;
     /**
      * Stores what time the pharmacy closes every day.
      */
-    private Map<DayOfWeek, LocalTime> closingTimes;
+    private LinkedHashMap<DayOfWeek, LocalTime> closingTimes;
     //maybe have this as weekly arrays?
 
     /**
@@ -52,13 +63,16 @@ public class Pharmacy implements Serializable {
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, Map<DayOfWeek, LocalTime> openingTimes, Map<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh) {
+    public Pharmacy(String name, String location, LinkedHashMap<DayOfWeek, LocalTime> openingTimes, LinkedHashMap<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
         this.closingTimes = closingTimes;
         this.servicesOffered = servicesOffered;
         this.servicesInWelsh = servicesInWelsh;
+        this.pharmacyLat = pharmacyLat;
+        this.pharmacyLng = pharmacyLng;
+
     }
 
     /**
@@ -94,7 +108,7 @@ public class Pharmacy implements Serializable {
      *
      * @return a map of opening times
      */
-    public Map<DayOfWeek, LocalTime> getOpeningTimes() {
+    public LinkedHashMap<DayOfWeek, LocalTime> getOpeningTimes() {
         return openingTimes;
     }
 
@@ -103,7 +117,7 @@ public class Pharmacy implements Serializable {
      *
      * @return - a map of closing times
      */
-    public Map<DayOfWeek, LocalTime> getClosingTimes() {
+    public LinkedHashMap<DayOfWeek, LocalTime> getClosingTimes() {
         return closingTimes;
     }
 
@@ -133,6 +147,23 @@ public class Pharmacy implements Serializable {
     public List<PharmacyServices> getServicesInWelsh() {
         return servicesInWelsh;
     }
-    //Perhaps Need setters at a later stage?
+    //Perhaps Need setters at a later stage?]
+
+    /**
+     * Gets the lattude of the pharmacy
+     * @return the latutude
+     */
+    public double getPharmacyLat() {
+        return pharmacyLat;
+    }
+
+    /**
+     * Gets the long of the pharmacy
+     * @return the long
+     */
+    public double getPharmacyLng() {
+        return pharmacyLng;
+    }
+
 
 }
