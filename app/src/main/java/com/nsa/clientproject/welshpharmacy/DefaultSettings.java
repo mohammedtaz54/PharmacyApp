@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
+
 import java.security.Key;
 
 public class DefaultSettings extends AppCompatActivity implements View.OnClickListener {
@@ -27,6 +29,19 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_default_settings);
         servicesSettings = findViewById(R.id.services_settings);
         welshServicesSettings = findViewById(R.id.welsh_services_settings);
+        LinearLayoutCompat servicesRequired = findViewById(R.id.services_required);
+        LinearLayoutCompat servicesRequiredWelsh = findViewById(R.id.services_required_welsh);
+
+        for(PharmacyServices service : PharmacyServices.values()){
+            AppCompatCheckBox currentCheckbox = new AppCompatCheckBox(this);
+            currentCheckbox.setTag(service.name());
+            currentCheckbox.setText(getResources().getIdentifier(service.name(), "string", getPackageName()));
+            AppCompatCheckBox currentCheckboxWelsh = new AppCompatCheckBox(this);
+            currentCheckboxWelsh.setTag(service.name());
+            currentCheckboxWelsh.setText(getResources().getIdentifier(service.name(), "string", getPackageName()));
+            servicesRequired.addView(currentCheckbox);
+            servicesRequiredWelsh.addView(currentCheckboxWelsh);
+        }
         welshServicesSettings.setVisibility(View.GONE);
         servicesSettings.findViewById(R.id.show_welsh_services).setOnClickListener(this);
         welshServicesSettings.findViewById(R.id.show_english_services).setOnClickListener(this);
