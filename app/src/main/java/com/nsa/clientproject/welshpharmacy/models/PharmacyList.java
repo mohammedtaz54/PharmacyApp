@@ -34,7 +34,7 @@ public class PharmacyList implements Serializable {
     /**
      * Stores our instance of the distanceCalculator.
      */
-    private DistanceCalculator distanceCalculator = new DistanceCalculator();
+    private transient DistanceCalculator distanceCalculator = new DistanceCalculator();
 
     /**
      * Gets the filtered pharmacies

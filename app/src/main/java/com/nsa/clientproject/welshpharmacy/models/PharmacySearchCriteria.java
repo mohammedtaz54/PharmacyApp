@@ -59,6 +59,7 @@ public class PharmacySearchCriteria implements Serializable{
     /**
      * Gets the maximum distance
      * @return the maximum distance
+     * @return the maximum distance
      */
     @Nullable
     public Double getMaxDistance() {
