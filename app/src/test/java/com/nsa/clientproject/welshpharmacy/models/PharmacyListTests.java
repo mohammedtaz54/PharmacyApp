@@ -1,7 +1,7 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
 
-import android.location.Location;
+import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -64,20 +64,35 @@ public class PharmacyListTests {
 
 
     }
-    //Can't unit test this because I have no idea how to mock static dependencies
-    //Especially ones that change an array that is given to them as a parameter
-    //51.5893927, -3.0012496
     @Test
     public void evaluateSearchByLocation(){
 
-//        Location locationMock = mock(Location.class);
-//        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
-//        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
-//        assertTrue(pharmacyList.getPharmacies().size()>1);
-//        pharmacySearchCriteria.setUserLat(51.5893927);
-//        pharmacySearchCriteria.setUserLng(-3.0012496);
-//        pharmacySearchCriteria.setMaxDistance(5);
-//        assertEquals("Newport Pharmacy",pharmacyList.getPharmacies().get(0).getName());
+        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
+        PharmacyList.DistanceCalculator dc = mock(PharmacyList.DistanceCalculator.class);
+        when(dc.distanceBetween(anyDouble(),anyDouble(),anyDouble(),anyDouble())).thenReturn((float)500000000);
+        when(dc.distanceBetween(51.5893927,-3.0012496,51.5893927,-3.0012496)).thenReturn((float)50.0);
+        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
+        assertTrue(pharmacyList.getPharmacies().size()>1);
+        pharmacySearchCriteria.setUserLat(51.5893927);
+        pharmacyList.setDistanceCalculator(dc);
+        pharmacySearchCriteria.setUserLng(-3.0012496);
+        pharmacySearchCriteria.setMaxDistance(5);
+        assertEquals("Newport Pharmacy",pharmacyList.getPharmacies().get(0).getName());
+        //cleanup
+        pharmacyList.setDistanceCalculator(new PharmacyList.DistanceCalculator());
+
+    }
+    @Test
+    public void evaluateSearchByServices(){
+        Map<PharmacyServices,Boolean> pharmacyServices = new HashMap<PharmacyServices, Boolean>(){{
+           put(PharmacyServices.FLU_SHOT,true);
+        }};
+        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
+        pharmacySearchCriteria.setServicesRequired(pharmacyServices);
+        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
+        for(Pharmacy p: pharmacyList.getPharmacies()){
+            assertTrue(p.getServicesOffered().contains(PharmacyServices.FLU_SHOT));
+        }
     }
 
 }

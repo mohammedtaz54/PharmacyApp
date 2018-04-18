@@ -108,7 +108,7 @@ public class PharmacyList implements Serializable {
      * Calculates the distance between two locations
      * This exists because it's a wrapper needed for unit testing.
      */
-    class DistanceCalculator {
+    static class DistanceCalculator {
         /**
          * Calculates the distance between two points
          *
