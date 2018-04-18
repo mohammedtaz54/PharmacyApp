@@ -165,22 +165,26 @@
                     android:id="@+id/DISPENSING_WELSH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="DISPENSING"
                     android:text="@string/DISPENSING" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/FLU_SHOT_WELSH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="FLU_SHOT"
                     android:text="@string/FLU_SHOT" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/BLOOD_PRESSURE_MONITORING_WELSH"
                     android:layout_width="wrap_content"
+                    android:tag="BLOOD_PRESSURE_MONITORING"
                     android:layout_height="wrap_content"
                     android:text="@string/BLOOD_PRESSURE_MONITORING" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/ALCOHOL_ADVICE_WELSH"
+                    android:tag="ALCOHOL_ADVICE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ALCOHOL_ADVICE" />
@@ -188,17 +192,20 @@
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/EMERGENCY_SUPPLY_WELSH"
                     android:layout_width="wrap_content"
+                    android:tag="EMERGENCY_SUPPLY"
                     android:layout_height="wrap_content"
                     android:text="@string/EMERGENCY_SUPPLY" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/MEDICINE_REVIEW_WELSH"
+                    android:tag="MEDICINE_REVIEW"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/MEDICINE_REVIEW" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/MINOR_AILMENT_WELSH"
+                    android:tag="MINOR_AILMENT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/MINOR_AILMENT" />
@@ -206,12 +213,14 @@
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/NEW_MEDICINE_WELSH"
                     android:layout_width="wrap_content"
+                    android:tag="NEW_MEDICINE"
                     android:layout_height="wrap_content"
                     android:text="@string/NEW_MEDICINE" />
 
                 <android.support.v7.widget.AppCompatCheckBox
                     android:id="@+id/PREGNANCY_TEST_WELSH"
                     android:layout_width="wrap_content"
+                    android:tag="PREGNANCY_TEST"
                     android:layout_height="wrap_content"
                     android:text="@string/PREGNANCY_TEST" />
 
@@ -219,6 +228,7 @@
                     android:id="@+id/WEIGHT_MANAGEMENT_WELSH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:tag="WEIGHT_MANAGEMENT"
                     android:text="@string/WEIGHT_MANAGEMENT" />
 
             </android.support.v7.widget.LinearLayoutCompat>

@@ -38,15 +38,15 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
      */
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.show_welsh_services){
+        if (v.getId() == R.id.show_welsh_services) {
             servicesSettings.setVisibility(View.GONE);
             welshServicesSettings.setVisibility(View.VISIBLE);
         }
-        if(v.getId()==R.id.show_english_services){
+        if (v.getId() == R.id.show_english_services) {
             welshServicesSettings.setVisibility((View.GONE));
             servicesSettings.setVisibility(View.VISIBLE);
         }
-        if(v.getId()==R.id.show_location_options){
+        if (v.getId() == R.id.show_location_options) {
             //todo: this should be moved to the final option when it's implemented
             saveSettings();
         }
@@ -55,21 +55,26 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     /**
      * Saves all the settings into shared preferences
      */
-    private void saveSettings(){
-        SharedPreferences defaultSettings = getSharedPreferences("DEFAULT_SETTINGS",MODE_PRIVATE);
+    private void saveSettings() {
+
+        SharedPreferences defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
         SharedPreferences.Editor editor = defaultSettings.edit();
         //Reference: https://stackoverflow.com/questions/7784418/get-all-child-views-inside-linearlayout-at-once?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
         //Accessed 18 April 2018
         LinearLayoutCompat servicesRequired = findViewById(R.id.services_required);
-        for(int i=0;i<servicesRequired.getChildCount();i++){
-            Log.d("HELP",Integer.toString(i));
+        for (int i = 0; i < servicesRequired.getChildCount(); i++) {
             CheckBox currentCheckBox = (CheckBox) servicesRequired.getChildAt(i);
-            if(currentCheckBox.isChecked()){
-                editor.putBoolean("REQUIRES_SERVICE_"+currentCheckBox.getTag(),true);
-                Log.d("HELP","REQUIRES_SERVICE_"+currentCheckBox.getTag());
+            editor.putBoolean("REQUIRES_SERVICE_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
 
-            }
 
         }
+
+        LinearLayoutCompat servicesRequiredWelsh = findViewById(R.id.services_required_welsh);
+        for (int i = 0; i < servicesRequiredWelsh.getChildCount(); i++) {
+            CheckBox currentCheckBox = (CheckBox) servicesRequiredWelsh.getChildAt(i);
+            editor.putBoolean("REQUIRES_SERVICE_WELSH_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
+        }
+        editor.apply();
+        Toast.makeText(this, R.string.saved_message, Toast.LENGTH_SHORT).show();
     }
 }
