@@ -70,14 +70,14 @@ public class PharmacyListTests {
     @Test
     public void evaluateSearchByLocation(){
 
-//        Location locationMock = mock(Location.class);
-//        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
-//        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
-//        assertTrue(pharmacyList.getPharmacies().size()>1);
-//        pharmacySearchCriteria.setUserLat(51.5893927);
-//        pharmacySearchCriteria.setUserLng(-3.0012496);
-//        pharmacySearchCriteria.setMaxDistance(5);
-//        assertEquals("Newport Pharmacy",pharmacyList.getPharmacies().get(0).getName());
+        //Location locationMock = mock(Location.class);
+        PharmacySearchCriteria pharmacySearchCriteria = new PharmacySearchCriteria();
+        pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
+        assertTrue(pharmacyList.getPharmacies().size()>1);
+        pharmacySearchCriteria.setUserLat(51.5893927);
+        pharmacySearchCriteria.setUserLng(-3.0012496);
+        pharmacySearchCriteria.setMaxDistance(5);
+        assertEquals("Newport Pharmacy",pharmacyList.getPharmacies().get(0).getName());
     }
 
 }
