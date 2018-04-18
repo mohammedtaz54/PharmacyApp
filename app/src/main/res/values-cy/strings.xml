@@ -53,8 +53,8 @@
     <string name="address">Cyfeiriad: %1$s</string>
     <string name="liked">Tebygol</string>
     <string name="disliked">Wedi\'i waredu</string>
-    <string name="application_setup">Application setup</string>
-    <string name="next">Next</string>
-    <string name="prev">Prev</string>
+    <string name="application_setup">Sefydlu cais</string>
+    <string name="next">Nesaf</string>
+    <string name="prev">Blaenorol</string>
 
 </resources>
