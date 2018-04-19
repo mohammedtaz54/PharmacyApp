@@ -79,13 +79,15 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         RadioGroup locationSelector = currentView.findViewById(R.id.radio_select_location);
         locationSelector.setOnCheckedChangeListener(this);
 
+
+
         //Load default values into the system
         SharedPreferences defaultSettings = getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
 
         EditText postcode = currentView.findViewById(R.id.postcode_string);
         postcode.setText(defaultSettings.getString(KeyValueHelper.KEY_POSTCODE_TEXT, KeyValueHelper.DEFAULT_POSTCODE_TEXT));
         EditText maximumDistance = currentView.findViewById(R.id.maximum_distance);
-        maximumDistance.setText(defaultSettings.getString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
+        maximumDistance.setText(Float.toString(defaultSettings.getFloat(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT)));
 
 
         //todo:perhaps find a way to make this better?

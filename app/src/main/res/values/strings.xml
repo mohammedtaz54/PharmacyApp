@@ -47,7 +47,7 @@
     <string name="location_filters">Location filters</string>
     <string name="services_filters">Services filters</string>
     <string name="maximum_distance_miles">Maximum distance (miles)</string>
-    <string name="hint_enter_the_maximum_distance_in_miles">Enter the maximum distance in miles</string>
+    <string name="hint_enter_the_maximum_distance_in_miles">Max distance(miles)</string>
     <string name="use_my_location">Use my location</string>
     <string name="use_postcode">Use postcode:</string>
     <string name="hint_text">XXYY YYYY</string>
@@ -68,4 +68,8 @@
     <string name="application_setup">Application setup</string>
     <string name="next">Next</string>
     <string name="prev">Prev</string>
+    <string name="enter_postcode">Enter postcode</string>
+    <string name="use_location_if_available">Use my location if available</string>
+    <string name="finish">Finish</string>
+    <string name="postcode_not_found_not_saved">Post code cannot be found - changes not saved</string>
 </resources>
