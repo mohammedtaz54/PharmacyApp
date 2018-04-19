@@ -31,6 +31,10 @@ public class PharmacyList implements Serializable {
      * The number we multiply to to convert from metres to miles
      */
     private static final double METRES_TO_MILE = 0.000621371;
+    /**
+     * Stores our instance of the distanceCalculator.
+     */
+    private transient DistanceCalculator distanceCalculator = new DistanceCalculator();
 
     /**
      * Gets the filtered pharmacies
@@ -72,14 +76,13 @@ public class PharmacyList implements Serializable {
                     if (pharmacySearchCriteria.getUserLat() != null
                             && pharmacySearchCriteria.getUserLng() != null
                             && pharmacySearchCriteria.getMaxDistance() != null) {
-                        float[] results = new float[1];
-                        Location.distanceBetween(
+                        float result = distanceCalculator.distanceBetween(
                                 pharmacySearchCriteria.getUserLat(),
                                 pharmacySearchCriteria.getUserLng(),
                                 pharmacy.getPharmacyLat(),
-                                pharmacy.getPharmacyLng(),
-                                results);
-                        if (results[0] * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
+                                pharmacy.getPharmacyLng()
+                                );
+                        if (result * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
                             pharmacyListReturn.add(pharmacy);
                         }
                     } else {
@@ -89,6 +92,40 @@ public class PharmacyList implements Serializable {
                 }
             }
             return pharmacyListReturn;
+        }
+    }
+
+    /**
+     * Sets the distance calculator. This method is primarily used for unit testing
+     *
+     * @param distanceCalculator the distanceCalculator
+     */
+    public void setDistanceCalculator(DistanceCalculator distanceCalculator) {
+        this.distanceCalculator = distanceCalculator;
+    }
+
+    /**
+     * Calculates the distance between two locations
+     * This exists because it's a wrapper needed for unit testing.
+     */
+    static class DistanceCalculator {
+        /**
+         * Calculates the distance between two points
+         *
+         * @param lat1 latitude of point 1
+         * @param lng1 longtitude of point 1
+         * @param lat2 latitude of point 2
+         * @param lng2 longtitude of point 2
+         */
+        public float distanceBetween(double lat1, double lng1, double lat2, double lng2) {
+            float[] results = new float[1];
+            Location.distanceBetween(
+                    lat1,
+                    lng1,
+                    lat2,
+                    lng2,
+                    results);
+            return results[0];
         }
     }
 
