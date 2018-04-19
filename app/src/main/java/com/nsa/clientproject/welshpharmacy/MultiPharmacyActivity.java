@@ -90,6 +90,11 @@ public class MultiPharmacyActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         loadCardsFragment();
         this.defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+
+        if(!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD,false)){
+            Intent i = new Intent(this,DefaultSettings.class);
+            startActivity(i);
+        }
         //This permission stuff is here for future use
         //As we'll need this for the filtering which affects the list as well
         //So we can't just load it in the map fragment.
