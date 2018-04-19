@@ -1,115 +1,95 @@
 package com.nsa.clientproject.welshpharmacy;
 
 import android.content.SharedPreferences;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.Toast;
+
+import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 import java.security.Key;
 
-public class DefaultSettings extends AppCompatActivity implements View.OnClickListener, View.OnLongClickListener, SharedPreferences.OnSharedPreferenceChangeListener {
+public class DefaultSettings extends AppCompatActivity implements View.OnClickListener {
 
 
-    private AppCompatCheckBox bloodPressure;
-    private AppCompatCheckBox fluShot;
-    private AppCompatButton saveButton;
-    private AppCompatEditText postcode;
-    private AppCompatEditText maxdistance;
-
-    private SharedPreferences sharedPreferences;
-
-
+    private ConstraintLayout servicesSettings;
+    private ConstraintLayout welshServicesSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_settings);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //fetches widgets
+        servicesSettings = findViewById(R.id.services_settings);
+        welshServicesSettings = findViewById(R.id.welsh_services_settings);
+        LinearLayoutCompat servicesRequired = findViewById(R.id.services_required);
+        LinearLayoutCompat servicesRequiredWelsh = findViewById(R.id.services_required_welsh);
 
-        this.bloodPressure = this.findViewById(R.id.cbBP);
-        this.fluShot = this.findViewById(R.id.cbFS);
-        this.saveButton = this.findViewById(R.id.savebutton);
-        this.postcode = this.findViewById(R.id.user_postcode);
-        this.maxdistance = this.findViewById(R.id.pharmacy_max_distance);
-
-        //initialises sharededPreferences object
-        //Changed this so I can access it from other activities.
-        this.sharedPreferences = this.getSharedPreferences("DEFAULT_SETTINGS",MODE_PRIVATE);
-
-        // method used to set the current state of widgets in sharedPreferences
-        initValues();
-
-        this.saveButton.setOnClickListener(this);
-        this.saveButton.setOnLongClickListener(this);
+        for(PharmacyServices service : PharmacyServices.values()){
+            AppCompatCheckBox currentCheckbox = new AppCompatCheckBox(this);
+            currentCheckbox.setTag(service.name());
+            currentCheckbox.setText(getResources().getIdentifier(service.name(), "string", getPackageName()));
+            AppCompatCheckBox currentCheckboxWelsh = new AppCompatCheckBox(this);
+            currentCheckboxWelsh.setTag(service.name());
+            currentCheckboxWelsh.setText(getResources().getIdentifier(service.name(), "string", getPackageName()));
+            servicesRequired.addView(currentCheckbox);
+            servicesRequiredWelsh.addView(currentCheckboxWelsh);
+        }
+        welshServicesSettings.setVisibility(View.GONE);
+        servicesSettings.findViewById(R.id.show_welsh_services).setOnClickListener(this);
+        welshServicesSettings.findViewById(R.id.show_english_services).setOnClickListener(this);
+        welshServicesSettings.findViewById(R.id.show_location_options).setOnClickListener(this);
     }
 
-    //Sets the values for the widgets based on values in sharedPreferences
-    private void initValues() {
-        if (this.sharedPreferences !=null) {
-            this.bloodPressure.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, KeyValueHelper.DEFAULT_BLOODPRESSURE_CHECKBOX));
-            this.fluShot.setChecked(sharedPreferences.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, KeyValueHelper.DEFAULT_FLUSHOT_CHECKBOX));
-            this.postcode.setText(this.sharedPreferences.getString(KeyValueHelper.KEY_POSTCODE_TEXT, KeyValueHelper.DEFAULT_POSTCODE_TEXT));
-            this.maxdistance.setText(this.sharedPreferences.getString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
+    /**
+     * Takes care of the previous/next buttons in the activity, as well as the submit
+     */
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.show_welsh_services) {
+            servicesSettings.setVisibility(View.GONE);
+            welshServicesSettings.setVisibility(View.VISIBLE);
+        }
+        if (v.getId() == R.id.show_english_services) {
+            welshServicesSettings.setVisibility((View.GONE));
+            servicesSettings.setVisibility(View.VISIBLE);
+        }
+        if (v.getId() == R.id.show_location_options) {
+            //todo: this should be moved to the final option when it's implemented
+            saveSettings();
         }
     }
 
-    //Register a listener object on sharedPreferences that listens to the changes if object exists
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (this.sharedPreferences !=null)
-            this.sharedPreferences.registerOnSharedPreferenceChangeListener(this);
-    }
+    /**
+     * Saves all the settings into shared preferences
+     */
+    private void saveSettings() {
 
-    //Unregister a listener when activity is paused as activity is used for listener
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (this.sharedPreferences != null)
-            this.sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
-    }
+        SharedPreferences defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = defaultSettings.edit();
+        //Reference: https://stackoverflow.com/questions/7784418/get-all-child-views-inside-linearlayout-at-once?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+        //Accessed 18 April 2018
+        LinearLayoutCompat servicesRequired = findViewById(R.id.services_required);
+        for (int i = 0; i < servicesRequired.getChildCount(); i++) {
+            CheckBox currentCheckBox = (CheckBox) servicesRequired.getChildAt(i);
+            editor.putBoolean("REQUIRES_SERVICE_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
 
-    /* Check whether view clicked is save button and sharedpreferences has been initialised.
-    If it has the current state is added to sharedpreferences */
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
 
-        if (id == R.id.savebutton && this.sharedPreferences != null) {
-            SharedPreferences.Editor editor = this.sharedPreferences.edit();
-            editor.putBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, this.bloodPressure.isChecked());
-            editor.putBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, this.fluShot.isChecked());
-            editor.putString(KeyValueHelper.KEY_POSTCODE_TEXT, this.postcode.getText().toString());
-            editor.putString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, this.maxdistance.getText().toString());
-
-            editor.apply();
         }
-    }
 
-    /* If the view clicked is submit button and sharedpreferences has been initialised,
-     it clears all entries and shows a Toast indicating values have been reset
-     Values go back to their default after this*/
-    @Override
-    public boolean onLongClick(View view) {
-        int id = view.getId();
-
-        if (id == R.id.savebutton && this.sharedPreferences != null) {
-            this.sharedPreferences.edit().clear().apply();
-            //triggered when either of these methods are called
-            Toast.makeText(this, getString(R.string.reset_text), Toast.LENGTH_SHORT).show();
-            initValues();
+        LinearLayoutCompat servicesRequiredWelsh = findViewById(R.id.services_required_welsh);
+        for (int i = 0; i < servicesRequiredWelsh.getChildCount(); i++) {
+            CheckBox currentCheckBox = (CheckBox) servicesRequiredWelsh.getChildAt(i);
+            editor.putBoolean("REQUIRES_SERVICE_WELSH_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
         }
-        return true;
-    }
-
-    // Adds a toast message that tells user changes have been saved
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
+        editor.apply();
         Toast.makeText(this, R.string.saved_message, Toast.LENGTH_SHORT).show();
     }
 }

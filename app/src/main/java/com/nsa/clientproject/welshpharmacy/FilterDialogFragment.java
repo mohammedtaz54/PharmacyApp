@@ -76,25 +76,32 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         locationSelector.setOnCheckedChangeListener(this);
 
         //Load default values into the system
-        //todo: perhaps have separate defaults for welsh vs not welsh?
         SharedPreferences defaultSettings = getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
 
         EditText postcode = currentView.findViewById(R.id.postcode_string);
         postcode.setText(defaultSettings.getString(KeyValueHelper.KEY_POSTCODE_TEXT, KeyValueHelper.DEFAULT_POSTCODE_TEXT));
         EditText maximumDistance = currentView.findViewById(R.id.maximum_distance);
         maximumDistance.setText(defaultSettings.getString(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
-        if (defaultSettings.getBoolean(KeyValueHelper.KEY_BLOODPRESSURE_CHECKBOX, false)) {
+
+
+        //todo:perhaps find a way to make this better?
+        if (defaultSettings.getBoolean("REQUIRES_SERVICE_BLOOD_PRESSURE_MONITORING", false)) {
             CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
             bpMonitoring.setChecked(true);
+
+        }
+        if(defaultSettings.getBoolean("REQUIRES_SERVICE_WELSH_BLOOD_PRESSURE_MONITORING", false)){
             CheckBox bpMonitoringWelsh = currentView.findViewById(R.id.has_bp_monitoring_welsh);
             bpMonitoringWelsh.setChecked(true);
         }
-        if (defaultSettings.getBoolean(KeyValueHelper.KEY_FLUSHOT_CHECKBOX, false)) {
+        if (defaultSettings.getBoolean("REQUIRES_SERVICE_FLU_SHOT", false)) {
             CheckBox fluShot = currentView.findViewById(R.id.has_flu_shot);
             fluShot.setChecked(true);
+
+        }
+        if(defaultSettings.getBoolean("REQUIRES_SERVICE_WELSH_FLU_SHOT", false)){
             CheckBox fluShotWelsh = currentView.findViewById(R.id.has_flu_shot_welsh);
             fluShotWelsh.setChecked(true);
-
         }
         return builder.create();
     }
