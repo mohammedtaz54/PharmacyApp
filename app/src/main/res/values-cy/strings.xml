@@ -56,5 +56,8 @@
     <string name="application_setup">Sefydlu cais</string>
     <string name="next">Nesaf</string>
     <string name="prev">Blaenorol</string>
+    <string name="enter_postcode">Enter postcode</string>
+    <string name="finish">Finish</string>
+    <string name="postcode_not_found_not_saved">Post code cannot be found - changes not saved</string>
 
 </resources>
