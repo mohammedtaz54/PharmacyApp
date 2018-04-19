@@ -9,11 +9,13 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,8 +33,7 @@ import java.security.Key;
  * and ideally a map of them in the future
  */
 public class MultiPharmacyActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,
-        FilterDialogFragment.SearchCriteriaUpdater {
+        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,FilterDialogFragment.ContainsPharmacyList{
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -184,11 +185,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 loadCardsFragment();
 
         }
-        // Changed if function to switch statement
-//        if (id == R.id.settings) {
-//            Intent i = new Intent(this, DefaultSettings.class);
-//            startActivity(i);
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -210,17 +206,16 @@ public class MultiPharmacyActivity extends AppCompatActivity
         startActivity(i);
     }
 
+
+
+
     /**
-     * Saves the pharmacySearchCriteria given from the filter
+     * Gets the pharmacyList object we use through the app
      *
-     * @param pharmacySearchCriteria the given criteria
+     * @return the pharmacyList object
      */
     @Override
-    public void setPreferences(PharmacySearchCriteria pharmacySearchCriteria) {
-        this.pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
-        UpdatableOnFilterChange fragment =(UpdatableOnFilterChange) getSupportFragmentManager().findFragmentById(R.id.content_pharmacy_list);
-        fragment.onFiltersChanged();
+    public PharmacyList getPharmacyList() {
+        return this.pharmacyList;
     }
-
-
 }

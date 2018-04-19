@@ -1,8 +1,13 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,13 +26,17 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
  * {@link ListOfPharmaciesCards.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener,UpdatableOnFilterChange {
+public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener {
 
     private OnFragmentInteractionListener mListener;
     /**
      * Stores the list of pharmacies.
      */
     private PharmacyList pharmacyList;
+    /**
+     * Stores the onFilterUpdateBroadcast value (so we can register and unregister
+     */
+    private OnFilterUpdateBroadcast onFilterUpdateBroadcast;
     public ListOfPharmaciesCards() {
         // Required empty public constructor
     }
@@ -46,6 +55,27 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
 //        setAdapterForList();
         cardList.setOnItemClickListener(this);
         return v;
+    }
+
+    /**
+     * Unregisters ther eceiver
+     */
+    @Override
+    public void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(onFilterUpdateBroadcast);
+    }
+
+    /**
+     * Registers the receiver.
+     */
+    @Override
+    public void onResume() {
+        onFilterUpdateBroadcast = new OnFilterUpdateBroadcast();
+        IntentFilter filter = new IntentFilter("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
+        Log.d("R","REGISTERING RECEIVER");
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(onFilterUpdateBroadcast,filter);
+        super.onResume();
     }
 
     /**
@@ -88,14 +118,21 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
         mListener.onFragmentInteraction((Pharmacy)parent.getItemAtPosition(position));
     }
 
-    /**
-     * Executes when the filters are changed.
-     */
-    @Override
-    public void onFiltersChanged() {
-        setAdapterForList();
-    }
 
+    /**
+     * Class that handles what happens when the filter update broadcast triggers
+     */
+    private class OnFilterUpdateBroadcast extends BroadcastReceiver {
+        /**
+         * Describes what we do when we get the FilterUpdateBroadcast
+         */
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("R","TRIGGERED BROADCAST");
+
+            setAdapterForList();
+        }
+    }
     /**
      * Listens for clicks on elements, this must be implemented by the parent activity.
       */

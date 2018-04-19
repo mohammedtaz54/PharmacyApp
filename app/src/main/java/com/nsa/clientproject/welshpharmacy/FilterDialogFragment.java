@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -11,7 +12,9 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +28,7 @@ import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
 import com.nsa.clientproject.welshpharmacy.models.PharmacySearchCriteria;
 import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
@@ -35,10 +39,7 @@ import java.util.Map;
 //Reference:https://developer.android.com/guide/topics/ui/dialogs.html
 //Accessed 29 March 2018
 public class FilterDialogFragment extends DialogFragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, OnSuccessListener<Location> {
-    /**
-     * Stores the parenent that we need to tell that the search is updated
-     */
-    private SearchCriteriaUpdater parent;
+
     /**
      * Stores the current view - getView does nothing.
      */
@@ -47,15 +48,18 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
      * Stores the user's location if we can get it.
      */
     private Location userLocation;
-
+    /**
+     * Stores the parent's activity that implements the ContainsPharmacyList interface.
+     */
+    private ContainsPharmacyList parent;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         //Build the layout
         try {
-            this.parent = (SearchCriteriaUpdater) getActivity();
+            this.parent = (ContainsPharmacyList) getActivity();
         } catch (ClassCastException e) {
-            throw new ClassCastException("Parent activity must implement SearchCriteriaUpdater");
+            throw new ClassCastException("Parent activity must implement ContainsPharmacyList");
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         LayoutInflater layoutInflater = getActivity().getLayoutInflater();
@@ -173,7 +177,12 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
                 searchCriteria.setMaxDistance(Double.parseDouble(maximumMiles.getText().toString()));
             }
         }
-        this.parent.setPreferences(searchCriteria);
+        this.parent.getPharmacyList().setPharmacySearchCriteria(searchCriteria);
+        Intent listChanged = new Intent()
+                .setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
+        Log.d("R","SENDING BROADCAST");
+
+        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(listChanged);
         dismiss();
     }
 
@@ -205,9 +214,16 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
     }
 
     /**
-     * Interface for the parent so we can tell it when the filters are triggered.
+     * Interface that must be implemented by the parent so we can update
      */
-    public interface SearchCriteriaUpdater {
-        void setPreferences(PharmacySearchCriteria pharmacySearchCriteria);
+    public interface ContainsPharmacyList{
+        /**
+         * Gets the pharmacyList object we use through the app
+         * @return the pharmacyList object
+         */
+        PharmacyList getPharmacyList();
     }
+
+
+
 }
