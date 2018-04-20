@@ -47,7 +47,11 @@ public class PharmacyUnitTests {
                 Arrays.asList(services),
                 Arrays.asList(services),
                 30,
-                30
+                30,
+                "CF103EP",
+                "http://google.com",
+                "test@test.com",
+                "7"
                 );
     }
     @Test
