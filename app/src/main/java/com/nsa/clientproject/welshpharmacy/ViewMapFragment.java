@@ -85,7 +85,8 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         if (ContextCompat.checkSelfPermission(this.getContext(), Manifest.permission.ACCESS_FINE_LOCATION)
-                == PermissionChecker.PERMISSION_GRANTED) {
+                == PermissionChecker.PERMISSION_GRANTED
+                && defaultSettings.getBoolean(KeyValueHelper.KEY_USE_LOCATION_DEFAULT,KeyValueHelper.DEFAULT_USE_LOCATION_DEFAULT)) {
             mMap.setMyLocationEnabled(true);
             //Reference: https://developers.google.com/maps/documentation/android-api/current-place-tutorial
             //Accessed 27 March 2018
@@ -94,7 +95,7 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
             locationResult.addOnCompleteListener(this);
 
         } else {
-            Toast.makeText(this.getContext(), R.string.location_not_found, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this.getContext(), R.string.location_not_found, Toast.LENGTH_SHORT).show();
             moveCameraToHome();
 
         }
