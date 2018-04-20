@@ -5,11 +5,13 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Cache;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -65,7 +67,7 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
     private JsonArrayRequest makeJsonRequest() {
         //Reference: http://velmm.com/volley-cache-example
         //Accessed  on 20 April 2018
-        String dataURL = "https://api.myjson.com/bins/hn6ff";
+        final String dataURL = "https://api.myjson.com/bins/hn6ff";
         return new JsonArrayRequest(
                 Request.Method.GET,
                 dataURL,
@@ -74,67 +76,86 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
 
                     @Override
                     public void onResponse(JSONArray response) {
-                        List<Pharmacy> newPharmacyList = new ArrayList<>(800);
-                        for (int i = 0; i < response.length(); i++) {
-                            try {
-                                LinkedHashMap<DayOfWeek, LocalTime> openingTimesList = new LinkedHashMap<>();
-                                LinkedHashMap<DayOfWeek, LocalTime> closingTimesList = new LinkedHashMap<>();
-                                List<PharmacyServices> servicesList = new ArrayList<>(20);
-                                List<PharmacyServices> servicesWelshList = new ArrayList<>(20);
-                                JSONObject pharmacyJSON = response.getJSONObject(i);
-                                JSONArray services = pharmacyJSON.getJSONArray("services");
-                                JSONArray servicesWelsh = pharmacyJSON.getJSONArray("servicesInWelsh");
-
-                                JSONArray openingTimes = pharmacyJSON.getJSONArray("openingTimes");
-                                JSONArray closingTimes = pharmacyJSON.getJSONArray("closingTimes");
-                                //Deals with getting the opening times
-
-                                for (int j = 0; j < openingTimes.length(); j++) {
-                                    JSONArray currentOpeningTime = openingTimes.getJSONArray(j);
-                                    JSONArray currentClosingTime = closingTimes.getJSONArray(j);
-                                    openingTimesList.put(
-                                            DayOfWeek.of(j + 1),
-                                            LocalTime.of(currentOpeningTime.getInt(0), currentOpeningTime.getInt(1))
-                                    );
-                                    closingTimesList.put(
-                                            DayOfWeek.of(j + 1),
-                                            LocalTime.of(currentClosingTime.getInt(0), currentClosingTime.getInt(1))
-                                    );
-                                }
-                                for (int j = 0; j < services.length(); j++) {
-                                    servicesList.add(PharmacyServices.valueOf(services.getString(j)));
-                                }
-                                for (int j = 0; j < servicesWelsh.length(); j++) {
-                                    servicesWelshList.add(PharmacyServices.valueOf(servicesWelsh.getString(j)));
-                                }
-                                Pharmacy p = new Pharmacy(pharmacyJSON.getString("name"),
-                                        pharmacyJSON.getString("address")
-                                        , openingTimesList,
-                                        closingTimesList,
-                                        servicesList,
-                                        servicesWelshList,
-                                        pharmacyJSON.getDouble("lat"),
-                                        pharmacyJSON.getDouble("lng"),
-                                        pharmacyJSON.getString("postcode"),
-                                        pharmacyJSON.getString("website"),
-                                        pharmacyJSON.getString("email"),
-                                        pharmacyJSON.getString("phone")
-                                );
-                                newPharmacyList.add(p);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                        pharmacyList.setPharmacies(newPharmacyList);
-                        mListener.onFinishedLoading();
+                        parseJsonArray(response);
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.d("RS", error.toString());
+                        Cache cache = RequestQueueSingleton.getInstance(getContext()).getRequestQueue().getCache();
+                        Cache.Entry entry = cache.get(dataURL);
+                        if (entry != null) {
+                            try {
+                                JSONArray resultsCached = new JSONArray(new String(entry.data));
+                                parseJsonArray(resultsCached);
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            Snackbar.make(getView(), R.string.please_connect_internet_outdated,Snackbar.LENGTH_INDEFINITE).show();
+
+                        }
+                        else{
+                            Snackbar.make(getView(), R.string.please_connect_internet_broken,Snackbar.LENGTH_INDEFINITE).show();
+                        }
                     }
                 });
+    }
+
+    private void parseJsonArray(JSONArray response) {
+        List<Pharmacy> newPharmacyList = new ArrayList<>(800);
+        for (int i = 0; i < response.length(); i++) {
+            try {
+                LinkedHashMap<DayOfWeek, LocalTime> openingTimesList = new LinkedHashMap<>();
+                LinkedHashMap<DayOfWeek, LocalTime> closingTimesList = new LinkedHashMap<>();
+                List<PharmacyServices> servicesList = new ArrayList<>(20);
+                List<PharmacyServices> servicesWelshList = new ArrayList<>(20);
+                JSONObject pharmacyJSON = response.getJSONObject(i);
+                JSONArray services = pharmacyJSON.getJSONArray("services");
+                JSONArray servicesWelsh = pharmacyJSON.getJSONArray("servicesInWelsh");
+
+                JSONArray openingTimes = pharmacyJSON.getJSONArray("openingTimes");
+                JSONArray closingTimes = pharmacyJSON.getJSONArray("closingTimes");
+                //Deals with getting the opening times
+
+                for (int j = 0; j < openingTimes.length(); j++) {
+                    JSONArray currentOpeningTime = openingTimes.getJSONArray(j);
+                    JSONArray currentClosingTime = closingTimes.getJSONArray(j);
+                    openingTimesList.put(
+                            DayOfWeek.of(j + 1),
+                            LocalTime.of(currentOpeningTime.getInt(0), currentOpeningTime.getInt(1))
+                    );
+                    closingTimesList.put(
+                            DayOfWeek.of(j + 1),
+                            LocalTime.of(currentClosingTime.getInt(0), currentClosingTime.getInt(1))
+                    );
+                }
+                for (int j = 0; j < services.length(); j++) {
+                    servicesList.add(PharmacyServices.valueOf(services.getString(j)));
+                }
+                for (int j = 0; j < servicesWelsh.length(); j++) {
+                    servicesWelshList.add(PharmacyServices.valueOf(servicesWelsh.getString(j)));
+                }
+                Pharmacy p = new Pharmacy(pharmacyJSON.getString("name"),
+                        pharmacyJSON.getString("address")
+                        , openingTimesList,
+                        closingTimesList,
+                        servicesList,
+                        servicesWelshList,
+                        pharmacyJSON.getDouble("lat"),
+                        pharmacyJSON.getDouble("lng"),
+                        pharmacyJSON.getString("postcode"),
+                        pharmacyJSON.getString("website"),
+                        pharmacyJSON.getString("email"),
+                        pharmacyJSON.getString("phone")
+                );
+                newPharmacyList.add(p);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        pharmacyList.setPharmacies(newPharmacyList);
+        mListener.onFinishedLoading();
     }
 
 
