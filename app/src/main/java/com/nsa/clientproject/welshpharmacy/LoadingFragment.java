@@ -82,6 +82,9 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        //Reference:http://velmm.com/volley-cache-example/
+                        //Accessed 20 April 2018
+                        //Because Volley has no actual documentation
                         Cache cache = RequestQueueSingleton.getInstance(getContext()).getRequestQueue().getCache();
                         Cache.Entry entry = cache.get(dataURL);
                         if (entry != null) {
