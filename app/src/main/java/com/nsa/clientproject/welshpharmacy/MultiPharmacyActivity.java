@@ -116,6 +116,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         if (!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD, false)) {
             Intent i = new Intent(this, DefaultSettings.class);
             startActivity(i);
+            finish();
         } else {
             loadDefaultSettings();
 
