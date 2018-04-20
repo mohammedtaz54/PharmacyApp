@@ -43,7 +43,8 @@ public class MultiPharmacyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ListOfPharmaciesCards.OnFragmentInteractionListener,
         FilterDialogFragment.ContainsPharmacyList,
-        OnSuccessListener<Location> {
+        OnSuccessListener<Location> ,
+LoadingFragment.OnFragmentInteractionListener{
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -97,10 +98,11 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
 
         this.pharmacyList = new PharmacyList();
-        this.pharmacyList.updatePharmacies();
+       // this.pharmacyList.updatePharmacies();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadCardsFragment();
+        //loadCardsFragment();
+        loadLoadingFragment();
         this.defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
 
         if (!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD, false)) {
@@ -121,6 +123,20 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     }
 
+    /**
+     * Loads the loading screen fragment
+     */
+    private void loadLoadingFragment(){
+        LoadingFragment list = new LoadingFragment();
+        Bundle data = new Bundle();
+        data.putSerializable("pharmacyList", this.pharmacyList);
+        list.setArguments(data);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_pharmacy_list, list, TAG_CURRENT_DISPLAY)
+                .commit();
+
+    }
     private void loadDefaultSettings() {
         //Applies the default filters
         Map<String, ?> allDefaults = defaultSettings.getAll();
@@ -293,5 +309,13 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
             }
         }
+    }
+
+    /**
+     * Load  the view fragment into the screen
+     */
+    @Override
+    public void onFinishedLoading() {
+        loadCardsFragment();
     }
 }
