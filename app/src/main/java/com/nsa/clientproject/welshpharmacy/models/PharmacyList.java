@@ -135,7 +135,7 @@ public class PharmacyList implements Serializable {
                         closingTimes,
                         servicesEmpty,
                         servicesEmpty,
-                        51.4927031, -3.1873809, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
+                        51.4927031, -3.1873809, "http://www.woodvilleroadpharmacy.co.uk/"
                 ));
                 add(new Pharmacy(
                         "Pharmacy 2",
@@ -144,7 +144,7 @@ public class PharmacyList implements Serializable {
                         openingTimes,
                         services,
                         servicesEmpty,
-                        51.49164649999999, -3.1848503, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
+                        51.49164649999999, -3.1848503, "http://www.woodvilleroadpharmacy.co.uk/"
                 ));
             add(new Pharmacy(
                     "Pharmacy 3",
@@ -153,7 +153,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     services,
                     services,
-                    51.4865716, -3.1657761, "WEBSITE: http://www.nhsdirect.wales.nhs.uk/localservices/ViewLocalService.aspx?id=460&s=Pharmacy"
+                    51.4865716, -3.1657761, "http://www.nhsdirect.wales.nhs.uk/localservices/ViewLocalService.aspx?id=460&s=Pharmacy"
             ));
             add(new Pharmacy(
                     "Pharmacy 4",
@@ -162,7 +162,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     FluServices,
                     services,
-                    51.48921559999999, -3.1666502, "WEBSITE: https://finder.well.co.uk/store/roath-180-city-road"
+                    51.48921559999999, -3.1666502, "https://finder.well.co.uk/store/roath-180-city-road"
 
             ));
             add(new Pharmacy(
@@ -172,7 +172,7 @@ public class PharmacyList implements Serializable {
                     closingTimes,
                     FluServices,
                     BloodServices,
-                    51.5893927, -3.0012496, "WEBSITE: https://finder.well.co.uk/store/newport-clytha-park-road"
+                    51.5893927, -3.0012496, "https://finder.well.co.uk/store/newport-clytha-park-road"
             ));
         }};
 
