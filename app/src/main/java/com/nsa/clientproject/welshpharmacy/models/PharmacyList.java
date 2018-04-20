@@ -24,6 +24,10 @@ public class PharmacyList implements Serializable {
      */
     private List<Pharmacy> pharmacies;
     /**
+     * Stores the maximum number of pharmacies to return
+     */
+    private static final int MAX_NUMBER_OF_PHARMACIES = 50;
+    /**
      * Stores the pharmacy search criteria.
      */
     private PharmacySearchCriteria pharmacySearchCriteria;
@@ -81,7 +85,7 @@ public class PharmacyList implements Serializable {
                                 pharmacySearchCriteria.getUserLng(),
                                 pharmacy.getPharmacyLat(),
                                 pharmacy.getPharmacyLng()
-                                );
+                        );
                         if (result * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
                             pharmacyListReturn.add(pharmacy);
                         }
@@ -91,7 +95,15 @@ public class PharmacyList implements Serializable {
                     }
                 }
             }
-            return pharmacyListReturn;
+            List<Pharmacy> reducedList = new ArrayList<>();
+            if (pharmacyListReturn.size() < PharmacyList.MAX_NUMBER_OF_PHARMACIES) {
+                return pharmacyListReturn;
+            } else {
+                for (int i = 0; i < PharmacyList.MAX_NUMBER_OF_PHARMACIES; i++) {
+                    reducedList.add(pharmacyListReturn.get(i));
+                }
+                return reducedList;
+            }
         }
     }
 
@@ -136,6 +148,7 @@ public class PharmacyList implements Serializable {
 
     /**
      * Sets the list of pharmacies
+     *
      * @param pharmacies the list of pharmacies
      */
     public void setPharmacies(List<Pharmacy> pharmacies) {
