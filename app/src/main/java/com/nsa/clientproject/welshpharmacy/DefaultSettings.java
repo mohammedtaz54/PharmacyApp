@@ -1,5 +1,6 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
@@ -101,7 +102,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         LinearLayoutCompat servicesRequired = findViewById(R.id.services_required);
         for (int i = 0; i < servicesRequired.getChildCount(); i++) {
             CheckBox currentCheckBox = (CheckBox) servicesRequired.getChildAt(i);
-            editor.putBoolean("REQUIRES_SERVICE_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
+            editor.putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX + currentCheckBox.getTag(), currentCheckBox.isChecked());
 
 
         }
@@ -109,7 +110,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         LinearLayoutCompat servicesRequiredWelsh = findViewById(R.id.services_required_welsh);
         for (int i = 0; i < servicesRequiredWelsh.getChildCount(); i++) {
             CheckBox currentCheckBox = (CheckBox) servicesRequiredWelsh.getChildAt(i);
-            editor.putBoolean("REQUIRES_SERVICE_WELSH_" + currentCheckBox.getTag(), currentCheckBox.isChecked());
+            editor.putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX + currentCheckBox.getTag(), currentCheckBox.isChecked());
         }
 
         EditText location = findViewById(R.id.postcode_given);
@@ -155,6 +156,8 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             editor.putBoolean(KeyValueHelper.KEY_FINISHED_WIZARD,true);
             editor.apply();
             Toast.makeText(this, R.string.saved_message, Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(this, MultiPharmacyActivity.class);
+            startActivity(i);
         }
 
     }

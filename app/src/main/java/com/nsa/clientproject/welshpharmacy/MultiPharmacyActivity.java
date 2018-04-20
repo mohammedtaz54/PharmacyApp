@@ -4,8 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -21,19 +23,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
 import com.nsa.clientproject.welshpharmacy.models.PharmacySearchCriteria;
 import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 import java.security.Key;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Shows the pharmacy list interface and loads the list of cards
  * and ideally a map of them in the future
  */
 public class MultiPharmacyActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ListOfPharmaciesCards.OnFragmentInteractionListener,FilterDialogFragment.ContainsPharmacyList{
+        implements NavigationView.OnNavigationItemSelectedListener,
+        ListOfPharmaciesCards.OnFragmentInteractionListener,
+        FilterDialogFragment.ContainsPharmacyList,
+        OnSuccessListener<Location> {
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -84,6 +94,8 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+
         this.pharmacyList = new PharmacyList();
         this.pharmacyList.updatePharmacies();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -91,13 +103,13 @@ public class MultiPharmacyActivity extends AppCompatActivity
         loadCardsFragment();
         this.defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
 
-        if(!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD,false)){
-            Intent i = new Intent(this,DefaultSettings.class);
+        if (!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD, false)) {
+            Intent i = new Intent(this, DefaultSettings.class);
             startActivity(i);
+        } else {
+            loadDefaultSettings();
+
         }
-        //This permission stuff is here for future use
-        //As we'll need this for the filtering which affects the list as well
-        //So we can't just load it in the map fragment.
         //Reference: https://developer.android.com/training/permissions/requesting.html#java
         //Accessed 26 March 2018
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
@@ -107,6 +119,40 @@ public class MultiPharmacyActivity extends AppCompatActivity
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ON_LOCATION_PERMISSION_GRANTED);
         }
 
+    }
+
+    private void loadDefaultSettings() {
+        //Applies the default filters
+        Map<String, ?> allDefaults = defaultSettings.getAll();
+        PharmacySearchCriteria defaultSearchCriteria = new PharmacySearchCriteria();
+        Map<PharmacyServices, Boolean> requiredServices = new HashMap<>();
+        Map<PharmacyServices, Boolean> requiredServicesWelsh = new HashMap<>();
+
+        for (String key : allDefaults.keySet()) {
+            Log.d("HELP", key);
+            if (key.startsWith(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX)
+                    && !key.equals(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX + "null")) {
+                boolean isActive = (Boolean) allDefaults.get(key);
+                PharmacyServices currentService = PharmacyServices.valueOf(key.substring(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX.length()));
+                requiredServicesWelsh.put(currentService, isActive);
+            } else if (key.startsWith(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX)
+                    && !key.equals(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX + "null")) {
+                boolean isActive = (Boolean) allDefaults.get(key);
+                PharmacyServices currentService = PharmacyServices.valueOf(key.substring(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX.length()));
+                requiredServices.put(currentService, isActive);
+            }
+
+        }
+        defaultSearchCriteria.setServicesRequired(requiredServices);
+        defaultSearchCriteria.setServicesRequiredInWelsh(requiredServicesWelsh);
+        defaultSearchCriteria.setMaxDistance(defaultSettings.getFloat(KeyValueHelper.KEY_MAXDISTANCE_TEXT, KeyValueHelper.DEFAULT_MAXDISTANCE_TEXT));
+        defaultSearchCriteria.setUserLng((double) defaultSettings.getFloat(
+                KeyValueHelper.KEY_USER_LNG,
+                (float) KeyValueHelper.DEFAULT_USER_LNG));
+        defaultSearchCriteria.setUserLat((double) defaultSettings.getFloat(
+                KeyValueHelper.KEY_USER_LAT,
+                (float) KeyValueHelper.DEFAULT_USER_LAT));
+        pharmacyList.setPharmacySearchCriteria(defaultSearchCriteria);
     }
 
     @Override
@@ -137,7 +183,11 @@ public class MultiPharmacyActivity extends AppCompatActivity
      * or we have just gotten it.
      */
     private void onLocationPermissionGranted() {
-        Toast.makeText(this, R.string.have_location_permission, Toast.LENGTH_SHORT).show();
+        FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        //This if statement isn't necessary but android doesn't let me do it anyway
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationProviderClient.getLastLocation().addOnSuccessListener(this);
+        }
     }
 
     /**
@@ -212,8 +262,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
     }
 
 
-
-
     /**
      * Gets the pharmacyList object we use through the app
      *
@@ -222,5 +270,28 @@ public class MultiPharmacyActivity extends AppCompatActivity
     @Override
     public PharmacyList getPharmacyList() {
         return this.pharmacyList;
+    }
+
+    /**
+     * What happens when we successfully get the user's location.
+     */
+    @Override
+    public void onSuccess(Location location) {
+        if (location != null) {
+            //These should exist by the time this is called
+            PharmacySearchCriteria pharmacySearchCriteria = this.pharmacyList.getPharmacySearchCriteria();
+            if (defaultSettings.getBoolean(KeyValueHelper.KEY_USE_LOCATION_DEFAULT, KeyValueHelper.DEFAULT_USE_LOCATION_DEFAULT)) {
+                Log.d("HELP", "Applying settings");
+                pharmacySearchCriteria.setUserLng(location.getLongitude());
+                pharmacySearchCriteria.setUserLat(location.getLatitude());
+                this.pharmacyList.setPharmacySearchCriteria(pharmacySearchCriteria);
+                Intent broadcastChange = new Intent();
+                broadcastChange.setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
+                LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastChange);
+            } else {
+                Log.d("HELP", "Not applying settings");
+
+            }
+        }
     }
 }
