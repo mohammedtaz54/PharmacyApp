@@ -32,4 +32,7 @@ public class KeyValueHelper {
 
     public static final String KEY_FINISHED_WIZARD = "USER_FINISHED_WIZARD";
     public static final boolean DEFAULT_USER_FINISHED_WIZARD = false;
+
+    public static final String KEY_DEFAULT_SERVICES_PREFIX ="REQUIRES_SERVICE_";
+    public static final String KEY_DEFAULT_SERVICES_WELSH_PREFIX="REQUIRES_SERVICE_WELSH_";
 }
