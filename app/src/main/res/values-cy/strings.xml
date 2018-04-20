@@ -56,8 +56,9 @@
     <string name="application_setup">Sefydlu cais</string>
     <string name="next">Nesaf</string>
     <string name="prev">Blaenorol</string>
-    <string name="enter_postcode">Enter postcode</string>
-    <string name="finish">Finish</string>
-    <string name="postcode_not_found_not_saved">Post code cannot be found - changes not saved</string>
+    <string name="use_location_if_available">Defnyddiwch fy lleoliad os yw ar gael</string>
+    <string name="enter_postcode">Rhowch y cod post</string>
+    <string name="finish">Gorffen</string>
+    <string name="postcode_not_found_not_saved">Ni ellir dod o hyd i god post - nid yw\'r newidiadau yn cael eu cadw</string>
 
 </resources>
