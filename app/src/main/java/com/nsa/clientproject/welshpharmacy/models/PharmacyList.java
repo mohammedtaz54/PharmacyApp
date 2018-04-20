@@ -135,7 +135,7 @@ public class PharmacyList implements Serializable {
                         closingTimes,
                         servicesEmpty,
                         servicesEmpty,
-                        51.4927031, -3.1873809, "http://www.woodvilleroadpharmacy.co.uk/"
+                        51.4927031, -3.1873809, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
                 ));
                 add(new Pharmacy(
                         "Pharmacy 2",
@@ -144,7 +144,7 @@ public class PharmacyList implements Serializable {
                         openingTimes,
                         services,
                         servicesEmpty,
-                        51.49164649999999, -3.1848503, "http://www.woodvilleroadpharmacy.co.uk/"
+                        51.49164649999999, -3.1848503, "WEBSITE: http://www.woodvilleroadpharmacy.co.uk/"
                 ));
             add(new Pharmacy(
                     "Pharmacy 3",
