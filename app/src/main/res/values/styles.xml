@@ -6,9 +6,26 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- reference: https://developer.android.com/training/transitions/start-activity.html -->
+        <!-- accessed on 20 April 2018 -->
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <item name="android:windowEnterTransition">@android:transition/slide_left</item>
+        <item name="android:windowExitTransition">@android:transition/slide_right</item>
+
     </style>
 
     <style name="AppTheme.NoActionBar">
+        <!-- reference: https://developer.android.com/training/transitions/start-activity.html -->
+        <!-- accessed on 20 April 2018 -->
+        <!-- specify enter and exit transitions -->
+        <item name="android:windowActivityTransitions">true</item>
+
+        <item name="android:windowEnterTransition">@android:transition/slide_left</item>
+        <item name="android:windowExitTransition">@android:transition/slide_right</item>
+
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
