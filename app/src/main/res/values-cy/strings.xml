@@ -53,5 +53,11 @@
     <string name="address">Cyfeiriad: %1$s</string>
     <string name="liked">Tebygol</string>
     <string name="disliked">Wedi\'i waredu</string>
+    <string name="other_pharmacy_details">Manylion Fferyllfa Eraill</string>
+    <string name="url">Url</string>
+    <string name="website">Gwefan</string>
+    <string name="contact_number">Rhif Cyswllt</string>
+    <string name="call_now">Ffoniwch Nawr</string>
+    <string name="map_now">Gweld y Map</string>
 
 </resources>
