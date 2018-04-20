@@ -152,7 +152,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             editor.putString(KeyValueHelper.KEY_POSTCODE_TEXT,location.getText().toString());
             editor.putBoolean(KeyValueHelper.KEY_USE_LOCATION_DEFAULT,useLocationByDefault.isChecked());
             editor.putFloat(KeyValueHelper.KEY_MAXDISTANCE_TEXT,maxDistance);
-            editor.putBoolean(KeyValueHelper.KEY_FINISHED_WIZARD,false);
+            editor.putBoolean(KeyValueHelper.KEY_FINISHED_WIZARD,true);
             editor.apply();
             Toast.makeText(this, R.string.saved_message, Toast.LENGTH_SHORT).show();
         }
