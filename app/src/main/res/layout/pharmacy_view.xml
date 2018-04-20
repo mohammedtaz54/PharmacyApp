@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/listContainer"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -98,16 +99,15 @@
                 android:layout_marginTop="10dp"
                 android:textSize="19sp"/>
 
-            <TextView
+            <Button
                 android:id="@+id/link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:autoLink="all"
                 android:clickable="true"
-                android:background="@android:color/white"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
-                android:textSize="17sp"
+                android:text="@string/website"
                 />
 
             <Button

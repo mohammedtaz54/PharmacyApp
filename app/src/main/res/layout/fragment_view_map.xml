@@ -25,12 +25,12 @@
             <!--<EditText-->
                 <!--android:id="@+id/editText1"-->
                 <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center|center_vertical"-->
-                <!--android:ems="13" >-->
+    <!--android:layout_gravity="center|center_vertical"-->
+    <!--android:ems="13" >-->
 
-                <!--<requestFocus/>-->
-            <!--</EditText>-->
+    <!--<requestFocus/>-->
+    <!--</EditText>-->
+                <!--android:layout_height="wrap_content"-->
 
             <!--<Button-->
                 <!--android:id="@+id/button1"-->

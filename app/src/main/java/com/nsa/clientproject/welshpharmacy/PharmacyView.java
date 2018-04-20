@@ -1,9 +1,10 @@
 package com.nsa.clientproject.welshpharmacy;
 
-import android.app.FragmentTransaction;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,7 +47,7 @@ public class PharmacyView extends AppCompatActivity {
 
         setContentView(R.layout.pharmacy_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
+        final Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
 
         final Button btn = (Button) findViewById(R.id.call_button);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -63,17 +64,17 @@ public class PharmacyView extends AppCompatActivity {
             }
         });
 
-//        final Button btn1 = (Button) findViewById(R.id.map_button);
-//        btn1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FragmentTransaction ft = getFragmentManager().beginTransaction();
-//                ft.replace(R.id.map, new ViewMapFragment());
-//                ft.commit();
-//                ft.addToBackStack(null);
-//
-//            }
-//        });
+        Button btn1 = (Button) findViewById(R.id.map_button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.listContainer, new ViewMapFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
 
 
 
