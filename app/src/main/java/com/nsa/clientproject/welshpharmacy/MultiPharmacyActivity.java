@@ -43,7 +43,14 @@ public class MultiPharmacyActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
         ListOfPharmaciesCards.OnFragmentInteractionListener,
         FilterDialogFragment.ContainsPharmacyList,
-        OnSuccessListener<Location> {
+        OnSuccessListener<Location>,
+        LoadingFragment.OnFragmentInteractionListener {
+
+    /**
+     * Stores if the app has finished loading.
+     */
+    private boolean hasFinishedLoading = false;
+
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -64,11 +71,13 @@ public class MultiPharmacyActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.filter:
-                FilterDialogFragment filters = new FilterDialogFragment();
-                filters.show(getFragmentManager(), "filters");
-                break;
+        if (hasFinishedLoading) {
+            switch (id) {
+                case R.id.filter:
+                    FilterDialogFragment filters = new FilterDialogFragment();
+                    filters.show(getFragmentManager(), "filters");
+                    break;
+            }
         }
         return true;
     }
@@ -97,15 +106,17 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
 
         this.pharmacyList = new PharmacyList();
-        this.pharmacyList.updatePharmacies();
+        // this.pharmacyList.updatePharmacies();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        loadCardsFragment();
+        //loadCardsFragment();
+        loadLoadingFragment();
         this.defaultSettings = getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
 
         if (!defaultSettings.getBoolean(KeyValueHelper.KEY_FINISHED_WIZARD, false)) {
             Intent i = new Intent(this, DefaultSettings.class);
             startActivity(i);
+            finish();
         } else {
             loadDefaultSettings();
 
@@ -118,6 +129,21 @@ public class MultiPharmacyActivity extends AppCompatActivity
         } else {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ON_LOCATION_PERMISSION_GRANTED);
         }
+
+    }
+
+    /**
+     * Loads the loading screen fragment
+     */
+    private void loadLoadingFragment() {
+        LoadingFragment list = new LoadingFragment();
+        Bundle data = new Bundle();
+        data.putSerializable("pharmacyList", this.pharmacyList);
+        list.setArguments(data);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_pharmacy_list, list, TAG_CURRENT_DISPLAY)
+                .commit();
 
     }
 
@@ -220,27 +246,27 @@ public class MultiPharmacyActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (hasFinishedLoading) {
+            switch (item.getItemId()) {
+                case R.id.settings:
+                    Intent i = new Intent(this, DefaultSettings.class);
+                    startActivity(i);
+                    break;
+                case R.id.map_view:
+                    ViewMapFragment map = new ViewMapFragment();
+                    Bundle data = new Bundle();
+                    data.putSerializable("pharmacyList", this.pharmacyList);
+                    map.setArguments(data);
+                    FragmentManager fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.content_pharmacy_list, map, TAG_CURRENT_DISPLAY)
+                            .commit();
+                    break;
+                case R.id.list_view:
+                    loadCardsFragment();
 
-        switch (item.getItemId()) {
-            case R.id.settings:
-                Intent i = new Intent(this, DefaultSettings.class);
-                startActivity(i);
-                break;
-            case R.id.map_view:
-                ViewMapFragment map = new ViewMapFragment();
-                Bundle data = new Bundle();
-                data.putSerializable("pharmacyList", this.pharmacyList);
-                map.setArguments(data);
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction()
-                        .replace(R.id.content_pharmacy_list, map, TAG_CURRENT_DISPLAY)
-                        .commit();
-                break;
-            case R.id.list_view:
-                loadCardsFragment();
-
+            }
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -293,5 +319,15 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
             }
         }
+    }
+
+    /**
+     * Load  the view fragment into the screen
+     */
+    @Override
+    public void onFinishedLoading() {
+        loadCardsFragment();
+        hasFinishedLoading = true;
+
     }
 }

@@ -24,6 +24,10 @@ public class PharmacyList implements Serializable {
      */
     private List<Pharmacy> pharmacies;
     /**
+     * Stores the maximum number of pharmacies to return
+     */
+    private static final int MAX_NUMBER_OF_PHARMACIES = 50;
+    /**
      * Stores the pharmacy search criteria.
      */
     private PharmacySearchCriteria pharmacySearchCriteria;
@@ -81,7 +85,7 @@ public class PharmacyList implements Serializable {
                                 pharmacySearchCriteria.getUserLng(),
                                 pharmacy.getPharmacyLat(),
                                 pharmacy.getPharmacyLng()
-                                );
+                        );
                         if (result * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
                             pharmacyListReturn.add(pharmacy);
                         }
@@ -91,7 +95,15 @@ public class PharmacyList implements Serializable {
                     }
                 }
             }
-            return pharmacyListReturn;
+            List<Pharmacy> reducedList = new ArrayList<>();
+            if (pharmacyListReturn.size() < PharmacyList.MAX_NUMBER_OF_PHARMACIES) {
+                return pharmacyListReturn;
+            } else {
+                for (int i = 0; i < PharmacyList.MAX_NUMBER_OF_PHARMACIES; i++) {
+                    reducedList.add(pharmacyListReturn.get(i));
+                }
+                return reducedList;
+            }
         }
     }
 
@@ -132,87 +144,15 @@ public class PharmacyList implements Serializable {
     /**
      * Updates the list of pharmacies.
      */
-    public void updatePharmacies() {
-        final ArrayList<PharmacyServices> services = new ArrayList<PharmacyServices>() {{
-            add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
-            add(PharmacyServices.FLU_SHOT);
-        }};
-        final ArrayList<PharmacyServices> FluServices = new ArrayList<PharmacyServices>() {{
-            add(PharmacyServices.FLU_SHOT);
-        }};
-        final ArrayList<PharmacyServices> BloodServices = new ArrayList<PharmacyServices>() {{
-            add(PharmacyServices.BLOOD_PRESSURE_MONITORING);
-        }};
-        final ArrayList<PharmacyServices> servicesEmpty = new ArrayList<PharmacyServices>();
-        final LinkedHashMap<DayOfWeek, LocalTime> openingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
-            put(DayOfWeek.MONDAY, LocalTime.of(9, 30));
-            put(DayOfWeek.TUESDAY, LocalTime.of(9, 30));
-            put(DayOfWeek.WEDNESDAY, LocalTime.of(9, 30));
-            put(DayOfWeek.THURSDAY, LocalTime.of(9, 30));
-            put(DayOfWeek.FRIDAY, LocalTime.of(9, 30));
-            put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
-            put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
-        }};
-        final LinkedHashMap<DayOfWeek, LocalTime> closingTimes = new LinkedHashMap<DayOfWeek, LocalTime>() {{
-            put(DayOfWeek.MONDAY, LocalTime.of(17, 0));
-            put(DayOfWeek.TUESDAY, LocalTime.of(17, 0));
-            put(DayOfWeek.WEDNESDAY, LocalTime.of(17, 0));
-            put(DayOfWeek.THURSDAY, LocalTime.of(17, 0));
-            put(DayOfWeek.FRIDAY, LocalTime.of(17, 0));
-            put(DayOfWeek.SATURDAY, LocalTime.of(0, 0));
-            put(DayOfWeek.SUNDAY, LocalTime.of(0, 0));
-        }};
-        this.pharmacies = new ArrayList<Pharmacy>() {{
-
-            add(new Pharmacy(
-                    "Pharmacy 1",
-                    "CF103EP",
-                    openingTimes,
-                    closingTimes,
-                    servicesEmpty,
-                    servicesEmpty,
-                    51.4927031, -3.1873809
-            ));
-            add(new Pharmacy(
-                    "Pharmacy 2",
-                    "CF103EF",
-                    closingTimes,
-                    openingTimes,
-                    services,
-                    servicesEmpty,
-                    51.49164649999999, -3.1848503
-            ));
-            add(new Pharmacy(
-                    "Pharmacy 3",
-                    "CF243EP",
-                    openingTimes,
-                    closingTimes,
-                    services,
-                    services,
-                    51.4865716, -3.1657761
-            ));
-            add(new Pharmacy(
-                    "Pharmacy 4",
-                    "CF243EJ",
-                    openingTimes,
-                    closingTimes,
-                    FluServices,
-                    services,
-                    51.48921559999999, -3.1666502
-
-            ));
-            add(new Pharmacy(
-                    "Newport Pharmacy",
-                    "NP204NW",
-                    openingTimes,
-                    closingTimes,
-                    FluServices,
-                    BloodServices,
-                    51.5893927, -3.0012496
-            ));
-        }};
 
 
+    /**
+     * Sets the list of pharmacies
+     *
+     * @param pharmacies the list of pharmacies
+     */
+    public void setPharmacies(List<Pharmacy> pharmacies) {
+        this.pharmacies = pharmacies;
     }
 
     /**

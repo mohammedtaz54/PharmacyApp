@@ -52,7 +52,22 @@ public class Pharmacy implements Serializable {
      * Stores the services the pharmacy offers in Welsh.
      */
     private List<PharmacyServices> servicesInWelsh;
-
+    /**
+     * Stores the pharmacy's email
+     */
+    private String email;
+    /**
+     * Stores the pharmacy's phone
+     */
+    private String phone;
+    /**
+     * Stores the pharmacy's website
+     */
+    private String website;
+    /**
+     * Stores the pharmacy's postcode
+     */
+    private String postcode;
     /**
      * Builds a new pharmacy.
      *
@@ -63,7 +78,18 @@ public class Pharmacy implements Serializable {
      * @param servicesOffered the services that are offered
      * @param servicesInWelsh the services that are offered in welsh.
      */
-    public Pharmacy(String name, String location, LinkedHashMap<DayOfWeek, LocalTime> openingTimes, LinkedHashMap<DayOfWeek, LocalTime> closingTimes, List<PharmacyServices> servicesOffered, List<PharmacyServices> servicesInWelsh, double pharmacyLat, double pharmacyLng) {
+    public Pharmacy(String name,
+                    String location,
+                    LinkedHashMap<DayOfWeek, LocalTime> openingTimes,
+                    LinkedHashMap<DayOfWeek, LocalTime> closingTimes,
+                    List<PharmacyServices> servicesOffered,
+                    List<PharmacyServices> servicesInWelsh,
+                    double pharmacyLat,
+                    double pharmacyLng,
+                    String postcode,
+                    String website,
+                    String email,
+                    String phone) {
         this.name = name;
         this.location = location;
         this.openingTimes = openingTimes;
@@ -72,6 +98,10 @@ public class Pharmacy implements Serializable {
         this.servicesInWelsh = servicesInWelsh;
         this.pharmacyLat = pharmacyLat;
         this.pharmacyLng = pharmacyLng;
+        this.postcode = postcode;
+        this.website = website;
+        this.email = email;
+        this.phone = phone;
 
     }
 
@@ -165,5 +195,35 @@ public class Pharmacy implements Serializable {
         return pharmacyLng;
     }
 
+    /**
+     * Gets the pharmacy's email
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
 
+    /**
+     * Gets the pharmacy's phone number
+     * @return
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * Gets the pharmacy's weebsite
+     * @return the website
+     */
+    public String getWebsite() {
+        return website;
+    }
+
+    /**
+     * Gets the pharmacy's postcode
+     * @return the postcode
+     */
+    public String getPostcode() {
+        return postcode;
+    }
 }
