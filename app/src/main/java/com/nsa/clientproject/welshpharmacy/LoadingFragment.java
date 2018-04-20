@@ -55,6 +55,8 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
      */
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        //Reference:https://developer.android.com/training/volley/request.html
+        //Accessed 20 April 2018
         RequestQueue requestQueue = RequestQueueSingleton.getInstance(this.getContext()).getRequestQueue();
         JsonArrayRequest dataRequest = makeJsonRequest();
         requestQueue.add(dataRequest);
@@ -89,6 +91,8 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
                         Cache.Entry entry = cache.get(dataURL);
                         if (entry != null) {
                             try {
+                                //Reference:https://www.mkyong.com/java/how-do-convert-byte-array-to-string-in-java/
+                                //Accessed 20 April 2018
                                 JSONArray resultsCached = new JSONArray(new String(entry.data));
                                 parseJsonArray(resultsCached);
 
