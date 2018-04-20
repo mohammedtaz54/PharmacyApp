@@ -60,5 +60,7 @@
     <string name="enter_postcode">Rhowch y cod post</string>
     <string name="finish">Gorffen</string>
     <string name="postcode_not_found_not_saved">Ni ellir dod o hyd i god post - nid yw\'r newidiadau yn cael eu cadw</string>
+    <string name="please_connect_internet_outdated">Mae\'ch gwybodaeth yn hen - cysylltwch â\'r rhyngrwyd</string>
+    <string name="please_connect_internet_broken">Methu â chyrchu cache - cysylltwch â\'r rhyngrwyd</string>
 
 </resources>
