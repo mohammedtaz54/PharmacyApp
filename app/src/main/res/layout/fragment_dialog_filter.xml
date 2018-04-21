@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -44,6 +44,63 @@
             android:layout_height="wrap_content"
             android:text="@string/FLU_SHOT" />
 
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_dispensing"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/DISPENSING" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_alcohol_advice"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/ALCOHOL_ADVICE" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_emergency_supply"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/EMERGENCY_SUPPLY" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_medicine_review"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/MEDICINE_REVIEW" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_minor_ailment"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/MINOR_AILMENT" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_new_medicine"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/NEW_MEDICINE" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_pregnancy_test"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/PREGNANCY_TEST" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_weight_management"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/WEIGHT_MANAGEMENT" />
+
+
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -62,6 +119,62 @@
 
             android:layout_height="wrap_content"
             android:text="@string/FLU_SHOT" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_dispensing_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/DISPENSING" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_alcohol_advice_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/ALCOHOL_ADVICE" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_emergency_supply_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/EMERGENCY_SUPPLY" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_medicine_review_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/MEDICINE_REVIEW" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_minor_ailment_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/MINOR_AILMENT" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_new_medicine_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/NEW_MEDICINE" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_pregnancy_test_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/PREGNANCY_TEST" />
+
+        <android.support.v7.widget.AppCompatCheckBox
+            android:id="@+id/has_weight_management_welsh"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:text="@string/WEIGHT_MANAGEMENT" />
 
         <android.support.v7.widget.AppCompatTextView
             android:layout_width="wrap_content"

@@ -91,24 +91,88 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
 
 
         //todo:perhaps find a way to make this better?
-        if (defaultSettings.getBoolean("REQUIRES_SERVICE_BLOOD_PRESSURE_MONITORING", false)) {
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"BLOOD_PRESSURE_MONITORING", false)) {
             CheckBox bpMonitoring = currentView.findViewById(R.id.has_bp_monitoring);
             bpMonitoring.setChecked(true);
-
         }
-        if(defaultSettings.getBoolean("REQUIRES_SERVICE_WELSH_BLOOD_PRESSURE_MONITORING", false)){
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"BLOOD_PRESSURE_MONITORING", false)) {
             CheckBox bpMonitoringWelsh = currentView.findViewById(R.id.has_bp_monitoring_welsh);
             bpMonitoringWelsh.setChecked(true);
         }
-        if (defaultSettings.getBoolean("REQUIRES_SERVICE_FLU_SHOT", false)) {
-            CheckBox fluShot = currentView.findViewById(R.id.has_flu_shot);
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"FLU_SHOT", false)) {
+            CheckBox fluShot= currentView.findViewById(R.id.has_flu_shot);
             fluShot.setChecked(true);
-
         }
-        if(defaultSettings.getBoolean("REQUIRES_SERVICE_WELSH_FLU_SHOT", false)){
-            CheckBox fluShotWelsh = currentView.findViewById(R.id.has_flu_shot_welsh);
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"FLU_SHOT", false)) {
+            CheckBox fluShotWelsh= currentView.findViewById(R.id.has_flu_shot_welsh);
             fluShotWelsh.setChecked(true);
         }
+
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"DISPENSING", false)) {
+            CheckBox dispensing= currentView.findViewById(R.id.has_dispensing);
+            dispensing.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"DISPENSING", false)) {
+            CheckBox dispensingWelsh = currentView.findViewById(R.id.has_dispensing_welsh);
+            dispensingWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"ALCOHOL_ADVICE", false)) {
+            CheckBox alcoholAdvice = currentView.findViewById(R.id.has_alcohol_advice);
+            alcoholAdvice.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"ALCOHOL_ADVICE", false)) {
+            CheckBox alcoholAdviceWelsh = currentView.findViewById(R.id.has_alcohol_advice_welsh);
+            alcoholAdviceWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"EMERGENCY_SUPPLY", false)) {
+            CheckBox emergencySupply = currentView.findViewById(R.id.has_emergency_supply);
+            emergencySupply.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"EMERGENCY_SUPPLY", false)) {
+            CheckBox emergencySupplyWelsh = currentView.findViewById(R.id.has_emergency_supply_welsh);
+            emergencySupplyWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"MEDICINE_REVIEW", false)) {
+            CheckBox medicineReview = currentView.findViewById(R.id.has_medicine_review);
+            medicineReview.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"MEDICINE_REVIEW", false)) {
+            CheckBox medicineReviewWelsh = currentView.findViewById(R.id.has_medicine_review_welsh);
+            medicineReviewWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"MINOR_AILMENT", false)) {
+            CheckBox minorAilment = currentView.findViewById(R.id.has_minor_ailment);
+            minorAilment.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"MINOR_AILMENT", false)) {
+            CheckBox minorAilmentWelsh = currentView.findViewById(R.id.has_minor_ailment_welsh);
+            minorAilmentWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"NEW_MEDICINE", false)) {
+            CheckBox newMedicine = currentView.findViewById(R.id.has_new_medicine);
+            newMedicine.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"NEW_MEDICINE", false)) {
+            CheckBox newMedicineWelsh = currentView.findViewById(R.id.has_new_medicine_welsh);
+            newMedicineWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"PREGNANCY_TEST", false)) {
+            CheckBox pregnancyTest = currentView.findViewById(R.id.has_pregnancy_test);
+            pregnancyTest.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"PREGNANCY_TEST", false)) {
+            CheckBox pregnancyTestWelsh = currentView.findViewById(R.id.has_pregnancy_test_welsh);
+            pregnancyTestWelsh.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"WEIGHT_MANAGEMENT", false)) {
+            CheckBox weightManagement = currentView.findViewById(R.id.has_weight_management);
+            weightManagement.setChecked(true);
+        }
+        if (defaultSettings.getBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"WEIGHT_MANAGEMENT", false)) {
+            CheckBox weightManagementWelsh = currentView.findViewById(R.id.has_weight_management_welsh);
+            weightManagementWelsh.setChecked(true);
+        }
+
         return builder.create();
     }
 
@@ -125,16 +189,64 @@ public class FilterDialogFragment extends DialogFragment implements View.OnClick
         if (((CheckBox) currentView.findViewById(R.id.has_bp_monitoring)).isChecked()) {
             servicesRequired.put(PharmacyServices.BLOOD_PRESSURE_MONITORING, true);
         }
-        if (((CheckBox) currentView.findViewById(R.id.has_flu_shot)).isChecked()) {
-            servicesRequired.put(PharmacyServices.FLU_SHOT, true);
-
-        }
         if (((CheckBox) currentView.findViewById(R.id.has_bp_monitoring_welsh)).isChecked()) {
             servicesRequiredWelsh.put(PharmacyServices.BLOOD_PRESSURE_MONITORING, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_flu_shot)).isChecked()) {
+            servicesRequired.put(PharmacyServices.FLU_SHOT, true);
         }
         if (((CheckBox) currentView.findViewById(R.id.has_flu_shot_welsh)).isChecked()) {
             servicesRequiredWelsh.put(PharmacyServices.FLU_SHOT, true);
         }
+        if (((CheckBox) currentView.findViewById(R.id.has_dispensing)).isChecked()) {
+            servicesRequired.put(PharmacyServices.DISPENSING, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_dispensing_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.DISPENSING, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_alcohol_advice)).isChecked()) {
+            servicesRequired.put(PharmacyServices.ALCOHOL_ADVICE, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_alcohol_advice_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.ALCOHOL_ADVICE, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_emergency_supply)).isChecked()) {
+            servicesRequired.put(PharmacyServices.EMERGENCY_SUPPLY, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_emergency_supply_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.EMERGENCY_SUPPLY, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_medicine_review)).isChecked()) {
+            servicesRequired.put(PharmacyServices.MEDICINE_REVIEW, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_new_medicine_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.MEDICINE_REVIEW, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_minor_ailment)).isChecked()) {
+            servicesRequired.put(PharmacyServices.MINOR_AILMENT, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_minor_ailment_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.MINOR_AILMENT, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_new_medicine)).isChecked()) {
+            servicesRequired.put(PharmacyServices.NEW_MEDICINE, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_new_medicine_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.NEW_MEDICINE, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_pregnancy_test)).isChecked()) {
+            servicesRequired.put(PharmacyServices.PREGNANCY_TEST, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_pregnancy_test_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.PREGNANCY_TEST, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_weight_management)).isChecked()) {
+            servicesRequired.put(PharmacyServices.WEIGHT_MANAGEMENT, true);
+        }
+        if (((CheckBox) currentView.findViewById(R.id.has_weight_management_welsh)).isChecked()) {
+            servicesRequiredWelsh.put(PharmacyServices.WEIGHT_MANAGEMENT, true);
+        }
+
         searchCriteria.setServicesRequired(servicesRequired);
         searchCriteria.setServicesRequiredInWelsh(servicesRequiredWelsh);
 
