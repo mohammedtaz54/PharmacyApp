@@ -88,6 +88,10 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         if(v.getId()==R.id.finish){
             saveSettings();
         }
+        if(v.getId()==R.id.language_pharmacy_view){
+            startActivity(new Intent(DefaultSettings.this, Language.class));
+        }
+
     }
 
     /**

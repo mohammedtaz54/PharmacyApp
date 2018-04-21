@@ -151,21 +151,6 @@
     </LinearLayout>
     </android.support.constraint.ConstraintLayout>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/language_pharmacy_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|end"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:backgroundTint="@color/colorPrimary"
-        android:clickable="true"
-        android:src="@drawable/ic_language_black_24dp"
-        android:visibility="visible"
-        app:fabSize="mini">
-    </android.support.design.widget.FloatingActionButton>
 
 </android.support.constraint.ConstraintLayout>
 
