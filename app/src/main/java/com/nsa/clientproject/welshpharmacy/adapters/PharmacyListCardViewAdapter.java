@@ -21,7 +21,7 @@ import java.util.List;
 public class PharmacyListCardViewAdapter extends BaseAdapter {
     private final Context context;
     private final List<Pharmacy> pharmacyList;
-
+    private static final int MAX_CHARS_NAME=20;
     public PharmacyListCardViewAdapter(Context context, List<Pharmacy> pharmacyList) {
         this.context = context;
         this.pharmacyList = pharmacyList;
@@ -57,11 +57,18 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
                     .inflate(R.layout.card_pharmacy_list, parent, false);
         }
         TextView pharmacyName = convertView.findViewById(R.id.pharmacy_name);
+
         TextView pharmacyLocation = convertView.findViewById(R.id.location_text);
         TextView openOrClosed = convertView.findViewById(R.id.open_closed);
         LocalTime currentTime = LocalTime.now();
-        pharmacyLocation.setText(getItem(position).getLocation());
-        pharmacyName.setText(getItem(position).getName());
+        String pharmacyNameString = getItem(position).getName();
+        if(pharmacyNameString.length()>PharmacyListCardViewAdapter.MAX_CHARS_NAME){
+            pharmacyName.setText(pharmacyNameString.substring(0,MAX_CHARS_NAME));
+        }
+        else{
+            pharmacyName.setText(pharmacyNameString);
+        }
+        pharmacyLocation.setText(getItem(position).getPostcode());
         if(currentTime.compareTo(getItem(position).getOpenTime())>0
                 && currentTime.compareTo(getItem(position).getCloseTime())<0){
             openOrClosed.setText(R.string.open);
@@ -73,5 +80,11 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
 
         }
         return convertView;
+    }
+    //Reference: https://stackoverflow.com/questions/5970640/how-to-find-android-textview-number-of-characters-per-line?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+    //Accessed 20 April 2018
+    private boolean isTooLarge (TextView text, String newText) {
+        float textWidth = text.getPaint().measureText(newText);
+        return (textWidth >= text.getMeasuredWidth ());
     }
 }

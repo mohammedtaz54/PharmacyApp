@@ -68,5 +68,6 @@
     <string name="NEW_MEDICINE">Meddygaeth newydd</string>
     <string name="PREGNANCY_TEST">Prawf beichiogrwydd</string>
     <string name="WEIGHT_MANAGEMENT">Rheoli pwysau</string>
-
+    <string name="please_connect_internet_outdated">Mae\'ch gwybodaeth yn hen - cysylltwch â\'r rhyngrwyd</string>
+    <string name="please_connect_internet_broken">Methu â chyrchu cache - cysylltwch â\'r rhyngrwyd</string>
 </resources>
