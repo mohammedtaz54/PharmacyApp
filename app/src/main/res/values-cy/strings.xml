@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">welshpharmacy</string>
+    <string name="app_name">welshpharmacy (welsh)</string>
     <string name="use_postcode">Defnyddiwch god post:</string>
     <string name="use_my_location">Defnyddiwch fy lleoliad</string>
     <string name="reset_text">Mae\'r gosodiadau wedi eu hailosod</string>

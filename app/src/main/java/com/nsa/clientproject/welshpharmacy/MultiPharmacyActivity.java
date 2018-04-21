@@ -1,9 +1,11 @@
 package com.nsa.clientproject.welshpharmacy;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,6 +19,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -33,6 +36,7 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 import java.security.Key;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -44,6 +48,9 @@ public class MultiPharmacyActivity extends AppCompatActivity
         ListOfPharmaciesCards.OnFragmentInteractionListener,
         FilterDialogFragment.ContainsPharmacyList,
         OnSuccessListener<Location> {
+
+
+
     /**
      * Code to be returned when the permission for location is granted.
      */
@@ -63,6 +70,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         int id = item.getItemId();
         switch (id) {
             case R.id.filter:
@@ -84,6 +92,16 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Context context = this; // or ActivityNotification.this
+        Locale language_code = Locale.ENGLISH;
+        Resources res = context.getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(language_code); // API 17+ only.
+// Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,7 +112,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
 
         this.pharmacyList = new PharmacyList();
         this.pharmacyList.updatePharmacies();
