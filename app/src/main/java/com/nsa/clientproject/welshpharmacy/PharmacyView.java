@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ListView;
+import android.content.Intent;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -29,10 +30,13 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 
 public class PharmacyView extends AppCompatActivity {
+    Intent intent = new Intent (this, Language.class);
+
     ListView lv;
     String[] servicesConvert;
 
     FloatingActionButton plusmenu;
+    FloatingActionButton language;
     FloatingActionButton thumbsup, thumbsdown;
 
 
@@ -43,6 +47,15 @@ public class PharmacyView extends AppCompatActivity {
         setContentView(R.layout.pharmacy_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
+
+        language = findViewById(R.id.language_pharmacy_view);
+
+        language.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(intent);
+            }
+        });
 
 
         plusmenu = findViewById(R.id.plusmenu);
@@ -206,4 +219,6 @@ public class PharmacyView extends AppCompatActivity {
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
         listView.setLayoutParams(params);
     }
+
+
 }

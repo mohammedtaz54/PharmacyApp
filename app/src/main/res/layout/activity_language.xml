@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.nsa.clientproject.welshpharmacy.Language">
+
+    <Button
+        android:id="@+id/welsh_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welsh"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="247dp" />
+    <Button
+        android:id="@+id/english_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="English"
+        tools:layout_editor_absoluteX="288dp"
+        tools:layout_editor_absoluteY="247dp" />
+
+</android.support.constraint.ConstraintLayout>
