@@ -5,4 +5,9 @@
         android:title="@string/filter_settings"
         android:icon="@drawable/filter_icon"
         app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_refresh"
+        android:title="@string/refresh"
+        app:showAsAction="never" />
+
 </menu>

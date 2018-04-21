@@ -77,6 +77,9 @@ public class MultiPharmacyActivity extends AppCompatActivity
                     FilterDialogFragment filters = new FilterDialogFragment();
                     filters.show(getFragmentManager(), "filters");
                     break;
+                case R.id.menu_refresh:
+                    loadLoadingFragment();
+                    break;
             }
         }
         return true;
@@ -285,6 +288,14 @@ public class MultiPharmacyActivity extends AppCompatActivity
         Intent i = new Intent(this, PharmacyView.class);
         i.putExtra("pharmacy", pharmacy);
         startActivity(i);
+    }
+
+    /**
+     * When the user swipes up to refresh.
+     */
+    @Override
+    public void onRefresh() {
+        loadLoadingFragment();
     }
 
 
