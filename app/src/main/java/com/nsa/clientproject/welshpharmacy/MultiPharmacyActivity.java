@@ -291,7 +291,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
     }
 
     /**
-     * When the user swipes up to refresh.
+     * When the user swipes up to refresh, trigger this method from the fragment
      */
     @Override
     public void onRefresh() {

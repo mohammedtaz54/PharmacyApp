@@ -149,7 +149,15 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
      * Listens for clicks on elements, this must be implemented by the parent activity.
       */
     public interface OnFragmentInteractionListener {
+        /**
+         * When the user clicks a pharmacy, this method triggers
+         * @param pharmacy the pharmacy the user clicked
+         */
         void onFragmentInteraction(Pharmacy pharmacy);
+
+        /**
+         * When the user swipes up to refresh, this method triggers
+         */
         void onRefresh();
     }
 }
