@@ -33,7 +33,8 @@
         </activity>
         <activity
             android:name=".Language"
-            android:parentActivityName=".MultiPharmacyActivity">
+            android:parentActivityName=".MultiPharmacyActivity"
+            android:configChanges="locale|orientation">
         </activity>
     </application>
 
