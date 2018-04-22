@@ -74,4 +74,8 @@
     <string name="postcode_not_found_not_saved">Post code cannot be found - changes not saved</string>
     <string name="please_connect_internet_outdated">Your information is outdated - please connect to the internet</string>
     <string name="please_connect_internet_broken">Cannot access cache - please connect to the internet</string>
+    <string name="other_pharmacy_details">Other Pharmacy Details</string>
+    <string name="url">Url</string>
+    <string name="website">Website</string>
+
 </resources>
