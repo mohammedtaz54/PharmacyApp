@@ -17,15 +17,12 @@
 
         <activity
             android:name=".PharmacyView"
-            android:configChanges="locale|orientation"
             android:parentActivityName=".MultiPharmacyActivity" />
         <activity
             android:name=".DefaultSettings"
-            android:configChanges="locale|orientation"
             android:parentActivityName=".MultiPharmacyActivity" />
         <activity
             android:name=".MultiPharmacyActivity"
-            android:configChanges="locale|orientation"
             android:label="@string/title_activity_pharmacy_list"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -38,6 +35,7 @@
             android:name=".Language"
             android:configChanges="locale|orientation"
             android:parentActivityName=".DefaultSettings"
+            android:label="Language/Iaith"
             />
 
 

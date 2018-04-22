@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">welshpharmacy (welsh)</string>
+    <string name="app_name">" Fferyllfa Cymru"</string>
     <string name="use_postcode">Defnyddiwch god post:</string>
     <string name="use_my_location">Defnyddiwch fy lleoliad</string>
     <string name="reset_text">Mae\'r gosodiadau wedi eu hailosod</string>
@@ -11,7 +11,7 @@
     <string name="save_settings">Cadw lleoliadau</string>
     <string name="require_services_welsh">Angen y gwasanaethau canlynol yn Gymraeg</string>
     <string name="require_services">Gofyn am y gwasanaethau canlynol</string>
-    <string name="title_activity_pharmacy_list">Rhestr Fferyllfa</string>
+    <string name="title_activity_pharmacy_list">Fferyllfeydd Cyfagos</string>
     <string name="navigation_drawer_open">Drawer mordwyo agored</string>
     <string name="opening_closing_time">Agor o  %1$s i %2$s</string>
     <string name="open">Yn agored</string>

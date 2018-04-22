@@ -34,6 +34,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle(getString(R.string.app_name));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_settings);
         servicesSettings = findViewById(R.id.services_settings);

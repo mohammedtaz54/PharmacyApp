@@ -45,7 +45,7 @@ public class Language extends AppCompatActivity implements View.OnClickListener 
 //// Use conf.locale = new Locale(...) if targeting lower versions
 //            res.updateConfiguration(conf, dm);
             SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
-            sp.edit().putString("LANGUAGE", "english").apply();
+            sp.edit().putString("LANGUAGE", "en").apply();
 
             startActivity(new Intent(this, MultiPharmacyActivity.class));
 

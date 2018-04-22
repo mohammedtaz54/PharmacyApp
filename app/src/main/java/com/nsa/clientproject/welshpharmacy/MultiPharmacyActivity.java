@@ -92,8 +92,23 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        Locale LocalePreference;
+
+        SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+        sp.getString("LANGUAGE", "en");
+
+
+        if(sp.getString("LANGUAGE", "en").equals("en")){
+            LocalePreference = Locale.ENGLISH;
+        } else{
+            LocalePreference = Locale.forLanguageTag("cy");
+        }
+
+        Log.d("myTag", sp.getString("LANGUAGE", "en"));
+
         Context context = this; // or ActivityNotification.this
-        Locale language_code = Locale.ENGLISH;
+        Locale language_code = LocalePreference;
         Resources res = context.getResources();
         // Change locale settings in the app.
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -101,6 +116,9 @@ public class MultiPharmacyActivity extends AppCompatActivity
         conf.setLocale(language_code); // API 17+ only.
 // Use conf.locale = new Locale(...) if targeting lower versions
         res.updateConfiguration(conf, dm);
+
+
+        this.setTitle(getString(R.string.title_activity_pharmacy_list));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_list);
@@ -135,7 +153,6 @@ public class MultiPharmacyActivity extends AppCompatActivity
         } else {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, ON_LOCATION_PERMISSION_GRANTED);
         }
-
     }
 
     private void loadDefaultSettings() {

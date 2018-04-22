@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">welshpharmacy</string>
+    <string name="app_name">Welsh Pharmacy</string>
     <!-- define all pharmacy services names here -->
     <string name="FLU_SHOT">Flu shot</string>
     <string name="BLOOD_PRESSURE_MONITORING">Blood pressure monitoring</string>
@@ -15,7 +15,7 @@
     <string name="save_settings">Save settings</string>
     <string name="saved_message">Your settings have been saved</string>
     <string name="reset_text">Settings have been reset</string>
-    <string name="title_activity_pharmacy_list">Pharmacy List</string>
+    <string name="title_activity_pharmacy_list">Nearby Pharmacies</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
