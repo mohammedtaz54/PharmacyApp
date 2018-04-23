@@ -60,7 +60,7 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
+//        this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
 
         defaultSettings = this.getContext().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
         return v;
@@ -108,14 +108,17 @@ public class ViewMapFragment extends Fragment implements OnMapReadyCallback, Goo
      */
     private void updateMapPins() {
         mMap.clear();
-        List<Pharmacy> pharmacies = pharmacyList.getPharmacies();
-        for (Pharmacy p : pharmacies) {
-            MarkerOptions marker = new MarkerOptions()
-                    .position(new LatLng(p.getPharmacyLat(), p.getPharmacyLng()))
-                    .title(p.getName());
+        if (pharmacyList != null) {
+            List<Pharmacy> pharmacies = pharmacyList.getPharmacies();
+            for (Pharmacy p : pharmacies) {
+                MarkerOptions marker = new MarkerOptions()
+                        .position(new LatLng(p.getPharmacyLat(), p.getPharmacyLng()))
+                        .title(p.getName());
 
-            Marker m = mMap.addMarker(marker);
-            m.setTag(p);
+                Marker m = mMap.addMarker(marker);
+                m.setTag(p);
+            }
+
         }
     }
 

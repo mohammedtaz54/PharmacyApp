@@ -46,7 +46,7 @@ public class PharmacyView extends AppCompatActivity {
 
         setContentView(R.layout.pharmacy_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
+        final Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
 
 
         final Button btn = (Button) findViewById(R.id.call_button);
@@ -128,7 +128,7 @@ public class PharmacyView extends AppCompatActivity {
         TextView singleLocation = findViewById(R.id.single_location);
         singleLocation.setText(getString(R.string.address, pharmacy.getLocation()));
 
-        //Change Text in website text field in single pharmacy view(this makes it show the url on the button instead of the string "website" because of setText)
+        //Change Text in website text field in single pharmacy view
         TextView webLink = findViewById(R.id.link);
         webLink.setText(pharmacy.getWebsite());
 
