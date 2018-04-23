@@ -3,10 +3,13 @@ package com.nsa.clientproject.welshpharmacy;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -42,7 +45,18 @@ public class PharmacyView extends AppCompatActivity {
 
         setContentView(R.layout.pharmacy_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
+        final Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
+
+        final Button btn = (Button) findViewById(R.id.call_button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri number = Uri.parse("tel:"+pharmacy.getPhone());
+                Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+                startActivity(callIntent);
+            }
+        });
+
 
 
         plusmenu = findViewById(R.id.plusmenu);

@@ -88,7 +88,6 @@
                 android:background="@android:color/white"
                 android:layout_marginTop="25dp"
                 />
-
             <TextView
                 android:id="@+id/other_pharmacy_details"
                 android:layout_width="wrap_content"
@@ -109,6 +108,14 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/website"
                 />
+            <Button
+                android:id="@+id/call_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/call_now"/>
 
 
 
