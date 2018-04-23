@@ -113,6 +113,10 @@ public class PharmacyView extends AppCompatActivity {
         TextView singleLocation = findViewById(R.id.single_location);
         singleLocation.setText(getString(R.string.address, pharmacy.getLocation()));
 
+        //Change Text in website text field in single pharmacy view
+        TextView webLink = findViewById(R.id.link);
+        webLink.setText(pharmacy.getWebsite());
+
         //Change items in services list view in single pharmacy view
         ArrayList<String> services;
 

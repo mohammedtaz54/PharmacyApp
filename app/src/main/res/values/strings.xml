@@ -78,5 +78,8 @@
     <string name="changes_not_saved_invalid_distance">Invalid distance - changes not saved</string>
     <string name="welsh" translatable="false">Cymraeg</string>
     <string name="english" translatable="false">English</string>
+    <string name="other_pharmacy_details">Other Pharmacy Details</string>
+    <string name="url">Url</string>
+    <string name="website">Website</string>
     <string name="call_now">Call Now</string>
 </resources>
