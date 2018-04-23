@@ -55,23 +55,21 @@ public class PharmacyView extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                Uri number = Uri.parse("tel:01123456789");
+                Uri number = Uri.parse("tel:"+pharmacy.getPhone());
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                 startActivity(callIntent);
             }
         });
 
-        Button btn1 = (Button) findViewById(R.id.map_button);
-        btn1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.listContainer, new ViewMapFragment());
-                ft.addToBackStack(null);
-                ft.commit();
-            }
-        });
-
+// work on the below
+//        Button btn1 = (Button) findViewById(R.id.map_button);
+//        btn1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i =
+//            }
+//        });
+//    pharmacy.getLocation()
 
 
         plusmenu = findViewById(R.id.plusmenu);
