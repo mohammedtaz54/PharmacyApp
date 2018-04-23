@@ -2,6 +2,7 @@ package com.nsa.clientproject.welshpharmacy;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -60,7 +61,16 @@ public class PharmacyView extends AppCompatActivity {
             }
         });
 
-
+        Button btn1 = (Button) findViewById(R.id.map_button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.listContainer, new ViewMapFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
 
 
 
@@ -118,9 +128,13 @@ public class PharmacyView extends AppCompatActivity {
         TextView singleLocation = findViewById(R.id.single_location);
         singleLocation.setText(getString(R.string.address, pharmacy.getLocation()));
 
-        //Change Text in url text field in single pharmacy view
+        //Change Text in website text field in single pharmacy view(this makes it show the url on the button instead of the string "website" because of setText)
         TextView webLink = findViewById(R.id.link);
         webLink.setText(pharmacy.getWebsite());
+
+        //Change Text in phone text field in single pharmacy view
+//        TextView contact = findViewById(R.id.call_button);
+//        contact.setText(pharmacy.getPhone());
 
         //Change items in services list view in single pharmacy view
         ArrayList<String> services;
