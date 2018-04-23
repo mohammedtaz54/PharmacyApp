@@ -15,7 +15,7 @@
     <string name="save_settings">Save settings</string>
     <string name="saved_message">Your settings have been saved</string>
     <string name="reset_text">Settings have been reset</string>
-    <string name="title_activity_pharmacy_list">Welsh Pharmacy</string>
+    <string name="title_activity_pharmacy_list">Nearby Pharmacies</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

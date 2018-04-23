@@ -110,6 +110,7 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     }
 
     /**
+     navigation_drawer_open
      * Calls the onFragmentInteraction method in the parent activity when a list item is clicked
      * @param parent the parent view
      * @param view the current view

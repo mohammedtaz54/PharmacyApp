@@ -8,8 +8,6 @@
     android:orientation="vertical"
     tools:context="com.nsa.clientproject.welshpharmacy.DefaultSettings">
 
-
-
     <include layout="@layout/layout_settings_services"/>
     <include layout="@layout/layout_settings_services_welsh"/>
     <include layout="@layout/layout_settings_location"/>

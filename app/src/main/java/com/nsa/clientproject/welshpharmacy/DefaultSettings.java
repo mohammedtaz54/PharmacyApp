@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.security.Key;
 import java.util.List;
 
+
 public class DefaultSettings extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -32,6 +33,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     private ConstraintLayout locationSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.setTitle(getString(R.string.app_name));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_settings);
         servicesSettings = findViewById(R.id.services_settings);
@@ -53,10 +55,12 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         welshServicesSettings.setVisibility(View.GONE);
         locationSettings.setVisibility(View.GONE);
 
-
+        servicesSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         servicesSettings.findViewById(R.id.show_welsh_services).setOnClickListener(this);
+        welshServicesSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         welshServicesSettings.findViewById(R.id.show_english_services).setOnClickListener(this);
         welshServicesSettings.findViewById(R.id.show_location_options).setOnClickListener(this);
+        locationSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         locationSettings.findViewById(R.id.finish).setOnClickListener(this);
         locationSettings.findViewById(R.id.show_welsh_services_back).setOnClickListener(this);
 
@@ -87,7 +91,11 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         if(v.getId()==R.id.finish){
             saveSettings();
         }
+        if(v.getId()==R.id.language_pharmacy_view){
+            startActivity(new Intent(this, Language.class));
+        }
     }
+
 
     /**
      * Saves all the settings into shared preferences
