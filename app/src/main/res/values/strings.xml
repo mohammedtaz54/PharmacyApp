@@ -81,5 +81,7 @@
     <string name="call_now">Call Now</string>
     <string name="map_now">View Map</string>
     <string name="refresh">Refresh</string>
-
+    <string name="changes_not_saved_invalid_distance">Invalid distance - changes not saved</string>
+    <string name="welsh" translatable="false">Cymraeg</string>
+    <string name="english" translatable="false">English</string>
 </resources>
