@@ -61,15 +61,17 @@ public class PharmacyView extends AppCompatActivity {
             }
         });
 
-// work on the below
-//        Button btn1 = (Button) findViewById(R.id.map_button);
-//        btn1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i =
-//            }
-//        });
-//    pharmacy.getLocation()
+        Button btn1 = (Button) findViewById(R.id.map_button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.listContainer, new ViewMapFragment());
+                ft.addToBackStack(null);
+                ft.commit();
+            }
+        });
+
 
 
         plusmenu = findViewById(R.id.plusmenu);
