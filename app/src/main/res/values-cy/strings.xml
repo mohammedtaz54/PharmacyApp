@@ -65,5 +65,7 @@
     <string name="other_pharmacy_details">Manylion Fferyllfa Eraill</string>
     <string name="url">Url</string>
     <string name="website">Gwefan</string>
+    <string name="call_now">Ffoniwch Nawr</string>
+    <string name="map_now">Gweld y Map</string>
 
 </resources>
