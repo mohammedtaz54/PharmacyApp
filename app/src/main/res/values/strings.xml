@@ -75,4 +75,7 @@
     <string name="please_connect_internet_outdated">Your information is outdated - please connect to the internet</string>
     <string name="please_connect_internet_broken">Cannot access cache - please connect to the internet</string>
     <string name="refresh">Refresh</string>
+    <string name="changes_not_saved_invalid_distance">Invalid distance - changes not saved</string>
+    <string name="welsh" translatable="false">Cymraeg</string>
+    <string name="english" translatable="false">English</string>
 </resources>

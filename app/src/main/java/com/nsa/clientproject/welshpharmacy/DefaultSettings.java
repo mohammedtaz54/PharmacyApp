@@ -152,7 +152,7 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             Toast.makeText(this,R.string.postcode_not_found_not_saved,Toast.LENGTH_LONG).show();
         }
         if(!validDistance){
-            Toast.makeText(this,"Invalid distance - changes not saved",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.changes_not_saved_invalid_distance,Toast.LENGTH_LONG).show();
         }
         if(postcodeFound && validDistance){
             editor.putFloat(KeyValueHelper.KEY_USER_LAT,(float)addresses.get(0).getLatitude());

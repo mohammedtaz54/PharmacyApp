@@ -26,7 +26,7 @@
     <string name="filter_settings">Lleoliadau hidlo</string>
     <string name="filters">Hidlau</string>
     <string name="filter">Hidlo</string>
-    <string name="hint_enter_the_maximum_distance_in_miles">Rhowch y pellter mwyaf mewn milltiroedd</string>
+    <string name="hint_enter_the_maximum_distance_in_miles">Pellter Max</string>
     <string name="current_postcode">Rhowch y cod post cyfredol</string>
     <string name="navigation_drawer_close">"Drawer llywio agos "</string>
     <string name="closed">Wedi cau</string>
@@ -71,5 +71,7 @@
     <string name="please_connect_internet_outdated">Mae\'ch gwybodaeth yn hen - cysylltwch â\'r rhyngrwyd</string>
     <string name="please_connect_internet_broken">Methu â chyrchu cache - cysylltwch â\'r rhyngrwyd</string>
     <string name="refresh">Adnewyddu</string>
+    <string name="saved_message">Mae eich gosodiadau wedi eu cadw</string>
+    <string name="changes_not_saved_invalid_distance">Pellter annilys - newidiadau heb eu cadwfR</string>
 
 </resources>
