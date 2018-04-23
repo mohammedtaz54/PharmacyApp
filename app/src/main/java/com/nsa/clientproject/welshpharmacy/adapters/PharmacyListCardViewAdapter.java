@@ -66,12 +66,13 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         if(pharmacyNameString.length()>PharmacyListCardViewAdapter.MAX_CHARS_NAME){
             pharmacyName.setText(pharmacyNameString.substring(0,MAX_CHARS_NAME));
         }
-        if(!(getItem(position).getServicesInWelsh().size()>0)) {
-            convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
-        }
         else{
             pharmacyName.setText(pharmacyNameString);
         }
+        if(!(getItem(position).getServicesInWelsh().size()>0)) {
+            convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
+        }
+
         pharmacyLocation.setText(getItem(position).getPostcode());
         if(currentTime.compareTo(getItem(position).getOpenTime())>0
                 && currentTime.compareTo(getItem(position).getCloseTime())<0){
