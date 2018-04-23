@@ -10,16 +10,7 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e180bb89-fe61-4e11-aee6-d700e0974441" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/DefaultSettings.java" afterPath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/DefaultSettings.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/Language.java" afterPath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/Language.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/MultiPharmacyActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/nsa/clientproject/welshpharmacy/MultiPharmacyActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_language.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_language.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values-cy/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values-cy/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
-    </list>
+    <list default="true" id="e180bb89-fe61-4e11-aee6-d700e0974441" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
