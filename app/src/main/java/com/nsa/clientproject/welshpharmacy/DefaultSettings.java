@@ -31,7 +31,6 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
     private ConstraintLayout servicesSettings;
     private ConstraintLayout welshServicesSettings;
     private ConstraintLayout locationSettings;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.setTitle(getString(R.string.app_name));

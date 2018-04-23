@@ -7,7 +7,7 @@
     <string name="ALCOHOL_ADVICE">Alcohol Advice</string>
     <string name="EMERGENCY_SUPPLY">Emergency Supply</string>
     <string name="MEDICINE_REVIEW">Medicine Review</string>
-    <string name="MINOR_AILMENT">Minor Ailment</string>
+    <string name="MINOR_AILMENT">Minor Ailment Treatment</string>
     <string name="NEW_MEDICINE">New Medicine</string>
     <string name="PREGNANCY_TEST">Pregnancy Test</string>
     <string name="WEIGHT_MANAGEMENT">Weight Management</string>
@@ -72,4 +72,7 @@
     <string name="use_location_if_available">Use my location if available</string>
     <string name="finish">Finish</string>
     <string name="postcode_not_found_not_saved">Post code cannot be found - changes not saved</string>
+    <string name="please_connect_internet_outdated">Your information is outdated - please connect to the internet</string>
+    <string name="please_connect_internet_broken">Cannot access cache - please connect to the internet</string>
+    <string name="refresh">Refresh</string>
 </resources>
