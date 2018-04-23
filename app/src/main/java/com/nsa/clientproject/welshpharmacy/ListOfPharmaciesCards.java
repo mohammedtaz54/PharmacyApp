@@ -7,6 +7,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,7 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
  * {@link ListOfPharmaciesCards.OnFragmentInteractionListener} interface
  * to handle interaction events.
  */
-public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener {
+public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnItemClickListener, SwipeRefreshLayout.OnRefreshListener {
 
     private OnFragmentInteractionListener mListener;
     /**
@@ -40,7 +41,7 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     public ListOfPharmaciesCards() {
         // Required empty public constructor
     }
-
+    private SwipeRefreshLayout refreshLayout;
     /**
      * Populates the card views.
      */
@@ -52,6 +53,8 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
         this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
         PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
         cardList.setAdapter(adapter);
+        refreshLayout = v.findViewById(R.id.swipe_to_refresh);
+        refreshLayout.setOnRefreshListener(this);
 //        setAdapterForList();
         cardList.setOnItemClickListener(this);
         return v;
@@ -107,6 +110,7 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     }
 
     /**
+     navigation_drawer_open
      * Calls the onFragmentInteraction method in the parent activity when a list item is clicked
      * @param parent the parent view
      * @param view the current view
@@ -116,6 +120,15 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         mListener.onFragmentInteraction((Pharmacy)parent.getItemAtPosition(position));
+    }
+
+    /**
+     * Called when a swipe gesture triggers a refresh.
+     */
+    @Override
+    public void onRefresh() {
+        mListener.onRefresh();
+        refreshLayout.setRefreshing(false);
     }
 
 
@@ -137,6 +150,15 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
      * Listens for clicks on elements, this must be implemented by the parent activity.
       */
     public interface OnFragmentInteractionListener {
+        /**
+         * When the user clicks a pharmacy, this method triggers
+         * @param pharmacy the pharmacy the user clicked
+         */
         void onFragmentInteraction(Pharmacy pharmacy);
+
+        /**
+         * When the user swipes up to refresh, this method triggers
+         */
+        void onRefresh();
     }
 }

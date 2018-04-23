@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">welshpharmacy</string>
+    <string name="app_name">" Fferyllfa Cymru"</string>
     <string name="use_postcode">Defnyddiwch god post:</string>
     <string name="use_my_location">Defnyddiwch fy lleoliad</string>
     <string name="reset_text">Mae\'r gosodiadau wedi eu hailosod</string>
@@ -11,7 +11,7 @@
     <string name="save_settings">Cadw lleoliadau</string>
     <string name="require_services_welsh">Angen y gwasanaethau canlynol yn Gymraeg</string>
     <string name="require_services">Gofyn am y gwasanaethau canlynol</string>
-    <string name="title_activity_pharmacy_list">Rhestr Fferyllfa</string>
+    <string name="title_activity_pharmacy_list">Fferyllfeydd Cyfagos</string>
     <string name="navigation_drawer_open">Drawer mordwyo agored</string>
     <string name="opening_closing_time">Agor o  %1$s i %2$s</string>
     <string name="open">Yn agored</string>
@@ -60,6 +60,14 @@
     <string name="enter_postcode">Rhowch y cod post</string>
     <string name="finish">Gorffen</string>
     <string name="postcode_not_found_not_saved">Ni ellir dod o hyd i god post - nid yw\'r newidiadau yn cael eu cadw</string>
+    <string name="DISPENSING">Dosbarthu</string>
+    <string name="ALCOHOL_ADVICE">Cyngor alcohol</string>
+    <string name="EMERGENCY_SUPPLY">Cyflenwad brys</string>
+    <string name="MEDICINE_REVIEW">" Adolygiad meddyginiaeth"</string>
+    <string name="MINOR_AILMENT">Triniaeth fân salwch</string>
+    <string name="NEW_MEDICINE">Meddygaeth newydd</string>
+    <string name="PREGNANCY_TEST">Prawf beichiogrwydd</string>
+    <string name="WEIGHT_MANAGEMENT">Rheoli pwysau</string>
     <string name="please_connect_internet_outdated">Mae\'ch gwybodaeth yn hen - cysylltwch â\'r rhyngrwyd</string>
     <string name="please_connect_internet_broken">Methu â chyrchu cache - cysylltwch â\'r rhyngrwyd</string>
     <string name="other_pharmacy_details">Manylion Fferyllfa Eraill</string>
@@ -67,6 +75,9 @@
     <string name="website">Gwefan</string>
     <string name="call_now">Ffoniwch Nawr</string>
     <string name="map_now">Gweld y Map</string>
+
+
+    <string name="refresh">Adnewyddu</string>
 
 
 </resources>
