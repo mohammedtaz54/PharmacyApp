@@ -56,6 +56,7 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
             convertView = LayoutInflater.from(this.context)
                     .inflate(R.layout.card_pharmacy_list, parent, false);
         }
+
         TextView pharmacyName = convertView.findViewById(R.id.pharmacy_name);
 
         TextView pharmacyLocation = convertView.findViewById(R.id.location_text);
@@ -64,6 +65,9 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         String pharmacyNameString = getItem(position).getName();
         if(pharmacyNameString.length()>PharmacyListCardViewAdapter.MAX_CHARS_NAME){
             pharmacyName.setText(pharmacyNameString.substring(0,MAX_CHARS_NAME));
+        }
+        if(!(getItem(position).getServicesInWelsh().size()>0)) {
+            convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
         }
         else{
             pharmacyName.setText(pharmacyNameString);
