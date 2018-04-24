@@ -21,7 +21,8 @@ import java.util.List;
 public class PharmacyListCardViewAdapter extends BaseAdapter {
     private final Context context;
     private final List<Pharmacy> pharmacyList;
-    private static final int MAX_CHARS_NAME=20;
+    private static final int MAX_CHARS_NAME = 20;
+
     public PharmacyListCardViewAdapter(Context context, List<Pharmacy> pharmacyList) {
         this.context = context;
         this.pharmacyList = pharmacyList;
@@ -55,6 +56,9 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(this.context)
                     .inflate(R.layout.card_pharmacy_list, parent, false);
+            if (!(getItem(position).getServicesInWelsh().size() > 0)) {
+                convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
+            }
         }
 
         TextView pharmacyName = convertView.findViewById(R.id.pharmacy_name);
@@ -63,33 +67,30 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         TextView openOrClosed = convertView.findViewById(R.id.open_closed);
         LocalTime currentTime = LocalTime.now();
         String pharmacyNameString = getItem(position).getName();
-        if(pharmacyNameString.length()>PharmacyListCardViewAdapter.MAX_CHARS_NAME){
-            pharmacyName.setText(pharmacyNameString.substring(0,MAX_CHARS_NAME));
-        }
-        else{
+        if (pharmacyNameString.length() > PharmacyListCardViewAdapter.MAX_CHARS_NAME) {
+            pharmacyName.setText(pharmacyNameString.substring(0, MAX_CHARS_NAME));
+        } else {
             pharmacyName.setText(pharmacyNameString);
         }
-        if(!(getItem(position).getServicesInWelsh().size()>0)) {
-            convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
-        }
+
 
         pharmacyLocation.setText(getItem(position).getPostcode());
-        if(currentTime.compareTo(getItem(position).getOpenTime())>0
-                && currentTime.compareTo(getItem(position).getCloseTime())<0){
+        if (currentTime.compareTo(getItem(position).getOpenTime()) > 0
+                && currentTime.compareTo(getItem(position).getCloseTime()) < 0) {
             openOrClosed.setText(R.string.open);
             openOrClosed.setTextColor(context.getColor(R.color.colorOpen));
-        }
-        else{
+        } else {
             openOrClosed.setText(R.string.closed);
             openOrClosed.setTextColor(context.getColor(R.color.colorClosed));
 
         }
         return convertView;
     }
+
     //Reference: https://stackoverflow.com/questions/5970640/how-to-find-android-textview-number-of-characters-per-line?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
     //Accessed 20 April 2018
-    private boolean isTooLarge (TextView text, String newText) {
+    private boolean isTooLarge(TextView text, String newText) {
         float textWidth = text.getPaint().measureText(newText);
-        return (textWidth >= text.getMeasuredWidth ());
+        return (textWidth >= text.getMeasuredWidth());
     }
 }
