@@ -6,11 +6,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.ListView;
@@ -48,13 +51,10 @@ public class PharmacyView extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
 
-
         final Button btn = (Button) findViewById(R.id.call_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 Uri number = Uri.parse("tel:"+pharmacy.getPhone());
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                 startActivity(callIntent);
@@ -65,12 +65,13 @@ public class PharmacyView extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.listContainer, new ViewMapFragment());
-                ft.addToBackStack(null);
-                ft.commit();
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+pharmacy.getLocation());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         });
+
 
 
 
@@ -131,11 +132,7 @@ public class PharmacyView extends AppCompatActivity {
         //Change Text in website text field in single pharmacy view
         TextView webLink = findViewById(R.id.link);
         webLink.setText(pharmacy.getWebsite());
-
-        //Change Text in phone text field in single pharmacy view
-//        TextView contact = findViewById(R.id.call_button);
-//        contact.setText(pharmacy.getPhone());
-
+        
         //Change items in services list view in single pharmacy view
         ArrayList<String> services;
 

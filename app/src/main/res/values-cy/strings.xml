@@ -80,6 +80,11 @@
     <string name="refresh">Adnewyddu</string>
     <string name="saved_message">Mae eich gosodiadau wedi eu cadw</string>
     <string name="changes_not_saved_invalid_distance">Pellter annilys - newidiadau heb eu cadwfR</string>
+    <string name="other_pharmacy_details">Manylion Fferyllfa Eraill</string>
+    <string name="url">Url</string>
+    <string name="website">Gwefan</string>
+    <string name="call_now">Ffoniwch Nawr</string>
+    <string name="map_now">Dangos Lleoliad</string>
 
 
 </resources>
