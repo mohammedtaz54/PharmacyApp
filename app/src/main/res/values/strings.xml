@@ -82,4 +82,5 @@
     <string name="url">Url</string>
     <string name="website">Website</string>
     <string name="call_now">Call Now</string>
+    <string name="map_now">Show Location</string>
 </resources>
