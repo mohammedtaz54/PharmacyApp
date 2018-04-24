@@ -57,6 +57,19 @@ public class PharmacyView extends AppCompatActivity {
             }
         });
 
+        Button btn1 = (Button) findViewById(R.id.map_button);
+        btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+pharmacy.getLocation());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
+
+
+
 
 
         plusmenu = findViewById(R.id.plusmenu);
