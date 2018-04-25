@@ -50,7 +50,7 @@ public class PharmacyList implements Serializable {
         if (pharmacySearchCriteria == null) {
             return pharmacies;
         } else {
-
+            boolean sortPharmaciesByDistance = false;
             List<Pharmacy> pharmacyListReturn = new ArrayList<>();
             List<PharmacyServices> servicesRequiredList = new ArrayList<>();
             //Todo: This is very repetitive. Maybe move to a function?
@@ -88,6 +88,7 @@ public class PharmacyList implements Serializable {
                                 pharmacy.getPharmacyLng()
                         );
                         if (result * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
+                            sortPharmaciesByDistance = true;
                             pharmacy.setDistanceToUser(result);
                             pharmacyListReturn.add(pharmacy);
                         }
@@ -97,7 +98,9 @@ public class PharmacyList implements Serializable {
                     }
                 }
             }
-            Collections.sort(pharmacyListReturn,Collections.<Pharmacy>reverseOrder());
+            if(sortPharmaciesByDistance){
+                Collections.sort(pharmacyListReturn,Collections.<Pharmacy>reverseOrder());
+            }
             List<Pharmacy> reducedList = new ArrayList<>();
             if (pharmacyListReturn.size() < PharmacyList.MAX_NUMBER_OF_PHARMACIES) {
                 return pharmacyListReturn;
