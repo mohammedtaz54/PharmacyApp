@@ -1,5 +1,7 @@
 package com.nsa.clientproject.welshpharmacy.models;
 
+import android.support.annotation.NonNull;
+
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.Serializable;
@@ -15,7 +17,14 @@ import java.util.List;
 /**
  * Stores the data of a single pharmacy.
  */
-public class Pharmacy implements Serializable {
+public class Pharmacy implements Serializable,Comparable<Pharmacy> {
+
+    /**
+     * Stores the distance to the user
+     * (this is not a pharmacy detail and it is stored upon it being sorted)
+     *
+     */
+    private double distanceToUser;
 
     /**
      * Stores the name of the pharmacy.
@@ -225,5 +234,45 @@ public class Pharmacy implements Serializable {
      */
     public String getPostcode() {
         return postcode;
+    }
+
+    /**
+     * Gets the distance to the user
+     * @return the distance to the user
+     */
+    public double getDistanceToUser() {
+        return distanceToUser;
+    }
+
+    /**
+     * Sets the distance to the user
+     * @param distanceToUser the distance to the user
+     */
+    public void setDistanceToUser(double distanceToUser) {
+        this.distanceToUser = distanceToUser;
+    }
+
+    /**
+     * Compares our current pharmacy to another pharmacy by their distance from the user.
+     * @param o the pharmacy we're comparing to
+     * @return +1 if this one is closer, 0 if same distance, -1 if this one is further
+     */
+    @Override
+    public int compareTo(@NonNull Pharmacy o) {
+        if (getDistanceToUser()== 0.0 || o.getDistanceToUser() == 0.0){
+            throw new IllegalStateException("Can't compare pharmacies without having their distance");
+        }
+        //The reason i do this versus casting to an integer is because
+        //casting would have to round strangely to account for different use cases
+        //ex: round down if below zero but up if above to account for numbers like 0.4 or -0.4
+        if(this.getDistanceToUser()-o.getDistanceToUser()<0){
+            return 1;
+        }
+        else if(this.getDistanceToUser()-o.getDistanceToUser() == 0){
+            return 0;
+        }
+        else{
+            return -1;
+        }
     }
 }
