@@ -34,10 +34,22 @@ import java.util.List;
 
 
 public class LoadingFragment extends android.support.v4.app.Fragment {
-
+    /**
+     * Stores the parent instance
+     */
     private OnFragmentInteractionListener mListener;
+    /**
+     * Stores the pharmacy list
+     */
     private PharmacyList pharmacyList;
-
+    /**
+     * Stores if the app's running or not
+     */
+    private boolean isRunning;
+    /**
+     * Stores if pharmacyList is fully generated
+     */
+    private boolean isFinishedLoading = false;
     public LoadingFragment() {
         // Required empty public constructor
     }
@@ -47,6 +59,21 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+    }
+
+    @Override
+    public void onPause() {
+        isRunning = false;
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        isRunning = true;
+        if(isFinishedLoading){
+            mListener.onFinishedLoading();
+        }
+        super.onResume();
     }
 
     @Override
@@ -99,11 +126,10 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
-                            Snackbar.make(getView(), R.string.please_connect_internet_outdated,Snackbar.LENGTH_INDEFINITE).show();
+                            Snackbar.make(getView(), R.string.please_connect_internet_outdated, Snackbar.LENGTH_INDEFINITE).show();
 
-                        }
-                        else{
-                            Snackbar.make(getView(), R.string.please_connect_internet_broken,Snackbar.LENGTH_INDEFINITE).show();
+                        } else {
+                            Snackbar.make(getView(), R.string.please_connect_internet_broken, Snackbar.LENGTH_INDEFINITE).show();
                         }
                     }
                 });
@@ -162,7 +188,11 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
             }
         }
         pharmacyList.setPharmacies(newPharmacyList);
-        mListener.onFinishedLoading();
+        isFinishedLoading = true;
+        if (isRunning) {
+            mListener.onFinishedLoading();
+
+        }
     }
 
 
