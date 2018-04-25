@@ -10,6 +10,7 @@ import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,6 +88,7 @@ public class PharmacyList implements Serializable {
                                 pharmacy.getPharmacyLng()
                         );
                         if (result * METRES_TO_MILE <= pharmacySearchCriteria.getMaxDistance()) {
+                            pharmacy.setDistanceToUser(result);
                             pharmacyListReturn.add(pharmacy);
                         }
                     } else {
@@ -95,6 +97,7 @@ public class PharmacyList implements Serializable {
                     }
                 }
             }
+            Collections.sort(pharmacyListReturn,Collections.<Pharmacy>reverseOrder());
             List<Pharmacy> reducedList = new ArrayList<>();
             if (pharmacyListReturn.size() < PharmacyList.MAX_NUMBER_OF_PHARMACIES) {
                 return pharmacyListReturn;
