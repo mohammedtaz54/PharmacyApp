@@ -8,7 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
+import com.nsa.clientproject.pharmacyadmin.adapters.PharmacyListAdapter;
 import com.nsa.clientproject.pharmacyadmin.models.PharmacyListItem;
 
 import java.util.List;
@@ -17,7 +19,7 @@ import java.util.List;
 public class PharmacyListFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-
+    private View currentView;
     public PharmacyListFragment() {
         // Required empty public constructor
     }
@@ -31,8 +33,12 @@ public class PharmacyListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        currentView =  inflater.inflate(R.layout.fragment_pharmacy_list, container, false);
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pharmacy_list, container, false);
+        List<PharmacyListItem> pharmacyList = (List<PharmacyListItem>) getArguments().getSerializable("pharmacies");
+        ListView pharmaciesListView  = currentView.findViewById(R.id.pharmacies_list_view);
+        pharmaciesListView.setAdapter(new PharmacyListAdapter(getContext(),pharmacyList));
+        return currentView;
     }
 
 
@@ -41,8 +47,7 @@ public class PharmacyListFragment extends Fragment {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
-            List<PharmacyListItem> pharmacyList = (List<PharmacyListItem>) getArguments().getSerializable("pharmacies");
-            Log.d("help","have reached onAttach");
+
 
         } else {
             throw new RuntimeException(context.toString()
