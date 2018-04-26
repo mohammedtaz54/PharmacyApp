@@ -16,6 +16,7 @@ import static org.junit.Assert.*;
 
 public class PharmacyUnitTests {
     private Pharmacy pharmacy;
+    private Pharmacy pharmacy2;
     private PharmacyServices[] services;
     private LinkedHashMap<DayOfWeek, LocalTime> openingTimes;
     private LinkedHashMap<DayOfWeek, LocalTime> closingTimes;
@@ -53,6 +54,19 @@ public class PharmacyUnitTests {
                 "test@test.com",
                 "7"
                 );
+        pharmacy2 = new Pharmacy("Pharmacy",
+                "Moon",
+                openingTimes,
+                closingTimes,
+                Arrays.asList(services),
+                Arrays.asList(services),
+                30,
+                30,
+                "CF103EP",
+                "http://google.com",
+                "test@test.com",
+                "7"
+        );
     }
     @Test
     public void evaluateGetters(){
@@ -65,6 +79,19 @@ public class PharmacyUnitTests {
         assertEquals(Arrays.asList(services),pharmacy.getServicesInWelsh());
         assertEquals(openingTimes,pharmacy.getOpeningTimes());
         assertEquals(closingTimes,pharmacy.getClosingTimes());
+
+    }
+    @Test
+    public void evaluateCompare(){
+        pharmacy.setDistanceToUser(0.5);
+        pharmacy2.setDistanceToUser(0.6);
+        assertTrue(pharmacy.compareTo(pharmacy2)>0);
+        pharmacy.setDistanceToUser(0.5);
+        pharmacy2.setDistanceToUser(0.4);
+        assertTrue(pharmacy.compareTo(pharmacy2)<0);
+        pharmacy.setDistanceToUser(0.5);
+        pharmacy2.setDistanceToUser(0.5);
+        assertEquals(0,pharmacy.compareTo(pharmacy2));
 
     }
 }

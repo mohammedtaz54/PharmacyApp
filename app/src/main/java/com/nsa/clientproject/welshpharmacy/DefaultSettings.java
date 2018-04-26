@@ -27,9 +27,17 @@ import java.util.List;
 
 public class DefaultSettings extends AppCompatActivity implements View.OnClickListener {
 
-
+    /**
+     * Stores the layout that contains the required services in english
+     */
     private ConstraintLayout servicesSettings;
+    /**
+     * Stores the layout that contains the required services in Welsh
+     */
     private ConstraintLayout welshServicesSettings;
+    /**
+     * Stores the layout that contains the location settings
+     */
     private ConstraintLayout locationSettings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

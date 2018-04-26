@@ -36,11 +36,18 @@ import com.nsa.clientproject.welshpharmacy.models.PharmacyServices;
 
 
 public class PharmacyView extends AppCompatActivity {
-    ListView lv;
-    String[] servicesConvert;
-
-    FloatingActionButton plusmenu;
-    FloatingActionButton thumbsup, thumbsdown;
+    /**
+     * Stores the plus menu instance
+     */
+    private FloatingActionButton plusmenu;
+    /**
+     * Stores the thumbs up button
+     */
+    private FloatingActionButton thumbsup;
+    /**
+     * Stores the thumbs down button
+     */
+    private FloatingActionButton thumbsdown;
 
 
     @Override
@@ -55,7 +62,7 @@ public class PharmacyView extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri number = Uri.parse("tel:"+pharmacy.getPhone());
+                Uri number = Uri.parse("tel:" + pharmacy.getPhone());
                 Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
                 startActivity(callIntent);
             }
@@ -65,13 +72,12 @@ public class PharmacyView extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+pharmacy.getLocation());
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + pharmacy.getLocation());
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
             }
         });
-
 
 
 
@@ -83,10 +89,10 @@ public class PharmacyView extends AppCompatActivity {
         The default for the thumbs up / thumbs down button is set to invisible. Once the plus
         button is clicked, the two thumbs buttons appear. Once clicked again they disappear.
         */
-        plusmenu.setOnClickListener(new View.OnClickListener(){
+        plusmenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(thumbsup.getVisibility()== View.VISIBLE && thumbsdown.getVisibility() == View.VISIBLE){
+                if (thumbsup.getVisibility() == View.VISIBLE && thumbsdown.getVisibility() == View.VISIBLE) {
                     thumbsup.setVisibility(View.GONE);
                     thumbsdown.setVisibility(View.GONE);
                 } else {
@@ -218,6 +224,7 @@ public class PharmacyView extends AppCompatActivity {
 
 
     }
+
     //Reference: https://stackoverflow.com/questions/18367522/android-list-view-inside-a-scroll-view/20475821
     //Accessed on 4 April 2018
     public static void setListViewHeightBasedOnChildren(ListView listView) {
