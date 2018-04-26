@@ -1,6 +1,8 @@
 package com.nsa.clientproject.pharmacyadmin;
 
 import android.content.IntentFilter;
+import android.location.Address;
+import android.location.Geocoder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -28,8 +30,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -100,14 +104,28 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.submit_button) {
-            String name = ((EditText) findViewById(R.id.pharmacy_name)).getText().toString();
-            String postcode = ((EditText) findViewById(R.id.pharmacy_postcode)).getText().toString();
-            String address = ((EditText) findViewById(R.id.pharmacy_address)).getText().toString();
-            String website = ((EditText) findViewById(R.id.pharmacy_website)).getText().toString();
-            String phone = ((EditText) findViewById(R.id.pharmacy_phone)).getText().toString();
-            String email = ((EditText) findViewById(R.id.pharmacy_email)).getText().toString();
+            final String name = ((EditText) findViewById(R.id.pharmacy_name)).getText().toString();
+            final String postcode = ((EditText) findViewById(R.id.pharmacy_postcode)).getText().toString();
+            final String address = ((EditText) findViewById(R.id.pharmacy_address)).getText().toString() + " " + postcode;
+            final String website = ((EditText) findViewById(R.id.pharmacy_website)).getText().toString();
+            final String phone = ((EditText) findViewById(R.id.pharmacy_phone)).getText().toString();
+            final String email = ((EditText) findViewById(R.id.pharmacy_email)).getText().toString();
             List<Integer[]> openingClosingTimes = new ArrayList<>();
             //todo: somehow make this more clear, the parsing of weekdays is a mess.
+            Address addressParsed = null;
+            Geocoder geocoder = new Geocoder(this);
+            try {
+                List<Address> addresses = geocoder.getFromLocationName(address, 1);
+                if(addresses.size()>0){
+                    addressParsed = addresses.get(0);
+                }
+                else{
+                    Toast.makeText(this, R.string.invalid_address, Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             LinearLayoutCompat weekdays = findViewById(R.id.week_day_checkboxes);
             for (int i = 0; i < weekdays.getChildCount(); i++) {
                 LinearLayoutCompat currentWeekday = (LinearLayoutCompat) weekdays.getChildAt(i);
@@ -184,9 +202,10 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
                 }
             }
             Gson gson = new Gson();
-            String openingClosingTimesField = gson.toJson(openingClosingTimes);
-            String servicesField = gson.toJson(pharmacyServices);
-            String servicesWelshField = gson.toJson(pharmacyServicesWelsh);
+            final String openingClosingTimesField = gson.toJson(openingClosingTimes);
+            final String servicesField = gson.toJson(pharmacyServices);
+            final String servicesWelshField = gson.toJson(pharmacyServicesWelsh);
+            final Address finalAddressParsed = addressParsed;
             RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
             JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://hdimitrov.pythonanywhere.com/pharmacies/", null, new Response.Listener<JSONObject>() {
                 @Override
@@ -200,8 +219,20 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
                 }
             }){
                 @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    return super.getParams();
+                protected Map<String, String> getParams() {
+                    HashMap<String,String> params = new HashMap<>();
+                    params.put("name",name);
+                    params.put("email",email);
+                    params.put("address",address);
+                    params.put("phone",phone);
+                    params.put("website",website);
+                    params.put("postcode",postcode);
+                    params.put("openingClosingTimes",openingClosingTimesField);
+                    params.put("services",servicesField);
+                    params.put("servicesInWelsh",servicesWelshField);
+                    params.put("lat", Double.toString(finalAddressParsed.getLatitude()));
+                    params.put("lng", Double.toString(finalAddressParsed.getLongitude()));
+                    return params;
                 }
             };
         }
