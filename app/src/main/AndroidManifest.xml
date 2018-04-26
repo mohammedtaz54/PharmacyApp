@@ -21,9 +21,13 @@
         <activity
             android:name=".DefaultSettings"
             android:parentActivityName=".MultiPharmacyActivity" />
+        <!--Reference: https://stackoverflow.com/questions/32283853/android-save-state-on-orientation-change
+Accessed on 25 April 2018 -->
         <activity
             android:name=".MultiPharmacyActivity"
+            android:configChanges="orientation|screenSize"
             android:label="@string/title_activity_pharmacy_list"
+
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,9 +38,8 @@
         <activity
             android:name=".Language"
             android:configChanges="locale|orientation"
-            android:parentActivityName=".DefaultSettings"
             android:label="Language/Iaith"
-            />
+            android:parentActivityName=".DefaultSettings" />
 
 
     </application>
