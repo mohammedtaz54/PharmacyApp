@@ -23,6 +23,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.nsa.clientproject.pharmacyadmin.models.PharmacyServices;
 
@@ -111,6 +112,8 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
             final String phone = ((EditText) findViewById(R.id.pharmacy_phone)).getText().toString();
             final String email = ((EditText) findViewById(R.id.pharmacy_email)).getText().toString();
             List<Integer[]> openingClosingTimes = new ArrayList<>();
+
+
             //todo: somehow make this more clear, the parsing of weekdays is a mess.
             Address addressParsed = null;
             Geocoder geocoder = new Geocoder(this);
@@ -170,14 +173,14 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
 
 
                     }
-                    Integer[] currentOpeningTimes = new Integer[]{((DayOfWeek) currentCheckbox.getTag()).ordinal(),
+                    Integer[] currentOpeningTimes = new Integer[]{
                             openingHour,
                             openingMinutes,
                             closingHour,
                             closingMinutes};
                     openingClosingTimes.add(currentOpeningTimes);
                 } else {
-                    Integer[] currentOpeningTimes = new Integer[]{((DayOfWeek) currentCheckbox.getTag()).ordinal(),
+                    Integer[] currentOpeningTimes = new Integer[]{
                             0,
                             0,
                             0,
@@ -207,15 +210,15 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
             final String servicesWelshField = gson.toJson(pharmacyServicesWelsh);
             final Address finalAddressParsed = addressParsed;
             RequestQueue requestQueue = RequestQueueSingleton.getInstance(this).getRequestQueue();
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, "https://hdimitrov.pythonanywhere.com/pharmacies/", null, new Response.Listener<JSONObject>() {
+            StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, "https://hdimitrov.pythonanywhere.com/pharmacies", new Response.Listener<String>() {
                 @Override
-                public void onResponse(JSONObject response) {
-
+                public void onResponse(String response) {
+                    Log.d("response",response.toString());
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-
+                    Log.d("ERROR",error.toString());
                 }
             }){
                 @Override
@@ -232,9 +235,11 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
                     params.put("servicesInWelsh",servicesWelshField);
                     params.put("lat", Double.toString(finalAddressParsed.getLatitude()));
                     params.put("lng", Double.toString(finalAddressParsed.getLongitude()));
+                    Log.d("params",openingClosingTimesField);
                     return params;
                 }
             };
+            requestQueue.add(jsonObjectRequest);
         }
     }
 
