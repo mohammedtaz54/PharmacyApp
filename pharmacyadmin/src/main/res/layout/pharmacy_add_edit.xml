@@ -9,7 +9,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pharmacy_details"
+        android:textSize="@dimen/title_size"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,15 +32,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_postcode"
+        android:inputType="textPostalAddress"
         />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/pharmacy_address" />
+        android:text="@string/pharmacy_address"
+        />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_address"
+        android:inputType="textPostalAddress"
         />
     <TextView
         android:layout_width="match_parent"
@@ -46,6 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_website"
+        android:inputType="textUri"
         />
     <TextView
         android:layout_width="match_parent"
@@ -55,7 +63,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_phone"
-        />\<TextView
+        android:inputType="phone"
+        />
+    <TextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/pharmacy_email" />
@@ -63,6 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_email"
+        android:inputType="textEmailAddress"
         />
     <TextView
         android:layout_width="match_parent"
@@ -77,7 +88,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/services_required"/>
+        android:text="@string/services_required"
+        android:textSize="@dimen/title_size"/>
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:orientation="vertical"
@@ -86,7 +98,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/services_available_in_welsh"/>
+        android:text="@string/services_available_in_welsh"
+        android:textSize="@dimen/title_size"/>
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:orientation="vertical"

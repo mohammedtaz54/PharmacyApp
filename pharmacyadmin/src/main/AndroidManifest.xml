@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddPharmacyActivity"></activity>
+        <activity android:name=".AddPharmacyActivity"
+            android:parentActivityName=".PharmacyList"></activity>
     </application>
 
 </manifest>

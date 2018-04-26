@@ -3,6 +3,7 @@ package com.nsa.clientproject.pharmacyadmin;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,18 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link LoadingFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link LoadingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class LoadingFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private List<PharmacyListItem>  pharmaciesList;
     private OnFragmentInteractionListener mListener;
 
@@ -52,7 +42,7 @@ public class LoadingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        final View v = inflater.inflate(R.layout.fragment_loading, container, false);
 
         String url ="https://hdimitrov.pythonanywhere.com/pharmacies";
         pharmaciesList = new ArrayList<>();
@@ -78,12 +68,12 @@ public class LoadingFragment extends Fragment {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
+                        Snackbar.make(v, R.string.no_connection,Snackbar.LENGTH_INDEFINITE).show();
 
                     }
                 });
         RequestQueueSingleton.getInstance(this.getContext()).getRequestQueue().add(jsonObjectRequest);
-        return inflater.inflate(R.layout.fragment_loading, container, false);
+        return v;
 
 
     }

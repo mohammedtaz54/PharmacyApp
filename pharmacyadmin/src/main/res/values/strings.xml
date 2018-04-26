@@ -36,4 +36,7 @@
     <string name="save_changes">Save changes</string>
     <string name="invalid_time">Invalid time</string>
     <string name="invalid_address">Invalid address -try again later</string>
+    <string name="no_connection">No connection - try again please</string>
+    <string name="successfully_added_pharmacy">Successfully added pharmacy</string>
+    <string name="pharmacy_details">Pharmacy Details</string>
 </resources>

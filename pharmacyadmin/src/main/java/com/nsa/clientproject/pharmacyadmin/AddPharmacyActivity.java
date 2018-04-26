@@ -213,11 +213,14 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
             StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, "https://hdimitrov.pythonanywhere.com/pharmacies", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    Log.d("response",response.toString());
+                    Toast.makeText(AddPharmacyActivity.this, R.string.successfully_added_pharmacy, Toast.LENGTH_SHORT).show();
+
                 }
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(AddPharmacyActivity.this, R.string.no_connection, Toast.LENGTH_SHORT).show();
+
                     Log.d("ERROR",error.toString());
                 }
             }){
