@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.Spanned;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +54,9 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
 
             checkbox.setText(getString(getResources().getIdentifier(d.name(), "string", getPackageName())));
             EditText startTime = new EditText(this);
+            startTime.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
             EditText finishTime = new EditText(this);
+            startTime.setInputType(InputType.TYPE_DATETIME_VARIATION_TIME);
             InputFilter[] inputFilters = new InputFilter[2];
             inputFilters[0] = new InputFilter.LengthFilter(5);
             //Reference: https://stackoverflow.com/questions/2361497/how-to-create-edittext-accepts-alphabets-only-in-android
