@@ -1,13 +1,15 @@
 package com.nsa.clientproject.welshpharmacy.adapters;
 
 import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-
+import android.widget.Toast;
+import com.nsa.clientproject.welshpharmacy.PharmacyView;
 import com.nsa.clientproject.welshpharmacy.R;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 
@@ -22,6 +24,8 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
     private final Context context;
     private final List<Pharmacy> pharmacyList;
     private static final int MAX_CHARS_NAME=20;
+    private View coordinatorLayout;
+
     public PharmacyListCardViewAdapter(Context context, List<Pharmacy> pharmacyList) {
         this.context = context;
         this.pharmacyList = pharmacyList;
@@ -63,12 +67,13 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         TextView openOrClosed = convertView.findViewById(R.id.open_closed);
         LocalTime currentTime = LocalTime.now();
         String pharmacyNameString = getItem(position).getName();
-        if(pharmacyNameString.length()>PharmacyListCardViewAdapter.MAX_CHARS_NAME){
-            pharmacyName.setText(pharmacyNameString.substring(0,MAX_CHARS_NAME));
-        }
-        else{
+        if (pharmacyNameString.length() > PharmacyListCardViewAdapter.MAX_CHARS_NAME) {
+            pharmacyName.setText(pharmacyNameString.substring(0, MAX_CHARS_NAME));
+        } else {
             pharmacyName.setText(pharmacyNameString);
+
         }
+
         if(!(getItem(position).getServicesInWelsh().size()>0)) {
             convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
         }
