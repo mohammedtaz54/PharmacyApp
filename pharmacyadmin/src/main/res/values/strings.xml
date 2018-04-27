@@ -39,4 +39,9 @@
     <string name="no_connection">No connection - try again please</string>
     <string name="successfully_added_pharmacy">Successfully added pharmacy</string>
     <string name="pharmacy_details">Pharmacy Details</string>
+    <string name="deleted_success">Deleted successfully</string>
+    <string name="delete_unsuccessful">Delete unsuccessful - try again later</string>
+    <string name="what_would_you_like_to_do">What would you like to do with this pharmacy?</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
