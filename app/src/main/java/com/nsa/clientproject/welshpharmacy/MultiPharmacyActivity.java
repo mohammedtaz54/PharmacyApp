@@ -28,6 +28,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.security.ProviderInstaller;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.nsa.clientproject.welshpharmacy.models.Pharmacy;
 import com.nsa.clientproject.welshpharmacy.models.PharmacyList;
@@ -48,7 +49,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         ListOfPharmaciesCards.OnFragmentInteractionListener,
         FilterDialogFragment.ContainsPharmacyList,
         OnSuccessListener<Location>,
-        LoadingFragment.OnFragmentInteractionListener {
+        LoadingFragment.OnFragmentInteractionListener, ProviderInstaller.ProviderInstallListener {
 
     /**
      * Stores if the app has finished loading.
@@ -101,7 +102,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        ProviderInstaller.installIfNeededAsync(this, this);
         Locale LocalePreference;
 
         SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
@@ -370,6 +371,16 @@ public class MultiPharmacyActivity extends AppCompatActivity
     public void onFinishedLoading() {
         loadCardsFragment();
         hasFinishedLoading = true;
+
+    }
+
+    @Override
+    public void onProviderInstalled() {
+        
+    }
+
+    @Override
+    public void onProviderInstallFailed(int i, Intent intent) {
 
     }
 }

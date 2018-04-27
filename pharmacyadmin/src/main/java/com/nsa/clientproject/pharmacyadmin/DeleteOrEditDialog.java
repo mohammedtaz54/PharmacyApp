@@ -60,7 +60,7 @@ public class DeleteOrEditDialog extends DialogFragment {
     }
 
     private void deletePharmacy() {
-        StringRequest deletePharmacyRequest = new StringRequest(Request.Method.DELETE, "http://hdimitrov.pythonanywhere.com/deletePharmacy/" + Integer.toString(pharmacyId), new Response.Listener<String>() {
+        StringRequest deletePharmacyRequest = new StringRequest(Request.Method.DELETE, "https://hdimitrov.pythonanywhere.com/deletePharmacy/" + Integer.toString(pharmacyId), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(context, R.string.deleted_success, Toast.LENGTH_SHORT).show();

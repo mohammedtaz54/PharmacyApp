@@ -270,7 +270,7 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
             //Actually send requests.
             if(editMode){
                 final Address finalAddressParsed = addressParsed;
-                StringRequest deletePharmacyRequest = new StringRequest(Request.Method.DELETE, "http://hdimitrov.pythonanywhere.com/deletePharmacy/" + Integer.toString(pharmacyId), new Response.Listener<String>() {
+                StringRequest deletePharmacyRequest = new StringRequest(Request.Method.DELETE, "https://hdimitrov.pythonanywhere.com/deletePharmacy/" + Integer.toString(pharmacyId), new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         doAddRequest(name, postcode, address, website, phone, email, openingClosingTimes, finalAddressParsed, pharmacyServices, pharmacyServicesWelsh);
