@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">PharmacyAdmin</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_a_pharmacy">Add a pharmacy</string>
+    <string name="pharmacy_email">Pharmacy Email</string>
+    <string name="pharmacy_phone">Pharmacy Phone</string>
+    <string name="pharmacy_website">Pharmacy Website</string>
+    <string name="pharmacy_address">Pharmacy Address</string>
+    <string name="pharmacy_postcode">Pharmacy Postcode</string>
+    <string name="pharmacy_name">Pharmacy name</string>
+    <string name="MONDAY">Monday</string>
+    <string name="TUESDAY">Tuesday</string>
+    <string name="WEDNESDAY">Wednesday</string>
+    <string name="THURSDAY">Thursday</string>
+    <string name="FRIDAY">Friday</string>
+    <string name="SATURDAY">Saturday</string>
+    <string name="SUNDAY">Sunday</string>
+    <string name="weekdays_setup">Weekdays setup</string>
+    <string name="R.id.nine_thirty">9:30</string>
+    <string name="R.id.five_pm">17:00</string>
+    <string name="zero_zero_time">00:00</string>
+    <string name="services_required">Services available</string>
+    <string name="services_available_in_welsh">Services available in Welsh</string>
+    <string name="FLU_SHOT">Flu shot</string>
+    <string name="BLOOD_PRESSURE_MONITORING">Blood pressure monitoring</string>
+    <string name="DISPENSING">Dispensing</string>
+    <string name="ALCOHOL_ADVICE">Alcohol Advice</string>
+    <string name="EMERGENCY_SUPPLY">Emergency Supply</string>
+    <string name="MEDICINE_REVIEW">Medicine Review</string>
+    <string name="MINOR_AILMENT">Minor Ailment Treatment</string>
+    <string name="NEW_MEDICINE">New Medicine</string>
+    <string name="PREGNANCY_TEST">Pregnancy Test</string>
+    <string name="WEIGHT_MANAGEMENT">Weight Management</string>
+    <string name="save_changes">Save changes</string>
+    <string name="invalid_time">Invalid time</string>
+    <string name="invalid_address">Invalid address -try again later</string>
+    <string name="no_connection">No connection - try again please</string>
+    <string name="successfully_added_pharmacy">Successfully added pharmacy</string>
+    <string name="pharmacy_details">Pharmacy Details</string>
+    <string name="deleted_success">Deleted successfully</string>
+    <string name="delete_unsuccessful">Delete unsuccessful - try again later</string>
+    <string name="what_would_you_like_to_do">What would you like to do with this pharmacy?</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="cannot_edit_try_later">Cannot edit at the moment - try again later</string>
+    <string name="refresh">Refresh</string>
+    <string name="search_here">Search here...</string>
+</resources>

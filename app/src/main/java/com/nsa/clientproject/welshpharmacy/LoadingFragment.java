@@ -96,7 +96,7 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
     private JsonArrayRequest makeJsonRequest() {
         //Reference: http://velmm.com/volley-cache-example
         //Accessed  on 20 April 2018
-        final String dataURL = "https://api.myjson.com/bins/hn6ff";
+        final String dataURL = "https://hdimitrov.pythonanywhere.com/pharmacies";
         return new JsonArrayRequest(
                 Request.Method.GET,
                 dataURL,
