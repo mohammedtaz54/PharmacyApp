@@ -74,9 +74,11 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         }
 
         pharmacyLocation.setText(getItem(position).getPostcode());
+
         if(currentTime.compareTo(getItem(position).getOpenTime())>0
                 && currentTime.compareTo(getItem(position).getCloseTime())<0){
-            openOrClosed.setText(R.string.open);
+            String closeTime = getItem(position).getCloseTime().toString();
+            openOrClosed.setText(context.getString(R.string.open) + closeTime);
             openOrClosed.setTextColor(context.getColor(R.color.colorOpen));
         }
         else{
