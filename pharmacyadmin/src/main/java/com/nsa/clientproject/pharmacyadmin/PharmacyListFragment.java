@@ -30,6 +30,7 @@ public class PharmacyListFragment extends Fragment implements SwipeRefreshLayout
     private List<PharmacyListItem> pharmaciesFilteredList;
 
 
+
     private PharmacyListAdapter pharmacyListAdapter;
 
     private ListView pharmaciesListView;
@@ -132,8 +133,8 @@ public class PharmacyListFragment extends Fragment implements SwipeRefreshLayout
     }
 
 
+
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onSwipeToRefresh();
     }
 }

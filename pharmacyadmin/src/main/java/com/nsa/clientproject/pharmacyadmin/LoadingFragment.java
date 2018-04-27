@@ -27,7 +27,8 @@ import java.util.List;
 public class LoadingFragment extends Fragment {
     private List<PharmacyListItem>  pharmaciesList;
     private OnFragmentInteractionListener mListener;
-
+    private boolean isRunning = false;
+    private boolean hasFinishedLoading = false;
     public LoadingFragment() {
         // Required empty public constructor
     }
@@ -62,7 +63,10 @@ public class LoadingFragment extends Fragment {
                              e.printStackTrace();
                          }
                      }
-                     mListener.onFragmentInteraction(pharmaciesList);
+                     hasFinishedLoading = true;
+                     if(isRunning) {
+                         mListener.onFragmentInteraction(pharmaciesList);
+                     }
                     }
                 }, new Response.ErrorListener() {
 
@@ -109,5 +113,20 @@ public class LoadingFragment extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         void onFragmentInteraction(List<PharmacyListItem> pharmacies);
+    }
+
+    @Override
+    public void onResume() {
+        isRunning = true;
+        super.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        isRunning = false;
+        if(hasFinishedLoading){
+            mListener.onFragmentInteraction(pharmaciesList);
+        }
+        super.onPause();
     }
 }
