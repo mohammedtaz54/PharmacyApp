@@ -28,6 +28,9 @@ public class PharmacyList extends AppCompatActivity implements LoadingFragment.O
                 Intent i = new Intent(this,AddPharmacyActivity.class);
                 startActivity(i);
                 break;
+            case R.id.refresh:
+                onSwipeToRefresh();
+                break;
         }
         return true;
     }
@@ -56,7 +59,10 @@ public class PharmacyList extends AppCompatActivity implements LoadingFragment.O
     }
 
     @Override
-    public void onPharmacyClick(int id) {
-
+    public void onSwipeToRefresh() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_spot, new LoadingFragment())
+                .commit();
     }
 }

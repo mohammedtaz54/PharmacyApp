@@ -45,4 +45,6 @@
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
     <string name="cannot_edit_try_later">Cannot edit at the moment - try again later</string>
+    <string name="refresh">Refresh</string>
+    <string name="search_here">Search here...</string>
 </resources>

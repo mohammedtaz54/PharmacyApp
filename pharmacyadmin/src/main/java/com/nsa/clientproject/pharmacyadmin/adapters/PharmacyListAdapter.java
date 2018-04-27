@@ -16,7 +16,6 @@ import java.util.List;
 public class PharmacyListAdapter extends BaseAdapter {
     private Context context;
     private List<PharmacyListItem> pharmacies;
-
     public PharmacyListAdapter(Context context, List<PharmacyListItem> pharmacies) {
         this.context = context;
         this.pharmacies = pharmacies;
