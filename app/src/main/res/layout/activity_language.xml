@@ -5,7 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/language_settings">
-
+    <ScrollView xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
     <android.support.v7.widget.LinearLayoutCompat
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,23 +22,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/welsh"
-        android:layout_gravity="bottom|center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_margin="25dp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/colorPrimary"/>
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="247dp" />
     <Button
         android:id="@+id/english_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/english"
-        android:layout_gravity="bottom|center"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/colorPrimary"/>
+        tools:layout_editor_absoluteX="288dp"
+        tools:layout_editor_absoluteY="247dp" />
+
     </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
 
 
 </android.support.constraint.ConstraintLayout>
