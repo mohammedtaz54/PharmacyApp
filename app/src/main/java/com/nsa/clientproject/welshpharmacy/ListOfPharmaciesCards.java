@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -48,6 +49,7 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_list_of_pharmacies_cards, container, false);
         ListView cardList =  v.findViewById(R.id.card_list);
         this.pharmacyList =(PharmacyList) getArguments().getSerializable("pharmacyList");
@@ -57,7 +59,11 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
         refreshLayout.setOnRefreshListener(this);
 //        setAdapterForList();
         cardList.setOnItemClickListener(this);
+        if (pharmacyList.getPharmacies().size()==0){
+            Snackbar.make(v, R.string.no_results, Snackbar.LENGTH_LONG).show();
+        }
         return v;
+
     }
 
     /**
@@ -88,6 +94,8 @@ public class ListOfPharmaciesCards extends Fragment implements AdapterView.OnIte
         ListView cardList =  getView().findViewById(R.id.card_list);
         PharmacyListCardViewAdapter adapter = new PharmacyListCardViewAdapter(getContext(),pharmacyList.getPharmacies());
         cardList.setAdapter(adapter);
+        if (pharmacyList.getPharmacies().size()==0){
+            Snackbar.make(getView(), R.string.no_results, Snackbar.LENGTH_LONG).show();}
 
     }
 
