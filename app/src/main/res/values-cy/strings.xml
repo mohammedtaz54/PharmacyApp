@@ -14,7 +14,7 @@
     <string name="title_activity_pharmacy_list">Fferyllfeydd Cyfagos</string>
     <string name="navigation_drawer_open">Drawer mordwyo agored</string>
     <string name="opening_closing_time">Agor o  %1$s i %2$s</string>
-    <string name="open">Yn agored</string>
+    <string name="open">"Ar agor tan "</string>
     <string name="not_filtering_location_not_given">Ddim yn hidlo yn ôl lleoliad - dim lleoliad wedi\'i roi</string>
     <string name="maximum_distance_miles">Pellter uchaf (milltiroedd)</string>
     <string name="map_view">Golwg map</string>
