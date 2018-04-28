@@ -41,6 +41,9 @@ import static android.support.test.espresso.action.ViewActions.clearText;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.scrollTo;
 import static android.support.test.espresso.action.ViewActions.typeText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
+import static android.support.test.espresso.matcher.ViewMatchers.isNotChecked;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
@@ -119,8 +122,13 @@ public class EvaluateFilteringDefault {
 
     @Test
     public void evalFiltersSettingPreferences() throws IOException {
+        multiPharmacyActivity.getActivity().getSharedPreferences("DEFAULT_SETTINGS",Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"FLU_SHOT",false)
+                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"FLU_SHOT",false)
+                .commit();
         onView(withId(R.id.filter)).perform(click());
-        onView(EspressoHelpers.nthChildOf(withId(R.id.services),0)).perform(click());
+        onView(EspressoHelpers.nthChildOf(withId(R.id.services),0)).check(matches(isNotChecked())).perform(click());
         onView(EspressoHelpers.nthChildOf(withId(R.id.services_welsh),0)).perform(scrollTo(),click());
         onView(withId(R.id.use_postcode)).perform(scrollTo(),click());
         onView(withId(R.id.postcode_string)).perform(scrollTo(),click(),clearText(),typeText("CF103EJ"));
