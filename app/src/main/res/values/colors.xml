@@ -8,4 +8,6 @@
     <color name="text_on_dark_background">#FFFFFF</color>
     <color name="english_pharmacy_background">#D7CECE</color>
     <color name="light_grey">#F2EFEE</color>
+    <color name="button_colour">#C3C2C1</color>
+
 </resources>

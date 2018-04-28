@@ -80,8 +80,8 @@
     <string name="english" translatable="false">English</string>
     <string name="other_pharmacy_details">Other Pharmacy Details</string>
     <string name="url">Url</string>
-    <string name="website">Website</string>
+    <string name="website">Visit Website</string>
     <string name="call_now">Call Now</string>
-    <string name="map_now">Show Location</string>
+    <string name="map_now">Directions</string>
     <string name="no_results">No Results found</string>
 </resources>

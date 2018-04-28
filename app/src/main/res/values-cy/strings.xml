@@ -78,5 +78,6 @@
     <string name="website">Gwefan</string>
     <string name="call_now">Ffoniwch Nawr</string>
     <string name="map_now">Dangos Lleoliad</string>
+    <string name="no_results">Ni chanfuwyd canlyniadau</string>
 
 </resources>

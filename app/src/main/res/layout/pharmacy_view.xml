@@ -116,11 +116,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
                 android:autoLink="all"
                 android:clickable="true"
-                android:text="@string/website" />
+                android:text="@string/website"
+                android:background="@drawable/roundedbutton"/>
 
             <Button
                 android:id="@+id/call_button"
@@ -131,18 +133,20 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="@string/call_now" />
+                android:text="@string/call_now"
+                android:background="@drawable/roundedbutton"/>
 
             <Button
                 android:id="@+id/map_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
-                android:text="@string/map_now" />
+                android:text="@string/map_now"
+                android:background="@drawable/roundedbutton"/>
 
 
         </android.support.v7.widget.LinearLayoutCompat>
