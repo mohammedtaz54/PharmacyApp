@@ -31,35 +31,15 @@ public class EvaluateDefaultSettings {
     @Rule
     public ActivityTestRule<DefaultSettings> defaultSettings = new ActivityTestRule<>(DefaultSettings.class);
 
-    //Reference:https://stackoverflow.com/questions/24748303/selecting-child-view-at-index-using-espresso
-    //Accessed on 21 April 2018
-    public static Matcher<View> nthChildOf(final Matcher<View> parentMatcher, final int childPosition) {
-        return new TypeSafeMatcher<View>() {
-            @Override
-            public void describeTo(Description description) {
-                description.appendText("with " + childPosition + " child view of type parentMatcher");
-            }
-
-            @Override
-            public boolean matchesSafely(View view) {
-                if (!(view.getParent() instanceof ViewGroup)) {
-                    return parentMatcher.matches(view.getParent());
-                }
-
-                ViewGroup group = (ViewGroup) view.getParent();
-                return parentMatcher.matches(view.getParent()) && group.getChildAt(childPosition).equals(view);
-            }
-        };
-    }
 
     @Test
     public void evalSettingsSave(){
         String postcode = "CF103EJ";
         String maxdistance = "5";
         SharedPreferences sp = defaultSettings.getActivity().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE);
-        onView(nthChildOf(withId(R.id.services_required),0)).perform(click());
+        onView(EspressoHelpers.nthChildOf(withId(R.id.services_required),0)).perform(click());
         onView(withId(R.id.show_welsh_services)).perform(click());
-        onView(nthChildOf(withId(R.id.services_required_welsh),0)).perform(click());
+        onView(EspressoHelpers.nthChildOf(withId(R.id.services_required_welsh),0)).perform(click());
         onView(withId(R.id.show_location_options)).perform(click());
         onView(withId(R.id.postcode_given)).perform(typeText(postcode));
         closeSoftKeyboard();
