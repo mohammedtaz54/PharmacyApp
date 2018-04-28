@@ -383,4 +383,20 @@ public class MultiPharmacyActivity extends AppCompatActivity
     public void onProviderInstallFailed(int i, Intent intent) {
 
     }
+
+    /**
+     * Check if the page has finished loading
+     * @return if the page is loaded
+     */
+    public boolean isHasFinishedLoading() {
+        return hasFinishedLoading;
+    }
+
+    /**
+     * Returns the current fragment that is rendered
+     * @return the current fragment
+     */
+    Fragment getCurrentFragment(){
+        return getSupportFragmentManager().findFragmentByTag(TAG_CURRENT_DISPLAY);
+    }
 }

@@ -35,7 +35,7 @@ public class PharmacyList implements Serializable {
     /**
      * The number we multiply to to convert from metres to miles
      */
-    private static final double METRES_TO_MILE = 0.000621371;
+    public static final double METRES_TO_MILE = 0.000621371;
     /**
      * Stores our instance of the distanceCalculator.
      */
