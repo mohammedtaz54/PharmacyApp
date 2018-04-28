@@ -28,7 +28,7 @@
         android:text="@string/application_setup"
         android:textSize="@dimen/title_text_size" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/postcode_input_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_setup_title_location" />
 
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/postcode_given"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_setup_title_location" />
 
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:id="@+id/maximum_distance_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/postcode_input_text" />
 
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:id="@+id/maximum_distance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
