@@ -7,4 +7,5 @@
     <color name="colorOpen">#00FF00</color>
     <color name="text_on_dark_background">#FFFFFF</color>
     <color name="english_pharmacy_background">#D7CECE</color>
+    <color name="light_grey">#F2EFEE</color>
 </resources>
