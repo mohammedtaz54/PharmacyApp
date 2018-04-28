@@ -2,6 +2,7 @@ package com.nsa.clientproject.welshpharmacy;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.support.test.filters.MediumTest;
 import android.support.test.rule.ActivityTestRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
@@ -25,7 +26,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withTagValue;
 import static junit.framework.Assert.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.AllOf.allOf;
-
+@MediumTest
 @RunWith(AndroidJUnit4.class)
 public class EvaluateDefaultSettings {
     @Rule
