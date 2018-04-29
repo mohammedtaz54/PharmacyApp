@@ -87,8 +87,8 @@ public class MultiPharmacyActivity extends AppCompatActivity
                     loadLoadingFragment();
                     break;
                 case R.id.menu_language:
-                    loadLoadingFragment();
-//                    startActivity(new Intent(this, Language.class));
+//                    loadLoadingFragment();
+                    startActivity(new Intent(this, Language.class));
                     break;
 
             }
