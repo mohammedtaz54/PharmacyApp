@@ -80,5 +80,6 @@
     <string name="map_now">Dangos Lleoliad</string>
     <string name="no_results">Ni chanfuwyd canlyniadau</string>
     <string name="location">" Lleoliad"</string>
+    <string name="language">Laith/Language</string>
 
 </resources>

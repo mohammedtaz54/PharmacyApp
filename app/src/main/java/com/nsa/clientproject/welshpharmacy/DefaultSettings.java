@@ -12,6 +12,8 @@ import android.support.v7.widget.AppCompatCheckBox;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,9 +41,38 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
      * Stores the layout that contains the location settings
      */
     private ConstraintLayout locationSettings;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_pharmacies_list,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+//            case R.id.add:
+//                Intent i = new Intent(this,AddPharmacyActivity.class);
+//                startActivity(i);
+//                break;
+            case R.id.settings_language:
+
+                Intent languageIntent = new Intent(this, Language.class);
+                languageIntent.putExtra("previousActivity", "Settings");
+                startActivity(languageIntent);
+
+                this.setTitle(getString(R.string.title_activity_pharmacy_list));
+                break;
+        }
+        return true;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MultiPharmacyActivity.setLanguage(this);
+
         this.setTitle(getString(R.string.app_name));
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_default_settings);
         servicesSettings = findViewById(R.id.services_settings);
@@ -63,12 +94,9 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         welshServicesSettings.setVisibility(View.GONE);
         locationSettings.setVisibility(View.GONE);
 
-        servicesSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         servicesSettings.findViewById(R.id.show_welsh_services).setOnClickListener(this);
-        welshServicesSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         welshServicesSettings.findViewById(R.id.show_english_services).setOnClickListener(this);
         welshServicesSettings.findViewById(R.id.show_location_options).setOnClickListener(this);
-        locationSettings.findViewById(R.id.language_pharmacy_view).setOnClickListener(this);
         locationSettings.findViewById(R.id.finish).setOnClickListener(this);
         locationSettings.findViewById(R.id.show_welsh_services_back).setOnClickListener(this);
 
@@ -98,9 +126,6 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         }
         if(v.getId()==R.id.finish){
             saveSettings();
-        }
-        if(v.getId()==R.id.language_pharmacy_view){
-            startActivity(new Intent(this, Language.class));
         }
     }
 
