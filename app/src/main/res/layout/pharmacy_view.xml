@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             tools:context="com.nsa.clientproject.welshpharmacy.PharmacyView">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/single_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +29,7 @@
                 android:layout_marginBottom="30dp"
                 android:layout_marginLeft="20dp"/>
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/single_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
 
 
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/services_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 />
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/services_title_welsh"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
                 />
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/opening_times"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:background="@android:color/white"
                 android:layout_marginTop="25dp"
                 />
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/other_pharmacy_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 android:layout_marginTop="10dp"
                 android:textSize="19sp"/>
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/website"
                 />
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/call_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/call_now"/>
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/map_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +149,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         app:layout_constraintBottom_toTopOf="@id/plusmenu"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginBottom="10dp"
@@ -185,7 +185,7 @@
             app:fabSize="mini" />
 
 
-    </LinearLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
     </android.support.constraint.ConstraintLayout>
 
 
