@@ -84,4 +84,7 @@
     <string name="call_now">Call Now</string>
     <string name="map_now">Directions</string>
     <string name="no_results">No Results found</string>
+    <string name="location">Location</string>
+    <string name="BLOOD_PRESSURE_MONITORING_WELSH">Blood pressure monitoring</string>
+    <string name="FLU_SHOT_WELSH">Flu shot</string>
 </resources>
