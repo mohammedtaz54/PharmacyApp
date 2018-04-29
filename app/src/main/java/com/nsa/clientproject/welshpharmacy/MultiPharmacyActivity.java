@@ -86,6 +86,11 @@ public class MultiPharmacyActivity extends AppCompatActivity
                 case R.id.menu_refresh:
                     loadLoadingFragment();
                     break;
+                case R.id.menu_language:
+                    loadLoadingFragment();
+//                    startActivity(new Intent(this, Language.class));
+                    break;
+
             }
         }
         return true;
@@ -105,29 +110,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         ProviderInstaller.installIfNeededAsync(this, this);
         Locale LocalePreference;
 
-        SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
-        sp.getString("LANGUAGE", "en");
-
-
-        if(sp.getString("LANGUAGE", "en").equals("en")){
-            LocalePreference = Locale.ENGLISH;
-        } else{
-            LocalePreference = Locale.forLanguageTag("cy");
-        }
-
-        Log.d("myTag", sp.getString("LANGUAGE", "en"));
-        //Reference:https://stackoverflow.com/questions/2900023/change-app-language-programmatically-in-android
-        //Accessed on 28 April 2018
-        Context context = this; // or ActivityNotification.this
-        Locale language_code = LocalePreference;
-        Resources res = context.getResources();
-        // Change locale settings in the app.
-        DisplayMetrics dm = res.getDisplayMetrics();
-        android.content.res.Configuration conf = res.getConfiguration();
-        conf.setLocale(language_code); // API 17+ only.
-// Use conf.locale = new Locale(...) if targeting lower versions
-        res.updateConfiguration(conf, dm);
-
+        setLanguage();
 
         this.setTitle(getString(R.string.title_activity_pharmacy_list));
 
@@ -168,6 +151,33 @@ public class MultiPharmacyActivity extends AppCompatActivity
         }
     }
 
+    private void setLanguage() {
+        Locale LocalePreference;
+
+        SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+        sp.getString("LANGUAGE", "en");
+
+
+        if (sp.getString("LANGUAGE", "en").equals("en")) {
+            LocalePreference = Locale.ENGLISH;
+        } else {
+            LocalePreference = Locale.forLanguageTag("cy");
+        }
+
+        Log.d("myTag", sp.getString("LANGUAGE", "en"));
+
+        //Reference:https://stackoverflow.com/questions/2900023/change-app-language-programmatically-in-android
+        //Accessed on 28 April 2018
+        Context context = this; // or ActivityNotification.this
+        Locale language_code = LocalePreference;
+        Resources res = context.getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(language_code); // API 17+ only.
+// Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
+    }
     /**
      * Loads the loading screen fragment
      */
