@@ -9,47 +9,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_details"
         android:textSize="@dimen/title_size"/>
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_name"
         />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_name"
         />
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_postcode" />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_postcode"
         android:inputType="textPostalAddress"
         />
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_address"
         />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_address"
         android:inputType="textPostalAddress"
         />
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_website" />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_website"
@@ -59,23 +59,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pharmacy_phone" />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_phone"
         android:inputType="phone"
         />
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="@string/pharmacy_email" />
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pharmacy_email"
         android:inputType="textEmailAddress"
         />
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/weekdays_setup"/>
@@ -85,7 +85,7 @@
         android:layout_height="match_parent"
         android:id="@+id/week_day_checkboxes"
         android:orientation="vertical"/>
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/services_required"
@@ -95,7 +95,7 @@
         android:orientation="vertical"
         android:id="@+id/services"
         android:layout_height="wrap_content"/>
-    <TextView
+    <android.support.v7.widget.AppCompatTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/services_available_in_welsh"
