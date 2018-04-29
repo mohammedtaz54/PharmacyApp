@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PharmacyListFragment"
     android:orientation="vertical">
-    <EditText
+    <android.support.v7.widget.AppCompatEditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/search"
@@ -20,4 +20,4 @@
             android:id="@+id/pharmacies_list_view"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
-</LinearLayout>
+</android.support.v7.widget.LinearLayoutCompat>
