@@ -9,6 +9,7 @@
         android:layout_height="match_parent"
         android:id="@+id/swipe_to_refresh">
 
+
         <ListView
             android:id="@+id/card_list"
             android:layout_width="match_parent"

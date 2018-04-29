@@ -87,4 +87,5 @@
     <string name="location">Location</string>
     <string name="BLOOD_PRESSURE_MONITORING_WELSH">Blood pressure monitoring</string>
     <string name="FLU_SHOT_WELSH">Flu shot</string>
+    <string name="language">Language/Laith</string>
 </resources>

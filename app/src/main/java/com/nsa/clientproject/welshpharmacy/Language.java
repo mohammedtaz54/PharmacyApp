@@ -35,8 +35,27 @@ public class Language extends AppCompatActivity implements View.OnClickListener 
     @Override
     public void onClick(View x) {
         if (x.getId() == R.id.english_button) {
+            SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+            sp.edit().putString("LANGUAGE", "en").apply();
+
+//            startActivity(new Intent(this, MultiPharmacyActivity.class));
+            MultiPharmacyActivity.setLanguage(this);
+
+            Intent myIntent = getIntent();
+            String previousActivity = myIntent.getStringExtra("previousActivity");
+
+            if(previousActivity.equals("Settings")){
+                startActivity(new Intent(this, DefaultSettings.class));
+            } else if(previousActivity.equals("List")){
+                startActivity(new Intent(this, MultiPharmacyActivity.class));
+            }
+            finish();
+
+
+        }
+        if (x.getId() == R.id.welsh_button) {
 //            Context context = this; // or ActivityNotification.this
-//            Locale language_code = Locale.ENGLISH;
+//            Locale language_code = Locale.forLanguageTag("cy");
 //            Resources res = context.getResources();
 //            // Change locale settings in the app.
 //            DisplayMetrics dm = res.getDisplayMetrics();
@@ -44,26 +63,27 @@ public class Language extends AppCompatActivity implements View.OnClickListener 
 //            conf.setLocale(language_code); // API 17+ only.
 //// Use conf.locale = new Locale(...) if targeting lower versions
 //            res.updateConfiguration(conf, dm);
-            SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
-            sp.edit().putString("LANGUAGE", "en").apply();
-
-            startActivity(new Intent(this, MultiPharmacyActivity.class));
-
-        }
-        if (x.getId() == R.id.welsh_button) {
-            Context context = this; // or ActivityNotification.this
-            Locale language_code = Locale.forLanguageTag("cy");
-            Resources res = context.getResources();
-            // Change locale settings in the app.
-            DisplayMetrics dm = res.getDisplayMetrics();
-            android.content.res.Configuration conf = res.getConfiguration();
-            conf.setLocale(language_code); // API 17+ only.
-// Use conf.locale = new Locale(...) if targeting lower versions
-            res.updateConfiguration(conf, dm);
+//            SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
+//            sp.edit().putString("LANGUAGE", "cy").apply();
+//
+////            startActivity(new Intent(this, MultiPharmacyActivity.class));
+//             MultiPharmacyActivity.setLanguage(this);
+//            finish();
             SharedPreferences sp = this.getSharedPreferences("DEFAULT_SETTINGS", MODE_PRIVATE);
             sp.edit().putString("LANGUAGE", "cy").apply();
 
-            startActivity(new Intent(this, MultiPharmacyActivity.class));
+//            startActivity(new Intent(this, MultiPharmacyActivity.class));
+            MultiPharmacyActivity.setLanguage(this);
+
+            Intent myIntent = getIntent();
+            String previousActivity = myIntent.getStringExtra("previousActivity");
+
+            if(previousActivity.equals("Settings")){
+                startActivity(new Intent(this, DefaultSettings.class));
+            } else if(previousActivity.equals("List")){
+                startActivity(new Intent(this, MultiPharmacyActivity.class));
+            }
+            finish();
         }
     }
     }
