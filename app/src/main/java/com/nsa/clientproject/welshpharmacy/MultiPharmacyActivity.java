@@ -116,7 +116,8 @@ public class MultiPharmacyActivity extends AppCompatActivity
         }
 
         Log.d("myTag", sp.getString("LANGUAGE", "en"));
-
+        //Reference:https://stackoverflow.com/questions/2900023/change-app-language-programmatically-in-android
+        //Accessed on 28 April 2018
         Context context = this; // or ActivityNotification.this
         Locale language_code = LocalePreference;
         Resources res = context.getResources();

@@ -18,7 +18,7 @@
             android:orientation="vertical"
             tools:context="com.nsa.clientproject.welshpharmacy.PharmacyView">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/single_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,25 +26,25 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="15dp"
                 android:text="Name"
-                android:textStyle="bold"
                 android:textSize="32sp"
+                android:textStyle="bold"
                 tools:layout_editor_absoluteX="154dp"
                 tools:layout_editor_absoluteY="1dp" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/single_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
+                android:background="@color/light_grey"
                 android:text="@string/location"
                 android:textSize="13sp"
-                android:background="@color/light_grey"
                 tools:layout_editor_absoluteX="189dp"
                 tools:layout_editor_absoluteY="309dp" />
 
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/services_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,27 +53,26 @@
                 android:layout_marginTop="25dp"
                 android:text="@string/services_offered_in_english"
                 android:textSize="@dimen/size_title_single_pharmacy"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
 
             <ListView
                 android:id="@+id/single_services"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/light_grey"
-                />
+                android:background="@color/light_grey" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/services_title_welsh"
-                android:textStyle="bold"
-
                 android:layout_width="wrap_content"
+
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="25dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
                 android:text="@string/services_offered_in_welsh"
-                android:textSize="@dimen/size_title_single_pharmacy" />
+                android:textSize="@dimen/size_title_single_pharmacy"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/single_welsh_services"
@@ -81,16 +80,18 @@
                 android:layout_height="wrap_content"
                 android:background="@color/light_grey" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/opening_times"
-                android:textStyle="bold"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="25dp"
+                android:background="@android:color/white"
                 android:text="@string/opening_times"
-                android:textSize="@dimen/size_title_single_pharmacy" />
+                android:textSize="@dimen/size_title_single_pharmacy"
+                android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/single_opening"
@@ -99,52 +100,53 @@
                 android:layout_marginTop="10dp"
                 android:background="@color/light_grey" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/other_pharmacy_details"
-                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
+                android:background="@android:color/white"
                 android:text="@string/other_pharmacy_details"
-                android:textSize="19sp" />
+                android:textSize="19sp"
+                android:textStyle="bold" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginEnd="10dp"
-                android:padding="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
                 android:autoLink="all"
                 android:clickable="true"
-                android:text="@string/website"
-                android:drawableLeft="@drawable/website"/>
+                android:drawableLeft="@drawable/website"
+                android:padding="5dp"
+                android:text="@string/website" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/call_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/call_now"
-                android:drawableLeft="@drawable/call"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/call"
+                android:text="@string/call_now" />
 
-            <Button
+            <android.support.v7.widget.AppCompatButton
                 android:id="@+id/map_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="70dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/map_now"
-                android:drawableLeft="@drawable/directions"/>
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:drawableLeft="@drawable/directions"
+                android:text="@string/map_now" />
 
 
         </android.support.v7.widget.LinearLayoutCompat>
@@ -169,7 +171,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
-        <LinearLayout
+        <android.support.v7.widget.LinearLayoutCompat
             android:id="@+id/thumbsuplayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -186,7 +188,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:layout_marginEnd="16dp"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@android:color/white"
                 android:clickable="true"
                 android:src="@drawable/ic_thumb_up_black_24dp"
                 android:visibility="invisible"
@@ -198,16 +200,14 @@
                 android:id="@+id/thumbsdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@android:color/white"
                 android:clickable="true"
                 android:src="@drawable/ic_thumb_down_black_24dp"
                 android:visibility="invisible"
                 app:fabSize="mini" />
 
 
-        </LinearLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
     </android.support.constraint.ConstraintLayout>
-
-
 </android.support.constraint.ConstraintLayout>
 
