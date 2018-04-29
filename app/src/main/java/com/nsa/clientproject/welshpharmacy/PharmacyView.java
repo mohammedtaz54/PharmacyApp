@@ -75,6 +75,15 @@ public class PharmacyView extends AppCompatActivity {
             }
         });
 
+        Button websitebutton = (Button) findViewById(R.id.link);
+        websitebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent websiteIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(pharmacy.getWebsite()));
+                startActivity(websiteIntent);
+            }
+        });
+
 
         plusmenu = findViewById(R.id.plusmenu);
         thumbsup = findViewById(R.id.thumbsup);
@@ -130,9 +139,10 @@ public class PharmacyView extends AppCompatActivity {
         TextView singleLocation = findViewById(R.id.single_location);
         singleLocation.setText(getString(R.string.address, pharmacy.getLocation()));
 
-        //Change Text in website text field in single pharmacy view
-        TextView webLink = findViewById(R.id.link);
-        webLink.setText(pharmacy.getWebsite());
+//        //Change Text in website text field in single pharmacy view
+//        TextView webLink = findViewById(R.id.link);
+//        webLink.setText(pharmacy.getWebsite());
+
 
         //Change items in services list view in single pharmacy view
         ArrayList<String> services;
