@@ -48,24 +48,24 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-//            case R.id.add:
-//                Intent i = new Intent(this,AddPharmacyActivity.class);
-//                startActivity(i);
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()){
+////            case R.id.add:
+////                Intent i = new Intent(this,AddPharmacyActivity.class);
+////                startActivity(i);
+////                break;
+//            case R.id.settings_language:
+//
+//                Intent languageIntent = new Intent(this, Language.class);
+//                languageIntent.putExtra("previousActivity", "Settings");
+//                startActivity(languageIntent);
+//
+//                this.setTitle(getString(R.string.title_activity_pharmacy_list));
 //                break;
-            case R.id.settings_language:
-
-                Intent languageIntent = new Intent(this, Language.class);
-                languageIntent.putExtra("previousActivity", "Settings");
-                startActivity(languageIntent);
-
-                this.setTitle(getString(R.string.title_activity_pharmacy_list));
-                break;
-        }
-        return true;
-    }
+//        }
+//        return true;
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
