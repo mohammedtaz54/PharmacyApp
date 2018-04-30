@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -51,6 +52,7 @@ public class MultiPharmacyActivity extends AppCompatActivity
         FilterDialogFragment.ContainsPharmacyList,
         OnSuccessListener<Location>,
         LoadingFragment.OnFragmentInteractionListener, ProviderInstaller.ProviderInstallListener {
+
 
     /**
      * Stores if the app has finished loading.
@@ -122,6 +124,8 @@ public class MultiPharmacyActivity extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pharmacy_list);
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

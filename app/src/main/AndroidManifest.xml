@@ -36,11 +36,7 @@ Accessed on 25 April 2018
             android:exported="true"
             android:label="@string/title_activity_pharmacy_list"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Language"
@@ -48,6 +44,13 @@ Accessed on 25 April 2018
             android:exported="false"
             android:label="Language/Iaith"
             android:parentActivityName=".DefaultSettings" />
+        <activity android:name=".WelcomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
