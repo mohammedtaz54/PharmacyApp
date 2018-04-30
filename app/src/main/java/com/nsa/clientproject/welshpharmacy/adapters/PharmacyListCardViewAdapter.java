@@ -77,6 +77,10 @@ public class PharmacyListCardViewAdapter extends BaseAdapter {
         if(!(getItem(position).getServicesInWelsh().size()>0)) {
             convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(R.color.english_pharmacy_background));
         }
+        else{
+            convertView.findViewById(R.id.card_item).setBackgroundColor(context.getColor(android.R.color.white));
+
+        }
 
         pharmacyLocation.setText(getItem(position).getPostcode());
 
