@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -76,6 +77,11 @@ public class LoadingFragment extends Fragment {
 
                     }
                 });
+        //Reference: https://stackoverflow.com/questions/17094718/change-volley-timeout-duration
+        //Accessed on  30 April 2018
+        jsonObjectRequest.setRetryPolicy(new DefaultRetryPolicy(50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         RequestQueueSingleton.getInstance(this.getContext()).getRequestQueue().add(jsonObjectRequest);
         return v;
 
