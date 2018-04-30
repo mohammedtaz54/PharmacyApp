@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.android.volley.Cache;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -50,6 +51,7 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
      * Stores if pharmacyList is fully generated
      */
     private boolean isFinishedLoading = false;
+
     public LoadingFragment() {
         // Required empty public constructor
     }
@@ -70,7 +72,7 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
     @Override
     public void onResume() {
         isRunning = true;
-        if(isFinishedLoading){
+        if (isFinishedLoading) {
             mListener.onFinishedLoading();
         }
         super.onResume();
@@ -86,6 +88,12 @@ public class LoadingFragment extends android.support.v4.app.Fragment {
         //Accessed 20 April 2018
         RequestQueue requestQueue = RequestQueueSingleton.getInstance(this.getContext()).getRequestQueue();
         JsonArrayRequest dataRequest = makeJsonRequest();
+        //Reference: https://stackoverflow.com/questions/17094718/change-volley-timeout-duration
+        //Accessed on  30 April 2018
+        dataRequest.setRetryPolicy(new DefaultRetryPolicy(50000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
         requestQueue.add(dataRequest);
         this.pharmacyList = (PharmacyList) getArguments().getSerializable("pharmacyList");
         // Inflate the layout for this fragment
