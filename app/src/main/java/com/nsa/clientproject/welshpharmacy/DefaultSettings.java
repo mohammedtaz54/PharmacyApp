@@ -1,10 +1,12 @@
 package com.nsa.clientproject.welshpharmacy;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.constraint.ConstraintLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
@@ -200,5 +202,19 @@ public class DefaultSettings extends AppCompatActivity implements View.OnClickLi
             startActivity(i);
         }
 
+    }
+    //Reference: https://stackoverflow.com/questions/6413700/android-proper-way-to-use-onbackpressed-with-toast
+    //Accessed on 12 May 2018
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.are_you_sure_exit)
+                .setNegativeButton(R.string.no, null)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        DefaultSettings.super.onBackPressed();
+                    }
+                }).create().show();
     }
 }

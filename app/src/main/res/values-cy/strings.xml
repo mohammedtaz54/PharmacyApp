@@ -81,5 +81,8 @@
     <string name="no_results">Ni chanfuwyd canlyniadau</string>
     <string name="location">" Lleoliad"</string>
     <string name="language">Laith/Language</string>
+    <string name="are_you_sure_exit">Ydych chi\'n siŵr eich bod am adael?</string>
+    <string name="no">Na</string>
+    <string name="yes">Ydw</string>
 
 </resources>
