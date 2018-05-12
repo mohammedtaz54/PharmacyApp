@@ -1,9 +1,11 @@
 package com.nsa.clientproject.pharmacyadmin;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.location.Address;
 import android.location.Geocoder;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatCheckBox;
@@ -353,5 +355,19 @@ public class AddPharmacyActivity extends AppCompatActivity implements View.OnCli
             return true;
         }
         return false;
+    }
+    //Reference: https://stackoverflow.com/questions/6413700/android-proper-way-to-use-onbackpressed-with-toast
+    //Accessed on 12 May 2018
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage(R.string.are_you_sure_exit)
+                .setNegativeButton(android.R.string.no, null)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        AddPharmacyActivity.super.onBackPressed();
+                    }
+                }).create().show();
     }
 }
