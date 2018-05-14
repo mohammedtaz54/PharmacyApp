@@ -23,6 +23,7 @@
             android:parentActivityName=".MultiPharmacyActivity" />
         <activity
             android:name=".DefaultSettings"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
             android:parentActivityName=".MultiPharmacyActivity" />
         <!--Reference: https://stackoverflow.com/questions/32283853/android-save-state-on-orientation-change

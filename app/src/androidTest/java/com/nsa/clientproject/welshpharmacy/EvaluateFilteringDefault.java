@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.support.test.filters.MediumTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
@@ -54,14 +55,22 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
+
 @MediumTest
 @RunWith(AndroidJUnit4.class)
 public class EvaluateFilteringDefault {
     @Rule
     public ActivityTestRule<MultiPharmacyActivity> multiPharmacyActivity = new ActivityTestRule<>(MultiPharmacyActivity.class);
 
+
+    //Reference: https://stackoverflow.com/questions/33929937/android-marshmallow-test-permissions-with-espresso
+    //Accessed on 14 May 2018
+    @Rule
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
+
     @Before
     public void init() throws InterruptedException {
+        EspressoHelpers.goThroughWizardIfNeeded(multiPharmacyActivity.getActivity());
         while (!multiPharmacyActivity.getActivity().isHasFinishedLoading()) {
             Thread.sleep(200);
             //wait
@@ -70,7 +79,7 @@ public class EvaluateFilteringDefault {
     }
 
     @Test
-    public void evalFilterByService() {
+    public void evalFilterByService() throws InterruptedException {
         PharmacySearchCriteria filters = new PharmacySearchCriteria();
         Map<PharmacyServices, Boolean> filterSearch = new HashMap<PharmacyServices, Boolean>() {{
             put(PharmacyServices.FLU_SHOT, true);
@@ -80,14 +89,18 @@ public class EvaluateFilteringDefault {
         Intent broadcastChange = new Intent();
         broadcastChange.setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
         LocalBroadcastManager.getInstance(multiPharmacyActivity.getActivity()).sendBroadcast(broadcastChange);
+        Thread.sleep(200); //Wait this long so the pharmacies can update.
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
+        Log.d("SHOW ME MY TESTS",p.getName().toString());
+        Log.d("SHOW ME MY TESTS",p.getServicesOffered().toString());
         assertTrue(p.getServicesOffered().contains(PharmacyServices.FLU_SHOT));
 
     }
+
     @Test
-    public void evalFilterByServiceWelsh() {
+    public void evalFilterByServiceWelsh() throws InterruptedException {
         PharmacySearchCriteria filters = new PharmacySearchCriteria();
         Map<PharmacyServices, Boolean> filterSearch = new HashMap<PharmacyServices, Boolean>() {{
             put(PharmacyServices.FLU_SHOT, true);
@@ -97,6 +110,8 @@ public class EvaluateFilteringDefault {
         Intent broadcastChange = new Intent();
         broadcastChange.setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
         LocalBroadcastManager.getInstance(multiPharmacyActivity.getActivity()).sendBroadcast(broadcastChange);
+        //Wait this long so the pharmacies can update.
+        Thread.sleep(200);
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
@@ -116,32 +131,32 @@ public class EvaluateFilteringDefault {
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
-        Log.d("UnitTest",Double.toString(p.getDistanceToUser()));
-        assertTrue(p.getDistanceToUser()* PharmacyList.METRES_TO_MILE<50);
+        Log.d("UnitTest", Double.toString(p.getDistanceToUser()));
+        assertTrue(p.getDistanceToUser() * PharmacyList.METRES_TO_MILE < 50);
     }
 
     @Test
     public void evalFiltersSettingPreferences() throws IOException {
-        multiPharmacyActivity.getActivity().getSharedPreferences("DEFAULT_SETTINGS",Context.MODE_PRIVATE)
+        multiPharmacyActivity.getActivity().getSharedPreferences("DEFAULT_SETTINGS", Context.MODE_PRIVATE)
                 .edit()
-                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX+"FLU_SHOT",false)
-                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX+"FLU_SHOT",false)
+                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_PREFIX + "FLU_SHOT", false)
+                .putBoolean(KeyValueHelper.KEY_DEFAULT_SERVICES_WELSH_PREFIX + "FLU_SHOT", false)
                 .commit();
         onView(withId(R.id.filter)).perform(click());
-        onView(EspressoHelpers.nthChildOf(withId(R.id.services),0)).check(matches(isNotChecked())).perform(click());
-        onView(EspressoHelpers.nthChildOf(withId(R.id.services_welsh),0)).perform(scrollTo(),click());
-        onView(withId(R.id.use_postcode)).perform(scrollTo(),click());
-        onView(withId(R.id.postcode_string)).perform(scrollTo(),click(),clearText(),typeText("CF103EJ"));
+        onView(EspressoHelpers.nthChildOf(withId(R.id.services), 0)).check(matches(isNotChecked())).perform(click());
+        onView(EspressoHelpers.nthChildOf(withId(R.id.services_welsh), 0)).perform(scrollTo(), click());
+        onView(withId(R.id.use_postcode)).perform(scrollTo(), click());
+        onView(withId(R.id.postcode_string)).perform(scrollTo(), click(), clearText(), typeText("CF103EJ"));
         closeSoftKeyboard();
-        onView(withId(R.id.maximum_distance)).perform(scrollTo(),click(),clearText(),typeText("5"));
+        onView(withId(R.id.maximum_distance)).perform(scrollTo(), click(), clearText(), typeText("5"));
         closeSoftKeyboard();
-        onView(withId(R.id.submit_filter)).perform(scrollTo(),click());
+        onView(withId(R.id.submit_filter)).perform(scrollTo(), click());
         PharmacySearchCriteria pharmacySearchCriteria = multiPharmacyActivity.getActivity().getPharmacyList().getPharmacySearchCriteria();
         Geocoder g = new Geocoder(multiPharmacyActivity.getActivity());
-        Address a = g.getFromLocationName("CF103EJ",1).get(0);
-        assertEquals(5.0,pharmacySearchCriteria.getMaxDistance());
-        assertEquals(a.getLatitude(),pharmacySearchCriteria.getUserLat());
-        assertEquals(a.getLongitude(),pharmacySearchCriteria.getUserLng());
+        Address a = g.getFromLocationName("CF103EJ", 1).get(0);
+        assertEquals(5.0, pharmacySearchCriteria.getMaxDistance());
+        assertEquals(a.getLatitude(), pharmacySearchCriteria.getUserLat());
+        assertEquals(a.getLongitude(), pharmacySearchCriteria.getUserLng());
         assertTrue(pharmacySearchCriteria.getServicesRequired().get(PharmacyServices.FLU_SHOT));
     }
 

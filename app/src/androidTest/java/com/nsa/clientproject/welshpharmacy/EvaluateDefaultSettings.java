@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.test.filters.MediumTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +34,10 @@ public class EvaluateDefaultSettings {
     @Rule
     public ActivityTestRule<DefaultSettings> defaultSettings = new ActivityTestRule<>(DefaultSettings.class);
 
-
+    //Reference: https://stackoverflow.com/questions/33929937/android-marshmallow-test-permissions-with-espresso
+    //Accessed on 14 May 2018
+    @Rule
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
     @Test
     public void evalSettingsSave(){
         String postcode = "CF103EJ";

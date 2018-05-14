@@ -7,6 +7,7 @@ import android.support.test.espresso.contrib.NavigationViewActions;
 import android.support.test.filters.LargeTest;
 import android.support.test.filters.MediumTest;
 import android.support.test.rule.ActivityTestRule;
+import android.support.test.rule.GrantPermissionRule;
 import android.support.test.runner.AndroidJUnit4;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,9 +46,14 @@ public class EvaluateFullApp {
     @Rule
     public ActivityTestRule<MultiPharmacyActivity> multiPharmacyActivity = new ActivityTestRule<>(MultiPharmacyActivity.class);
 
+    //Reference: https://stackoverflow.com/questions/33929937/android-marshmallow-test-permissions-with-espresso
+    //Accessed on 14 May 2018
+    @Rule
+    public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
 
     @Test
     public void evaluateFullAppFlow() throws InterruptedException {
+        EspressoHelpers.goThroughWizardIfNeeded(multiPharmacyActivity.getActivity());
         while (!multiPharmacyActivity.getActivity().isHasFinishedLoading()) {
             Thread.sleep(200);
         }
@@ -75,6 +81,7 @@ public class EvaluateFullApp {
         while (!multiPharmacyActivity.getActivity().isHasFinishedLoading()) {
             Thread.sleep(200);
         }
+        Thread.sleep(200);
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
