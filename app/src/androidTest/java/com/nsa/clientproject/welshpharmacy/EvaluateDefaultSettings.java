@@ -38,11 +38,6 @@ public class EvaluateDefaultSettings {
     //Accessed on 14 May 2018
     @Rule
     public GrantPermissionRule permissionRule = GrantPermissionRule.grant(android.Manifest.permission.ACCESS_FINE_LOCATION);
-    @Before
-    public void init(){
-        EspressoHelpers.goThroughWizardIfNeeded(defaultSettings.getActivity());
-    }
-
     @Test
     public void evalSettingsSave(){
         String postcode = "CF103EJ";

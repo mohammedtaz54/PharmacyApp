@@ -81,6 +81,7 @@ public class EvaluateFullApp {
         while (!multiPharmacyActivity.getActivity().isHasFinishedLoading()) {
             Thread.sleep(200);
         }
+        Thread.sleep(200);
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);

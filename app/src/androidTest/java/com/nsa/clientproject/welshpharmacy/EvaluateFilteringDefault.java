@@ -79,7 +79,7 @@ public class EvaluateFilteringDefault {
     }
 
     @Test
-    public void evalFilterByService() {
+    public void evalFilterByService() throws InterruptedException {
         PharmacySearchCriteria filters = new PharmacySearchCriteria();
         Map<PharmacyServices, Boolean> filterSearch = new HashMap<PharmacyServices, Boolean>() {{
             put(PharmacyServices.FLU_SHOT, true);
@@ -89,15 +89,18 @@ public class EvaluateFilteringDefault {
         Intent broadcastChange = new Intent();
         broadcastChange.setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
         LocalBroadcastManager.getInstance(multiPharmacyActivity.getActivity()).sendBroadcast(broadcastChange);
+        Thread.sleep(200); //Wait this long so the pharmacies can update.
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
+        Log.d("SHOW ME MY TESTS",p.getName().toString());
+        Log.d("SHOW ME MY TESTS",p.getServicesOffered().toString());
         assertTrue(p.getServicesOffered().contains(PharmacyServices.FLU_SHOT));
 
     }
 
     @Test
-    public void evalFilterByServiceWelsh() {
+    public void evalFilterByServiceWelsh() throws InterruptedException {
         PharmacySearchCriteria filters = new PharmacySearchCriteria();
         Map<PharmacyServices, Boolean> filterSearch = new HashMap<PharmacyServices, Boolean>() {{
             put(PharmacyServices.FLU_SHOT, true);
@@ -107,6 +110,8 @@ public class EvaluateFilteringDefault {
         Intent broadcastChange = new Intent();
         broadcastChange.setAction("com.nsa.clientproject.welshpharmacy.UPDATED_LIST_PHARMACIES");
         LocalBroadcastManager.getInstance(multiPharmacyActivity.getActivity()).sendBroadcast(broadcastChange);
+        //Wait this long so the pharmacies can update.
+        Thread.sleep(200);
         ListOfPharmaciesCards cards = (ListOfPharmaciesCards) multiPharmacyActivity.getActivity().getCurrentFragment();
         ListView listPharmacies = (ListView) cards.getView().findViewById(R.id.card_list);
         Pharmacy p = (Pharmacy) listPharmacies.getAdapter().getItem(0);
