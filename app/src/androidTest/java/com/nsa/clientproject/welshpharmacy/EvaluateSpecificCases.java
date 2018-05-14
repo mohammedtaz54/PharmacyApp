@@ -42,7 +42,7 @@ import static junit.framework.Assert.*;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.AllOf.allOf;
 
-@LargeTest
+@MediumTest
 @RunWith(AndroidJUnit4.class)
 public class EvaluateSpecificCases {
     @Rule
