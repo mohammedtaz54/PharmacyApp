@@ -53,7 +53,9 @@ public class PharmacyView extends AppCompatActivity {
         setContentView(R.layout.pharmacy_view);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         final Pharmacy pharmacy = (Pharmacy) getIntent().getSerializableExtra("pharmacy");
-
+        if(pharmacy==null){
+            throw new IllegalArgumentException("Illegal pharmacy passed");
+        }
         final Button btn = (Button) findViewById(R.id.call_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
